@@ -13,6 +13,12 @@
 		115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115B341D207EEEAC0043A6F3 /* Assets.xcassets */; };
 		115B3421207EEEAC0043A6F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115B341F207EEEAC0043A6F3 /* LaunchScreen.storyboard */; };
 		115B3424207EEEAC0043A6F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3423207EEEAC0043A6F3 /* main.m */; };
+		115B3484207F5DCD0043A6F3 /* BaseNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3481207F5DCD0043A6F3 /* BaseNaviViewController.m */; };
+		115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3483207F5DCD0043A6F3 /* BaseViewController.m */; };
+		115B348E207F5E080043A6F3 /* CALayer+CircleBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3489207F5E070043A6F3 /* CALayer+CircleBoard.m */; };
+		115B348F207F5E080043A6F3 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B348B207F5E070043A6F3 /* UIImage+Color.m */; };
+		115B3490207F5E080043A6F3 /* UIView+EX.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B348D207F5E070043A6F3 /* UIView+EX.m */; };
+		115B3499207F618E0043A6F3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3497207F618E0043A6F3 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,20 @@
 		115B3420207EEEAC0043A6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		115B3422207EEEAC0043A6F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		115B3423207EEEAC0043A6F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		115B3480207F5DCD0043A6F3 /* BaseNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNaviViewController.h; sourceTree = "<group>"; };
+		115B3481207F5DCD0043A6F3 /* BaseNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNaviViewController.m; sourceTree = "<group>"; };
+		115B3482207F5DCD0043A6F3 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		115B3483207F5DCD0043A6F3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		115B3488207F5E070043A6F3 /* CALayer+CircleBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+CircleBoard.h"; sourceTree = "<group>"; };
+		115B3489207F5E070043A6F3 /* CALayer+CircleBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CircleBoard.m"; sourceTree = "<group>"; };
+		115B348A207F5E070043A6F3 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		115B348B207F5E070043A6F3 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		115B348C207F5E070043A6F3 /* UIView+EX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EX.h"; sourceTree = "<group>"; };
+		115B348D207F5E070043A6F3 /* UIView+EX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EX.m"; sourceTree = "<group>"; };
+		115B3491207F5E480043A6F3 /* LRMacroDefinitionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRMacroDefinitionHeader.h; sourceTree = "<group>"; };
+		115B3493207F5FA40043A6F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		115B3497207F618E0043A6F3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		115B3498207F618E0043A6F3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +64,7 @@
 			children = (
 				115B3413207EEEAC0043A6F3 /* YKT */,
 				115B3412207EEEAC0043A6F3 /* Products */,
+				115B3492207F5FA40043A6F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +79,7 @@
 		115B3413207EEEAC0043A6F3 /* YKT */ = {
 			isa = PBXGroup;
 			children = (
+				115B347E207F5D9F0043A6F3 /* Classes */,
 				115B3414207EEEAC0043A6F3 /* AppDelegate.h */,
 				115B3415207EEEAC0043A6F3 /* AppDelegate.m */,
 				115B3417207EEEAC0043A6F3 /* ViewController.h */,
@@ -69,6 +91,74 @@
 				115B3423207EEEAC0043A6F3 /* main.m */,
 			);
 			path = YKT;
+			sourceTree = "<group>";
+		};
+		115B347E207F5D9F0043A6F3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				115B3495207F60850043A6F3 /* ThirdSDK */,
+				115B3486207F5DFD0043A6F3 /* Tools */,
+				115B347F207F5DCD0043A6F3 /* BaseVC */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		115B347F207F5DCD0043A6F3 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				115B3480207F5DCD0043A6F3 /* BaseNaviViewController.h */,
+				115B3481207F5DCD0043A6F3 /* BaseNaviViewController.m */,
+				115B3482207F5DCD0043A6F3 /* BaseViewController.h */,
+				115B3483207F5DCD0043A6F3 /* BaseViewController.m */,
+			);
+			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		115B3486207F5DFD0043A6F3 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				115B3491207F5E480043A6F3 /* LRMacroDefinitionHeader.h */,
+				115B3487207F5E070043A6F3 /* Category */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		115B3487207F5E070043A6F3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				115B3488207F5E070043A6F3 /* CALayer+CircleBoard.h */,
+				115B3489207F5E070043A6F3 /* CALayer+CircleBoard.m */,
+				115B348A207F5E070043A6F3 /* UIImage+Color.h */,
+				115B348B207F5E070043A6F3 /* UIImage+Color.m */,
+				115B348C207F5E070043A6F3 /* UIView+EX.h */,
+				115B348D207F5E070043A6F3 /* UIView+EX.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		115B3492207F5FA40043A6F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				115B3493207F5FA40043A6F3 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		115B3495207F60850043A6F3 /* ThirdSDK */ = {
+			isa = PBXGroup;
+			children = (
+				115B3496207F61820043A6F3 /* MBProgressHUD */,
+			);
+			path = ThirdSDK;
+			sourceTree = "<group>";
+		};
+		115B3496207F61820043A6F3 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				115B3498207F618E0043A6F3 /* MBProgressHUD.h */,
+				115B3497207F618E0043A6F3 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +233,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
+				115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */,
+				115B348F207F5E080043A6F3 /* UIImage+Color.m in Sources */,
+				115B348E207F5E080043A6F3 /* CALayer+CircleBoard.m in Sources */,
+				115B3499207F618E0043A6F3 /* MBProgressHUD.m in Sources */,
 				115B3424207EEEAC0043A6F3 /* main.m in Sources */,
 				115B3416207EEEAC0043A6F3 /* AppDelegate.m in Sources */,
+				115B3484207F5DCD0043A6F3 /* BaseNaviViewController.m in Sources */,
+				115B3490207F5E080043A6F3 /* UIView+EX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
