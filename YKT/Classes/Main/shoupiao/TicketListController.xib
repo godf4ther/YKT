@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TicketListController">
+            <connections>
+                <outlet property="centerBtn" destination="eNw-MM-Nmj" id="AdL-fm-fu4"/>
+                <outlet property="tableView" destination="ia6-Ke-0tP" id="Ttd-Mm-64F"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UB-wd-oIH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNw-MM-Nmj">
+                            <rect key="frame" x="122" y="5" width="130" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="130" id="blN-fD-5hi"/>
+                                <constraint firstAttribute="height" constant="30" id="wfE-rA-hdE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="12月21日">
+                                <color key="titleColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="centerDayChoose:" destination="-1" eventType="touchUpInside" id="EQG-JQ-Cvv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTl-ia-16d">
+                            <rect key="frame" x="252" y="0.0" width="123" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="后一天">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="nextDay:" destination="-1" eventType="touchUpInside" id="Ncw-BA-fZf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-D3-d1O">
+                            <rect key="frame" x="0.0" y="0.0" width="122" height="40"/>
+                            <state key="normal" title="前一天">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="lastDay:" destination="-1" eventType="touchUpInside" id="O01-gR-Oqh"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="eNw-MM-Nmj" firstAttribute="centerX" secondItem="5UB-wd-oIH" secondAttribute="centerX" id="CiP-j2-pe4"/>
+                        <constraint firstItem="DTl-ia-16d" firstAttribute="leading" secondItem="eNw-MM-Nmj" secondAttribute="trailing" id="H4o-dj-BDU"/>
+                        <constraint firstAttribute="bottom" secondItem="DTl-ia-16d" secondAttribute="bottom" id="J9y-6G-wRn"/>
+                        <constraint firstItem="DTl-ia-16d" firstAttribute="top" secondItem="5UB-wd-oIH" secondAttribute="top" id="OGx-lR-W9C"/>
+                        <constraint firstItem="eNw-MM-Nmj" firstAttribute="centerY" secondItem="5UB-wd-oIH" secondAttribute="centerY" id="XU9-o8-D04"/>
+                        <constraint firstAttribute="bottom" secondItem="a8g-D3-d1O" secondAttribute="bottom" id="Yo6-RD-GeF"/>
+                        <constraint firstItem="eNw-MM-Nmj" firstAttribute="leading" secondItem="a8g-D3-d1O" secondAttribute="trailing" id="aJV-Cn-m6W"/>
+                        <constraint firstAttribute="height" constant="40" id="aZt-52-Ovv"/>
+                        <constraint firstAttribute="trailing" secondItem="DTl-ia-16d" secondAttribute="trailing" id="bkp-vt-CK4"/>
+                        <constraint firstItem="a8g-D3-d1O" firstAttribute="leading" secondItem="5UB-wd-oIH" secondAttribute="leading" id="var-Nj-uH1"/>
+                        <constraint firstItem="a8g-D3-d1O" firstAttribute="top" secondItem="5UB-wd-oIH" secondAttribute="top" id="wC5-bS-7WY"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-Ke-0tP">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ia6-Ke-0tP" firstAttribute="top" secondItem="5UB-wd-oIH" secondAttribute="bottom" id="0eI-7Z-JN4"/>
+                <constraint firstAttribute="trailing" secondItem="5UB-wd-oIH" secondAttribute="trailing" id="2tl-vm-Q22"/>
+                <constraint firstItem="ia6-Ke-0tP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I4k-eo-OnU"/>
+                <constraint firstItem="5UB-wd-oIH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K3H-vc-Q0a"/>
+                <constraint firstItem="5UB-wd-oIH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dPM-Gb-7P6"/>
+                <constraint firstAttribute="trailing" secondItem="ia6-Ke-0tP" secondAttribute="trailing" id="qla-5i-Asj"/>
+                <constraint firstAttribute="bottom" secondItem="ia6-Ke-0tP" secondAttribute="bottom" id="vOQ-1l-VYZ"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

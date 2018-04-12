@@ -18,6 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+- (IBAction)shoupiao:(id)sender {
+}
+- (IBAction)logout:(id)sender {
+}
+- (IBAction)baoche:(id)sender {
+}
 
 
 - (void)didReceiveMemoryWarning {

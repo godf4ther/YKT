@@ -30,6 +30,12 @@
 		115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34AF207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34B1207F62820043A6F3 /* View+MASAdditions.m */; };
 		115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34B4207F62820043A6F3 /* ViewController+MASAdditions.m */; };
+		5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824300207F92CD00F483F6 /* SaleTicketMainController.m */; };
+		5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */; };
+		5A824307207F99E500F483F6 /* TicketListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824305207F99E500F483F6 /* TicketListController.m */; };
+		5A824308207F99E500F483F6 /* TicketListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824306207F99E500F483F6 /* TicketListController.xib */; };
+		5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824310207F9D0F00F483F6 /* TicketCell.m */; };
+		5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824311207F9D0F00F483F6 /* TicketCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +89,15 @@
 		115B34B2207F62820043A6F3 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		115B34B3207F62820043A6F3 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		115B34B4207F62820043A6F3 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		5A8242FF207F92CD00F483F6 /* SaleTicketMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleTicketMainController.h; sourceTree = "<group>"; };
+		5A824300207F92CD00F483F6 /* SaleTicketMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleTicketMainController.m; sourceTree = "<group>"; };
+		5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleTicketMainController.xib; sourceTree = "<group>"; };
+		5A824304207F99E500F483F6 /* TicketListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketListController.h; sourceTree = "<group>"; };
+		5A824305207F99E500F483F6 /* TicketListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketListController.m; sourceTree = "<group>"; };
+		5A824306207F99E500F483F6 /* TicketListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketListController.xib; sourceTree = "<group>"; };
+		5A82430F207F9D0F00F483F6 /* TicketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketCell.h; sourceTree = "<group>"; };
+		5A824310207F9D0F00F483F6 /* TicketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketCell.m; sourceTree = "<group>"; };
+		5A824311207F9D0F00F483F6 /* TicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +148,7 @@
 		115B347E207F5D9F0043A6F3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5A8242FA207F91E300F483F6 /* Main */,
 				115B3495207F60850043A6F3 /* ThirdSDK */,
 				115B3486207F5DFD0043A6F3 /* Tools */,
 				115B347F207F5DCD0043A6F3 /* BaseVC */,
@@ -232,6 +248,38 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		5A8242FA207F91E300F483F6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5A8242FB207F91F800F483F6 /* shoupiao */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5A8242FB207F91F800F483F6 /* shoupiao */ = {
+			isa = PBXGroup;
+			children = (
+				5A824309207F9C9800F483F6 /* views */,
+				5A8242FF207F92CD00F483F6 /* SaleTicketMainController.h */,
+				5A824300207F92CD00F483F6 /* SaleTicketMainController.m */,
+				5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */,
+				5A824304207F99E500F483F6 /* TicketListController.h */,
+				5A824305207F99E500F483F6 /* TicketListController.m */,
+				5A824306207F99E500F483F6 /* TicketListController.xib */,
+			);
+			path = shoupiao;
+			sourceTree = "<group>";
+		};
+		5A824309207F9C9800F483F6 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5A82430F207F9D0F00F483F6 /* TicketCell.h */,
+				5A824310207F9D0F00F483F6 /* TicketCell.m */,
+				5A824311207F9D0F00F483F6 /* TicketCell.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -291,9 +339,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				115B34B5207F62820043A6F3 /* Info.plist in Resources */,
+				5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */,
 				115B3421207EEEAC0043A6F3 /* LaunchScreen.storyboard in Resources */,
+				5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */,
 				115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */,
 				115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */,
+				5A824308207F99E500F483F6 /* TicketListController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,17 +359,20 @@
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
 				115B34BA207F62820043A6F3 /* MASViewAttribute.m in Sources */,
 				115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */,
+				5A824307207F99E500F483F6 /* TicketListController.m in Sources */,
 				115B348F207F5E080043A6F3 /* UIImage+Color.m in Sources */,
 				115B348E207F5E080043A6F3 /* CALayer+CircleBoard.m in Sources */,
 				115B34B6207F62820043A6F3 /* MASCompositeConstraint.m in Sources */,
 				115B34B8207F62820043A6F3 /* MASConstraintMaker.m in Sources */,
 				115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */,
 				115B34B9207F62820043A6F3 /* MASLayoutConstraint.m in Sources */,
+				5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */,
 				115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */,
 				115B34B7207F62820043A6F3 /* MASConstraint.m in Sources */,
 				115B3499207F618E0043A6F3 /* MBProgressHUD.m in Sources */,
 				115B3424207EEEAC0043A6F3 /* main.m in Sources */,
 				115B34BC207F62820043A6F3 /* NSArray+MASAdditions.m in Sources */,
+				5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */,
 				115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				115B3416207EEEAC0043A6F3 /* AppDelegate.m in Sources */,
 				115B3484207F5DCD0043A6F3 /* BaseNaviViewController.m in Sources */,
