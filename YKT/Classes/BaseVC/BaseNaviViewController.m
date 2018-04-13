@@ -18,11 +18,10 @@
 
 + (void)load{
     UINavigationBar *bar = [UINavigationBar appearance];
-    [bar setBarStyle:UIBarStyleBlack];
     bar.shadowImage=[UIImage new];
-    [bar setTintColor:[UIColor whiteColor]];
-    [bar setBackgroundImage:[UIImage imageWithColor:ThemeColor Size:CGSizeMake(SIZEWIDTH, 88)] forBarMetrics:UIBarMetricsDefault];
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [bar setTintColor:[UIColor blackColor]];
+    [bar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] Size:CGSizeMake(SIZEWIDTH, 88)] forBarMetrics:UIBarMetricsDefault];
+    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
     
 }
 

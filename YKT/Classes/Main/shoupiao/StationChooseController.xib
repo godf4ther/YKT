@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StationChooseController">
+            <connections>
+                <outlet property="searchBar" destination="9dG-EF-6j5" id="ZPn-EI-wCm"/>
+                <outlet property="tableView" destination="sM4-zy-NTC" id="2tj-TJ-v4a"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="请输入城市名/城市首字母" translatesAutoresizingMaskIntoConstraints="NO" id="9dG-EF-6j5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <color key="barTintColor" red="0.88235294119999996" green="0.93725490199999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="sM4-zy-NTC">
+                    <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9dG-EF-6j5" secondAttribute="trailing" id="6T8-GU-XjJ"/>
+                <constraint firstAttribute="bottom" secondItem="sM4-zy-NTC" secondAttribute="bottom" id="Cc1-Cm-Xdn"/>
+                <constraint firstItem="sM4-zy-NTC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QJB-Ny-vRA"/>
+                <constraint firstAttribute="trailing" secondItem="sM4-zy-NTC" secondAttribute="trailing" id="RVk-Ov-m9A"/>
+                <constraint firstItem="9dG-EF-6j5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gV6-d6-lTc"/>
+                <constraint firstItem="9dG-EF-6j5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gZQ-lv-Rrg"/>
+                <constraint firstItem="sM4-zy-NTC" firstAttribute="top" secondItem="9dG-EF-6j5" secondAttribute="bottom" id="h3H-s0-3ME"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

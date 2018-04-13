@@ -8,7 +8,7 @@
 
 #ifndef LRMacroDefinitionHeader_h
 #define LRMacroDefinitionHeader_h
-
+#import "UIImage+Color.h"
 /**
  定义输出
  

@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "SaleTicketMainController.h"
+#import "BaseNaviViewController.h"
 @interface ViewController ()
 
 @end
@@ -19,6 +20,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (IBAction)shoupiao:(id)sender {
+    SaleTicketMainController *vc = [SaleTicketMainController new];
+    BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+    [self presentViewController:navi animated:YES completion:nil];
 }
 - (IBAction)logout:(id)sender {
 }

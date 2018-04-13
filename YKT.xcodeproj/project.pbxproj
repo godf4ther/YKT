@@ -30,6 +30,30 @@
 		115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34AF207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34B1207F62820043A6F3 /* View+MASAdditions.m */; };
 		115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34B4207F62820043A6F3 /* ViewController+MASAdditions.m */; };
+		115B34C3208043A60043A6F3 /* EidtTicketOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B34C1208043A60043A6F3 /* EidtTicketOrderController.m */; };
+		115B34C4208043A60043A6F3 /* EidtTicketOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B34C2208043A60043A6F3 /* EidtTicketOrderController.xib */; };
+		115B350C20805BDC0043A6F3 /* TickerOrderPeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B350B20805BDC0043A6F3 /* TickerOrderPeople.m */; };
+		115B350E20805BF90043A6F3 /* TickerOrderPeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B350D20805BF90043A6F3 /* TickerOrderPeople.xib */; };
+		115B3517208060AE0043A6F3 /* PassengerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3515208060AE0043A6F3 /* PassengerListViewController.m */; };
+		115B3518208060AE0043A6F3 /* PassengerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B3516208060AE0043A6F3 /* PassengerListViewController.xib */; };
+		115B351C2080611A0043A6F3 /* PassengerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B351A2080611A0043A6F3 /* PassengerCell.m */; };
+		115B351D2080611A0043A6F3 /* PassengerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B351B2080611A0043A6F3 /* PassengerCell.xib */; };
+		115B354B208080530043A6F3 /* PayTicketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3549208080530043A6F3 /* PayTicketController.m */; };
+		115B354C208080530043A6F3 /* PayTicketController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B354A208080530043A6F3 /* PayTicketController.xib */; };
+		115B3550208087D90043A6F3 /* TicketOrderDetaialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B354E208087D90043A6F3 /* TicketOrderDetaialController.m */; };
+		115B3551208087D90043A6F3 /* TicketOrderDetaialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B354F208087D90043A6F3 /* TicketOrderDetaialController.xib */; };
+		115B355520808E300043A6F3 /* RefundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B355320808E300043A6F3 /* RefundController.m */; };
+		115B355620808E300043A6F3 /* RefundController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B355420808E300043A6F3 /* RefundController.xib */; };
+		115B35652080A8D00043A6F3 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35592080A8D00043A6F3 /* AFHTTPSessionManager.m */; };
+		115B35662080A8D10043A6F3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B355C2080A8D00043A6F3 /* AFNetworkReachabilityManager.m */; };
+		115B35672080A8D10043A6F3 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B355E2080A8D00043A6F3 /* AFSecurityPolicy.m */; };
+		115B35682080A8D10043A6F3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35602080A8D00043A6F3 /* AFURLRequestSerialization.m */; };
+		115B35692080A8D10043A6F3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35622080A8D00043A6F3 /* AFURLResponseSerialization.m */; };
+		115B356A2080A8D10043A6F3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35642080A8D00043A6F3 /* AFURLSessionManager.m */; };
+		115B356E2080AD150043A6F3 /* StationChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B356C2080AD150043A6F3 /* StationChooseController.m */; };
+		115B356F2080AD150043A6F3 /* StationChooseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B356D2080AD150043A6F3 /* StationChooseController.xib */; };
+		115B35722080B4C70043A6F3 /* KRMainNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35712080B4C70043A6F3 /* KRMainNetTool.m */; };
+		115B35762080B5560043A6F3 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35752080B5560043A6F3 /* MBProgressHUD+KR.m */; };
 		5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824300207F92CD00F483F6 /* SaleTicketMainController.m */; };
 		5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */; };
 		5A824307207F99E500F483F6 /* TicketListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824305207F99E500F483F6 /* TicketListController.m */; };
@@ -89,6 +113,48 @@
 		115B34B2207F62820043A6F3 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		115B34B3207F62820043A6F3 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		115B34B4207F62820043A6F3 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		115B34C0208043A60043A6F3 /* EidtTicketOrderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EidtTicketOrderController.h; sourceTree = "<group>"; };
+		115B34C1208043A60043A6F3 /* EidtTicketOrderController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EidtTicketOrderController.m; sourceTree = "<group>"; };
+		115B34C2208043A60043A6F3 /* EidtTicketOrderController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EidtTicketOrderController.xib; sourceTree = "<group>"; };
+		115B350A20805BDC0043A6F3 /* TickerOrderPeople.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TickerOrderPeople.h; sourceTree = "<group>"; };
+		115B350B20805BDC0043A6F3 /* TickerOrderPeople.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TickerOrderPeople.m; sourceTree = "<group>"; };
+		115B350D20805BF90043A6F3 /* TickerOrderPeople.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TickerOrderPeople.xib; sourceTree = "<group>"; };
+		115B3514208060AE0043A6F3 /* PassengerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassengerListViewController.h; sourceTree = "<group>"; };
+		115B3515208060AE0043A6F3 /* PassengerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassengerListViewController.m; sourceTree = "<group>"; };
+		115B3516208060AE0043A6F3 /* PassengerListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PassengerListViewController.xib; sourceTree = "<group>"; };
+		115B35192080611A0043A6F3 /* PassengerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassengerCell.h; sourceTree = "<group>"; };
+		115B351A2080611A0043A6F3 /* PassengerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassengerCell.m; sourceTree = "<group>"; };
+		115B351B2080611A0043A6F3 /* PassengerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PassengerCell.xib; sourceTree = "<group>"; };
+		115B3548208080530043A6F3 /* PayTicketController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayTicketController.h; sourceTree = "<group>"; };
+		115B3549208080530043A6F3 /* PayTicketController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayTicketController.m; sourceTree = "<group>"; };
+		115B354A208080530043A6F3 /* PayTicketController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayTicketController.xib; sourceTree = "<group>"; };
+		115B354D208087D90043A6F3 /* TicketOrderDetaialController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketOrderDetaialController.h; sourceTree = "<group>"; };
+		115B354E208087D90043A6F3 /* TicketOrderDetaialController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketOrderDetaialController.m; sourceTree = "<group>"; };
+		115B354F208087D90043A6F3 /* TicketOrderDetaialController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketOrderDetaialController.xib; sourceTree = "<group>"; };
+		115B355220808E300043A6F3 /* RefundController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundController.h; sourceTree = "<group>"; };
+		115B355320808E300043A6F3 /* RefundController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundController.m; sourceTree = "<group>"; };
+		115B355420808E300043A6F3 /* RefundController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefundController.xib; sourceTree = "<group>"; };
+		115B35582080A8D00043A6F3 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		115B35592080A8D00043A6F3 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		115B355A2080A8D00043A6F3 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		115B355B2080A8D00043A6F3 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		115B355C2080A8D00043A6F3 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		115B355D2080A8D00043A6F3 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		115B355E2080A8D00043A6F3 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		115B355F2080A8D00043A6F3 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		115B35602080A8D00043A6F3 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		115B35612080A8D00043A6F3 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		115B35622080A8D00043A6F3 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		115B35632080A8D00043A6F3 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		115B35642080A8D00043A6F3 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		115B356B2080AD150043A6F3 /* StationChooseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationChooseController.h; sourceTree = "<group>"; };
+		115B356C2080AD150043A6F3 /* StationChooseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationChooseController.m; sourceTree = "<group>"; };
+		115B356D2080AD150043A6F3 /* StationChooseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationChooseController.xib; sourceTree = "<group>"; };
+		115B35702080B4C70043A6F3 /* KRMainNetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRMainNetTool.h; sourceTree = "<group>"; };
+		115B35712080B4C70043A6F3 /* KRMainNetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRMainNetTool.m; sourceTree = "<group>"; };
+		115B35732080B5050043A6F3 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		115B35742080B5560043A6F3 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
+		115B35752080B5560043A6F3 /* MBProgressHUD+KR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+KR.m"; sourceTree = "<group>"; };
 		5A8242FF207F92CD00F483F6 /* SaleTicketMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleTicketMainController.h; sourceTree = "<group>"; };
 		5A824300207F92CD00F483F6 /* SaleTicketMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleTicketMainController.m; sourceTree = "<group>"; };
 		5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleTicketMainController.xib; sourceTree = "<group>"; };
@@ -170,6 +236,9 @@
 		115B3486207F5DFD0043A6F3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				115B35702080B4C70043A6F3 /* KRMainNetTool.h */,
+				115B35712080B4C70043A6F3 /* KRMainNetTool.m */,
+				115B35732080B5050043A6F3 /* Singleton.h */,
 				115B3491207F5E480043A6F3 /* LRMacroDefinitionHeader.h */,
 				115B3487207F5E070043A6F3 /* Category */,
 			);
@@ -183,6 +252,8 @@
 				115B3489207F5E070043A6F3 /* CALayer+CircleBoard.m */,
 				115B348A207F5E070043A6F3 /* UIImage+Color.h */,
 				115B348B207F5E070043A6F3 /* UIImage+Color.m */,
+				115B35752080B5560043A6F3 /* MBProgressHUD+KR.m */,
+				115B35742080B5560043A6F3 /* MBProgressHUD+KR.h */,
 				115B348C207F5E070043A6F3 /* UIView+EX.h */,
 				115B348D207F5E070043A6F3 /* UIView+EX.m */,
 			);
@@ -200,6 +271,7 @@
 		115B3495207F60850043A6F3 /* ThirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				115B35572080A8D00043A6F3 /* AFNetworking */,
 				115B349A207F62820043A6F3 /* Masonry */,
 				115B3496207F61820043A6F3 /* MBProgressHUD */,
 			);
@@ -248,6 +320,26 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		115B35572080A8D00043A6F3 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				115B35582080A8D00043A6F3 /* AFHTTPSessionManager.h */,
+				115B35592080A8D00043A6F3 /* AFHTTPSessionManager.m */,
+				115B355A2080A8D00043A6F3 /* AFNetworking.h */,
+				115B355B2080A8D00043A6F3 /* AFNetworkReachabilityManager.h */,
+				115B355C2080A8D00043A6F3 /* AFNetworkReachabilityManager.m */,
+				115B355D2080A8D00043A6F3 /* AFSecurityPolicy.h */,
+				115B355E2080A8D00043A6F3 /* AFSecurityPolicy.m */,
+				115B355F2080A8D00043A6F3 /* AFURLRequestSerialization.h */,
+				115B35602080A8D00043A6F3 /* AFURLRequestSerialization.m */,
+				115B35612080A8D00043A6F3 /* AFURLResponseSerialization.h */,
+				115B35622080A8D00043A6F3 /* AFURLResponseSerialization.m */,
+				115B35632080A8D00043A6F3 /* AFURLSessionManager.h */,
+				115B35642080A8D00043A6F3 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		5A8242FA207F91E300F483F6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +358,24 @@
 				5A824304207F99E500F483F6 /* TicketListController.h */,
 				5A824305207F99E500F483F6 /* TicketListController.m */,
 				5A824306207F99E500F483F6 /* TicketListController.xib */,
+				115B34C0208043A60043A6F3 /* EidtTicketOrderController.h */,
+				115B34C1208043A60043A6F3 /* EidtTicketOrderController.m */,
+				115B34C2208043A60043A6F3 /* EidtTicketOrderController.xib */,
+				115B3514208060AE0043A6F3 /* PassengerListViewController.h */,
+				115B3515208060AE0043A6F3 /* PassengerListViewController.m */,
+				115B3516208060AE0043A6F3 /* PassengerListViewController.xib */,
+				115B3548208080530043A6F3 /* PayTicketController.h */,
+				115B3549208080530043A6F3 /* PayTicketController.m */,
+				115B354A208080530043A6F3 /* PayTicketController.xib */,
+				115B354D208087D90043A6F3 /* TicketOrderDetaialController.h */,
+				115B354E208087D90043A6F3 /* TicketOrderDetaialController.m */,
+				115B354F208087D90043A6F3 /* TicketOrderDetaialController.xib */,
+				115B355220808E300043A6F3 /* RefundController.h */,
+				115B355320808E300043A6F3 /* RefundController.m */,
+				115B355420808E300043A6F3 /* RefundController.xib */,
+				115B356B2080AD150043A6F3 /* StationChooseController.h */,
+				115B356C2080AD150043A6F3 /* StationChooseController.m */,
+				115B356D2080AD150043A6F3 /* StationChooseController.xib */,
 			);
 			path = shoupiao;
 			sourceTree = "<group>";
@@ -276,6 +386,12 @@
 				5A82430F207F9D0F00F483F6 /* TicketCell.h */,
 				5A824310207F9D0F00F483F6 /* TicketCell.m */,
 				5A824311207F9D0F00F483F6 /* TicketCell.xib */,
+				115B350A20805BDC0043A6F3 /* TickerOrderPeople.h */,
+				115B350B20805BDC0043A6F3 /* TickerOrderPeople.m */,
+				115B350D20805BF90043A6F3 /* TickerOrderPeople.xib */,
+				115B35192080611A0043A6F3 /* PassengerCell.h */,
+				115B351A2080611A0043A6F3 /* PassengerCell.m */,
+				115B351B2080611A0043A6F3 /* PassengerCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -338,13 +454,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115B34C4208043A60043A6F3 /* EidtTicketOrderController.xib in Resources */,
 				115B34B5207F62820043A6F3 /* Info.plist in Resources */,
 				5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */,
+				115B351D2080611A0043A6F3 /* PassengerCell.xib in Resources */,
 				115B3421207EEEAC0043A6F3 /* LaunchScreen.storyboard in Resources */,
+				115B3551208087D90043A6F3 /* TicketOrderDetaialController.xib in Resources */,
 				5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */,
+				115B355620808E300043A6F3 /* RefundController.xib in Resources */,
+				115B356F2080AD150043A6F3 /* StationChooseController.xib in Resources */,
+				115B3518208060AE0043A6F3 /* PassengerListViewController.xib in Resources */,
 				115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */,
 				115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */,
 				5A824308207F99E500F483F6 /* TicketListController.xib in Resources */,
+				115B354C208080530043A6F3 /* PayTicketController.xib in Resources */,
+				115B350E20805BF90043A6F3 /* TickerOrderPeople.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,25 +480,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				115B34BB207F62820043A6F3 /* MASViewConstraint.m in Sources */,
+				115B35662080A8D10043A6F3 /* AFNetworkReachabilityManager.m in Sources */,
+				115B350C20805BDC0043A6F3 /* TickerOrderPeople.m in Sources */,
+				115B356E2080AD150043A6F3 /* StationChooseController.m in Sources */,
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
 				115B34BA207F62820043A6F3 /* MASViewAttribute.m in Sources */,
 				115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */,
 				5A824307207F99E500F483F6 /* TicketListController.m in Sources */,
+				115B355520808E300043A6F3 /* RefundController.m in Sources */,
 				115B348F207F5E080043A6F3 /* UIImage+Color.m in Sources */,
 				115B348E207F5E080043A6F3 /* CALayer+CircleBoard.m in Sources */,
+				115B356A2080A8D10043A6F3 /* AFURLSessionManager.m in Sources */,
 				115B34B6207F62820043A6F3 /* MASCompositeConstraint.m in Sources */,
+				115B34C3208043A60043A6F3 /* EidtTicketOrderController.m in Sources */,
+				115B35762080B5560043A6F3 /* MBProgressHUD+KR.m in Sources */,
+				115B35692080A8D10043A6F3 /* AFURLResponseSerialization.m in Sources */,
+				115B351C2080611A0043A6F3 /* PassengerCell.m in Sources */,
 				115B34B8207F62820043A6F3 /* MASConstraintMaker.m in Sources */,
+				115B3517208060AE0043A6F3 /* PassengerListViewController.m in Sources */,
 				115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */,
 				115B34B9207F62820043A6F3 /* MASLayoutConstraint.m in Sources */,
 				5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */,
+				115B35722080B4C70043A6F3 /* KRMainNetTool.m in Sources */,
+				115B35682080A8D10043A6F3 /* AFURLRequestSerialization.m in Sources */,
 				115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */,
 				115B34B7207F62820043A6F3 /* MASConstraint.m in Sources */,
 				115B3499207F618E0043A6F3 /* MBProgressHUD.m in Sources */,
 				115B3424207EEEAC0043A6F3 /* main.m in Sources */,
 				115B34BC207F62820043A6F3 /* NSArray+MASAdditions.m in Sources */,
+				115B3550208087D90043A6F3 /* TicketOrderDetaialController.m in Sources */,
 				5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */,
 				115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				115B354B208080530043A6F3 /* PayTicketController.m in Sources */,
 				115B3416207EEEAC0043A6F3 /* AppDelegate.m in Sources */,
+				115B35672080A8D10043A6F3 /* AFSecurityPolicy.m in Sources */,
+				115B35652080A8D00043A6F3 /* AFHTTPSessionManager.m in Sources */,
 				115B3484207F5DCD0043A6F3 /* BaseNaviViewController.m in Sources */,
 				115B3490207F5E080043A6F3 /* UIView+EX.m in Sources */,
 			);

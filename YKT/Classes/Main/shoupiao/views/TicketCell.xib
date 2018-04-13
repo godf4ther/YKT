@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -61,6 +61,13 @@
                             <constraint firstAttribute="width" constant="7.5" id="THB-E2-DYJ"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2J-Kx-a2c">
+                        <rect key="frame" x="0.0" y="68.5" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="7MU-iv-PU5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="w6C-OR-sqd" secondAttribute="trailing" constant="20" id="0Ej-9I-dDd"/>
@@ -69,11 +76,14 @@
                     <constraint firstItem="Roh-ay-2ja" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Di9-XA-Gxh"/>
                     <constraint firstAttribute="trailing" secondItem="1hX-KB-bqv" secondAttribute="trailing" constant="20" id="F2i-2p-m42"/>
                     <constraint firstItem="BXv-t9-baw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IVT-He-0cK"/>
+                    <constraint firstItem="V2J-Kx-a2c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PPP-nf-CMA"/>
                     <constraint firstItem="xaP-qG-B7m" firstAttribute="top" secondItem="Roh-ay-2ja" secondAttribute="bottom" constant="5" id="QQO-WR-ZPD"/>
                     <constraint firstItem="1hX-KB-bqv" firstAttribute="top" secondItem="w6C-OR-sqd" secondAttribute="bottom" constant="2" id="SzG-eP-mYY"/>
+                    <constraint firstAttribute="trailing" secondItem="V2J-Kx-a2c" secondAttribute="trailing" id="UCd-QQ-9y9"/>
                     <constraint firstItem="8bK-VH-MUR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="XI3-g1-mOK"/>
                     <constraint firstItem="Roh-ay-2ja" firstAttribute="leading" secondItem="xaP-qG-B7m" secondAttribute="leading" id="bkB-3k-0Wb"/>
                     <constraint firstItem="8bK-VH-MUR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="cN0-A4-s0p"/>
+                    <constraint firstAttribute="bottom" secondItem="V2J-Kx-a2c" secondAttribute="bottom" id="orM-K4-kuD"/>
                     <constraint firstItem="Roh-ay-2ja" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="pqV-bh-jm2"/>
                     <constraint firstItem="w6C-OR-sqd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="w1W-W8-z7l"/>
                     <constraint firstItem="GWF-fB-vcY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="y6q-g6-Lnd"/>

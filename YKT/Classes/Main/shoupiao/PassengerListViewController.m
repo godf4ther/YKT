@@ -1,51 +1,52 @@
 //
-//  TicketListController.m
+//  PassengerListViewController.m
 //  YKT
 //
-//  Created by 周春仕 on 2018/4/12.
+//  Created by 周春仕 on 2018/4/13.
 //  Copyright © 2018年 周春仕. All rights reserved.
 //
 
-#import "TicketListController.h"
-#import "TicketCell.h"
-@interface TicketListController ()<UITableViewDelegate,UITableViewDataSource>
+#import "PassengerListViewController.h"
+#import "PassengerCell.h"
+@interface PassengerListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *centerBtn;
 @property (nonatomic, strong) NSArray *dataArr;
 @end
 
-@implementation TicketListController
+@implementation PassengerListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self popOut];
-    self.navigationItem.title = @"";
-    self.dataArr = @[@"",@""];
-    self.tableView.rowHeight = 70;
-    [self.tableView registerNib:[UINib nibWithNibName:@"TicketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TicketCell"];
+    self.navigationItem.title = @"选择乘客";
+    self.tableView.rowHeight = 75;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PassengerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"PassengerCell"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sure)];
     // Do any additional setup after loading the view from its nib.
 }
-- (IBAction)lastDay:(UIButton *)sender {
+
+- (void)sure{
+    
 }
-- (IBAction)nextDay:(UIButton *)sender {
-}
-- (IBAction)centerDayChoose:(UIButton *)sender {
+
+- (IBAction)add:(UIButton *)sender {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TicketCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TicketCell" forIndexPath:indexPath];
+    PassengerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PassengerCell" forIndexPath:indexPath];
     return cell;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
