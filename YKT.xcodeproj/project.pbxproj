@@ -60,6 +60,14 @@
 		5A824308207F99E500F483F6 /* TicketListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824306207F99E500F483F6 /* TicketListController.xib */; };
 		5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824310207F9D0F00F483F6 /* TicketCell.m */; };
 		5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824311207F9D0F00F483F6 /* TicketCell.xib */; };
+		5AF3B0D320837B9B003B7B18 /* CalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C520837B9A003B7B18 /* CalenderView.m */; };
+		5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */; };
+		5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C920837B9A003B7B18 /* CalenderModel.m */; };
+		5AF3B0D620837B9B003B7B18 /* CalenderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0CA20837B9A003B7B18 /* CalenderHeaderView.m */; };
+		5AF3B0D720837B9B003B7B18 /* CalenderWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0CB20837B9A003B7B18 /* CalenderWeekView.m */; };
+		5AF3B0D820837B9B003B7B18 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0CD20837B9A003B7B18 /* NSDate+Extension.m */; };
+		5AF3B0D920837B9B003B7B18 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0CE20837B9A003B7B18 /* UIColor+Extension.m */; };
+		5AF80AC22080FD9900CD28F0 /* DateChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF80AC12080FD9900CD28F0 /* DateChooseController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +172,22 @@
 		5A82430F207F9D0F00F483F6 /* TicketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketCell.h; sourceTree = "<group>"; };
 		5A824310207F9D0F00F483F6 /* TicketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketCell.m; sourceTree = "<group>"; };
 		5A824311207F9D0F00F483F6 /* TicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketCell.xib; sourceTree = "<group>"; };
+		5AF3B0C520837B9A003B7B18 /* CalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderView.m; sourceTree = "<group>"; };
+		5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderCollectionCell.m; sourceTree = "<group>"; };
+		5AF3B0C720837B9A003B7B18 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		5AF3B0C820837B9A003B7B18 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		5AF3B0C920837B9A003B7B18 /* CalenderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderModel.m; sourceTree = "<group>"; };
+		5AF3B0CA20837B9A003B7B18 /* CalenderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderHeaderView.m; sourceTree = "<group>"; };
+		5AF3B0CB20837B9A003B7B18 /* CalenderWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderWeekView.m; sourceTree = "<group>"; };
+		5AF3B0CC20837B9A003B7B18 /* CalenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderView.h; sourceTree = "<group>"; };
+		5AF3B0CD20837B9A003B7B18 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		5AF3B0CE20837B9A003B7B18 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		5AF3B0CF20837B9A003B7B18 /* CalenderCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderCollectionCell.h; sourceTree = "<group>"; };
+		5AF3B0D020837B9A003B7B18 /* CalenderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderModel.h; sourceTree = "<group>"; };
+		5AF3B0D120837B9A003B7B18 /* CalenderWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderWeekView.h; sourceTree = "<group>"; };
+		5AF3B0D220837B9A003B7B18 /* CalenderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderHeaderView.h; sourceTree = "<group>"; };
+		5AF80AC02080FD9900CD28F0 /* DateChooseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateChooseController.h; sourceTree = "<group>"; };
+		5AF80AC12080FD9900CD28F0 /* DateChooseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateChooseController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +295,7 @@
 		115B3495207F60850043A6F3 /* ThirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				5AF3B0C420837B9A003B7B18 /* Calender */,
 				115B35572080A8D00043A6F3 /* AFNetworking */,
 				115B349A207F62820043A6F3 /* Masonry */,
 				115B3496207F61820043A6F3 /* MBProgressHUD */,
@@ -355,6 +380,8 @@
 				5A8242FF207F92CD00F483F6 /* SaleTicketMainController.h */,
 				5A824300207F92CD00F483F6 /* SaleTicketMainController.m */,
 				5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */,
+				5AF80AC02080FD9900CD28F0 /* DateChooseController.h */,
+				5AF80AC12080FD9900CD28F0 /* DateChooseController.m */,
 				5A824304207F99E500F483F6 /* TicketListController.h */,
 				5A824305207F99E500F483F6 /* TicketListController.m */,
 				5A824306207F99E500F483F6 /* TicketListController.xib */,
@@ -394,6 +421,27 @@
 				115B351B2080611A0043A6F3 /* PassengerCell.xib */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		5AF3B0C420837B9A003B7B18 /* Calender */ = {
+			isa = PBXGroup;
+			children = (
+				5AF3B0C520837B9A003B7B18 /* CalenderView.m */,
+				5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */,
+				5AF3B0C720837B9A003B7B18 /* UIColor+Extension.h */,
+				5AF3B0C820837B9A003B7B18 /* NSDate+Extension.h */,
+				5AF3B0C920837B9A003B7B18 /* CalenderModel.m */,
+				5AF3B0CA20837B9A003B7B18 /* CalenderHeaderView.m */,
+				5AF3B0CB20837B9A003B7B18 /* CalenderWeekView.m */,
+				5AF3B0CC20837B9A003B7B18 /* CalenderView.h */,
+				5AF3B0CD20837B9A003B7B18 /* NSDate+Extension.m */,
+				5AF3B0CE20837B9A003B7B18 /* UIColor+Extension.m */,
+				5AF3B0CF20837B9A003B7B18 /* CalenderCollectionCell.h */,
+				5AF3B0D020837B9A003B7B18 /* CalenderModel.h */,
+				5AF3B0D120837B9A003B7B18 /* CalenderWeekView.h */,
+				5AF3B0D220837B9A003B7B18 /* CalenderHeaderView.h */,
+			);
+			path = Calender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +532,8 @@
 				115B350C20805BDC0043A6F3 /* TickerOrderPeople.m in Sources */,
 				115B356E2080AD150043A6F3 /* StationChooseController.m in Sources */,
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
+				5AF80AC22080FD9900CD28F0 /* DateChooseController.m in Sources */,
+				5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */,
 				115B34BA207F62820043A6F3 /* MASViewAttribute.m in Sources */,
 				115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */,
 				5A824307207F99E500F483F6 /* TicketListController.m in Sources */,
@@ -500,18 +550,24 @@
 				115B3517208060AE0043A6F3 /* PassengerListViewController.m in Sources */,
 				115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */,
 				115B34B9207F62820043A6F3 /* MASLayoutConstraint.m in Sources */,
+				5AF3B0D620837B9B003B7B18 /* CalenderHeaderView.m in Sources */,
 				5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */,
 				115B35722080B4C70043A6F3 /* KRMainNetTool.m in Sources */,
+				5AF3B0D820837B9B003B7B18 /* NSDate+Extension.m in Sources */,
+				5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */,
 				115B35682080A8D10043A6F3 /* AFURLRequestSerialization.m in Sources */,
+				5AF3B0D920837B9B003B7B18 /* UIColor+Extension.m in Sources */,
 				115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */,
 				115B34B7207F62820043A6F3 /* MASConstraint.m in Sources */,
 				115B3499207F618E0043A6F3 /* MBProgressHUD.m in Sources */,
 				115B3424207EEEAC0043A6F3 /* main.m in Sources */,
 				115B34BC207F62820043A6F3 /* NSArray+MASAdditions.m in Sources */,
 				115B3550208087D90043A6F3 /* TicketOrderDetaialController.m in Sources */,
+				5AF3B0D720837B9B003B7B18 /* CalenderWeekView.m in Sources */,
 				5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */,
 				115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				115B354B208080530043A6F3 /* PayTicketController.m in Sources */,
+				5AF3B0D320837B9B003B7B18 /* CalenderView.m in Sources */,
 				115B3416207EEEAC0043A6F3 /* AppDelegate.m in Sources */,
 				115B35672080A8D10043A6F3 /* AFSecurityPolicy.m in Sources */,
 				115B35652080A8D00043A6F3 /* AFHTTPSessionManager.m in Sources */,

@@ -9,7 +9,20 @@
 #import "EidtTicketOrderController.h"
 
 @interface EidtTicketOrderController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *startStation;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *endStation;
+@property (weak, nonatomic) IBOutlet UILabel *carNum;
+@property (weak, nonatomic) IBOutlet UILabel *startTime;
+@property (weak, nonatomic) IBOutlet UILabel *position;
+@property (weak, nonatomic) IBOutlet UILabel *unitPrice;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerViewHeight;
+@property (weak, nonatomic) IBOutlet UILabel *remainNum;
+@property (weak, nonatomic) IBOutlet UITextField *pickTicketPeoeleField;
+@property (weak, nonatomic) IBOutlet UITextField *pickTicketPhoneField;
+@property (weak, nonatomic) IBOutlet UILabel *actualPrice;
+@property (weak, nonatomic) IBOutlet UILabel *PriceMath;
+@property (weak, nonatomic) IBOutlet UILabel *AllPrice;
 @end
 
 @implementation EidtTicketOrderController
@@ -19,6 +32,15 @@
     [self popOut];
     self.navigationItem.title = @"填写订单";
     // Do any additional setup after loading the view from its nib.
+}
+
+- (IBAction)needToKnow:(UIButton *)sender {
+}
+- (IBAction)addPassenger:(UIButton *)sender {
+}
+- (IBAction)chooseDiscountCoupon:(id)sender {
+}
+- (IBAction)submitOrder:(UIButton *)sender {
 }
 
 - (void)didReceiveMemoryWarning {

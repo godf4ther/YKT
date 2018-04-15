@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^ChooseBlock)(NSDictionary *);
 @interface StationChooseController : BaseViewController
 @property (nonatomic, strong) NSString *startStationId;
 @property (nonatomic, strong) NSString *type;//0出发城市，1到达城市
+@property (nonatomic, strong) ChooseBlock block;
 @end

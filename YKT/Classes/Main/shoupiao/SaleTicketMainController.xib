@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,6 +67,7 @@
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="bJl-st-MMg" firstAttribute="centerY" secondItem="WYX-ah-e9z" secondAttribute="centerY" id="879-yw-igf"/>
                                 <constraint firstItem="7Al-3s-xzs" firstAttribute="leading" secondItem="0ZF-kP-thW" secondAttribute="trailing" constant="15" id="ToU-Et-6cr"/>
@@ -79,6 +80,9 @@
                                 <constraint firstItem="qZA-uA-ybf" firstAttribute="leading" secondItem="0ZF-kP-thW" secondAttribute="leading" id="sEn-tD-EKd"/>
                                 <constraint firstItem="bJl-st-MMg" firstAttribute="leading" secondItem="WYX-ah-e9z" secondAttribute="leading" constant="15" id="xyz-dF-0p7"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="N51-nn-VhG" appends="YES" id="s05-BV-6zs"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dkn-dq-1ua">
                             <rect key="frame" x="0.0" y="48" width="351" height="48"/>
@@ -111,6 +115,7 @@
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="ElW-pK-pLE" firstAttribute="leading" secondItem="5Ue-zn-S3s" secondAttribute="trailing" constant="15" id="4XZ-6l-pKr"/>
                                 <constraint firstItem="Uy8-Od-2Bl" firstAttribute="leading" secondItem="Dkn-dq-1ua" secondAttribute="leading" constant="15" id="IcJ-qk-L1S"/>
@@ -123,6 +128,9 @@
                                 <constraint firstItem="Uy8-Od-2Bl" firstAttribute="centerY" secondItem="Dkn-dq-1ua" secondAttribute="centerY" id="tlp-mW-5Vv"/>
                                 <constraint firstItem="5Ue-zn-S3s" firstAttribute="centerY" secondItem="Dkn-dq-1ua" secondAttribute="centerY" id="vVT-1m-8z3"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="alI-u7-cyN" appends="YES" id="J3K-iH-ylH"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6X-wb-3pc">
                             <rect key="frame" x="0.0" y="96" width="351" height="48"/>
@@ -147,6 +155,7 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="OaK-GS-GcK" firstAttribute="leading" secondItem="o6X-wb-3pc" secondAttribute="leading" constant="15" id="X8r-Uy-Vc1"/>
                                 <constraint firstItem="VTm-tB-7gy" firstAttribute="leading" secondItem="OaK-GS-GcK" secondAttribute="trailing" constant="15" id="Xku-Hx-bSo"/>
@@ -156,6 +165,9 @@
                                 <constraint firstAttribute="height" constant="48" id="yxa-BD-NcU"/>
                                 <constraint firstItem="VTm-tB-7gy" firstAttribute="centerY" secondItem="o6X-wb-3pc" secondAttribute="centerY" id="z4X-Ts-Bjb"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="NUY-WN-igY" appends="YES" id="U3s-vY-flz"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,7 +210,7 @@
                         <constraint firstAttribute="width" constant="20" id="vxW-6d-TTw"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnh-eD-oDL">
+                <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnh-eD-oDL">
                     <rect key="frame" x="35" y="379" width="99" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Icz-UT-lZq"/>
@@ -206,8 +218,11 @@
                     <state key="normal" title="萧山机场-绍兴">
                         <color key="titleColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="hisBtnClick:" destination="-1" eventType="touchUpInside" id="LAq-Dd-Kzz"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBt-MJ-mZh">
+                <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBt-MJ-mZh">
                     <rect key="frame" x="241" y="378" width="99" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Pd0-YR-ZLL"/>
@@ -215,8 +230,11 @@
                     <state key="normal" title="萧山机场-绍兴">
                         <color key="titleColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="hisBtnClick:" destination="-1" eventType="touchUpInside" id="DYs-fz-dDI"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl6-bk-Rmb">
+                <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl6-bk-Rmb">
                     <rect key="frame" x="35" y="416" width="99" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="BP7-xP-aXX"/>
@@ -224,8 +242,11 @@
                     <state key="normal" title="萧山机场-绍兴">
                         <color key="titleColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="hisBtnClick:" destination="-1" eventType="touchUpInside" id="yAs-2f-kiD"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGm-1b-Zsf">
+                <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGm-1b-Zsf">
                     <rect key="frame" x="241" y="415" width="99" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="2w0-PE-yKQ"/>
@@ -233,6 +254,9 @@
                     <state key="normal" title="萧山机场-绍兴">
                         <color key="titleColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="hisBtnClick:" destination="-1" eventType="touchUpInside" id="dqv-1q-Qlr"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.95294117647058818" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -261,6 +285,21 @@
             </constraints>
             <point key="canvasLocation" x="109.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="N51-nn-VhG">
+            <connections>
+                <action selector="chooseStartStation:" destination="-1" id="uhH-eA-mOL"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="alI-u7-cyN">
+            <connections>
+                <action selector="chooseEndStation:" destination="-1" id="yPm-fU-66W"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="NUY-WN-igY">
+            <connections>
+                <action selector="chooseDate:" destination="-1" id="XIX-UL-0wY"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="bananer" width="360" height="112"/>

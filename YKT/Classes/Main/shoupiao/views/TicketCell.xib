@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -89,6 +89,14 @@
                     <constraint firstItem="GWF-fB-vcY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="y6q-g6-Lnd"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="carNum" destination="GWF-fB-vcY" id="n4L-Re-pB2"/>
+                <outlet property="end" destination="xaP-qG-B7m" id="Shq-N3-GO4"/>
+                <outlet property="price" destination="w6C-OR-sqd" id="A03-Sl-34T"/>
+                <outlet property="remainSeat" destination="1hX-KB-bqv" id="EZW-yG-ot8"/>
+                <outlet property="start" destination="Roh-ay-2ja" id="hwV-zs-KFO"/>
+                <outlet property="time" destination="8bK-VH-MUR" id="ieT-j4-VBv"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

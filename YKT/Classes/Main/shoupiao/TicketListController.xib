@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TicketListController">
             <connections>
                 <outlet property="centerBtn" destination="eNw-MM-Nmj" id="AdL-fm-fu4"/>
+                <outlet property="noDataLabel" destination="RWU-uO-psQ" id="VbK-SP-N4h"/>
                 <outlet property="tableView" destination="ia6-Ke-0tP" id="Ttd-Mm-64F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -78,15 +79,23 @@
                     <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无本班次信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWU-uO-psQ">
+                    <rect key="frame" x="127" y="323" width="121.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ia6-Ke-0tP" firstAttribute="top" secondItem="5UB-wd-oIH" secondAttribute="bottom" id="0eI-7Z-JN4"/>
                 <constraint firstAttribute="trailing" secondItem="5UB-wd-oIH" secondAttribute="trailing" id="2tl-vm-Q22"/>
+                <constraint firstItem="RWU-uO-psQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Gsl-2e-v7j"/>
                 <constraint firstItem="ia6-Ke-0tP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I4k-eo-OnU"/>
                 <constraint firstItem="5UB-wd-oIH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K3H-vc-Q0a"/>
                 <constraint firstItem="5UB-wd-oIH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dPM-Gb-7P6"/>
                 <constraint firstAttribute="trailing" secondItem="ia6-Ke-0tP" secondAttribute="trailing" id="qla-5i-Asj"/>
+                <constraint firstItem="RWU-uO-psQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="r4P-m7-xdY"/>
                 <constraint firstAttribute="bottom" secondItem="ia6-Ke-0tP" secondAttribute="bottom" id="vOQ-1l-VYZ"/>
             </constraints>
         </view>

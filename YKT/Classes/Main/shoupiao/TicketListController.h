@@ -9,5 +9,8 @@
 #import "BaseViewController.h"
 
 @interface TicketListController : BaseViewController
-
+@property (nonatomic, strong) NSDictionary *startStationDic;
+@property (nonatomic, strong) NSDictionary *endStationDic;
+@property (nonatomic, strong) NSString *centerDate;
+@property (nonatomic, strong) NSString *currentDate;
 @end
