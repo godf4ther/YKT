@@ -12,6 +12,7 @@
 #define baseURL @"http://116.62.10.65:7070/"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+KR.h"
+#import "KRUserInfo.h"
 @implementation KRMainNetTool
 singleton_implementation(KRMainNetTool)
 //不需要上传文件的接口方法
@@ -51,6 +52,7 @@ singleton_implementation(KRMainNetTool)
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addEntriesFromDictionary:dic];
+    params[@"token"] = [KRUserInfo sharedKRUserInfo].token;
     if (self.isGet) {
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer =  [AFJSONResponseSerializer serializer];

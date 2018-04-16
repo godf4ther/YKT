@@ -16,12 +16,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="减号" translatesAutoresizingMaskIntoConstraints="NO" id="euf-dc-I4n">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="减号" translatesAutoresizingMaskIntoConstraints="NO" id="euf-dc-I4n">
                     <rect key="frame" x="8" y="30" width="25" height="25"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="5uV-7n-kHz"/>
                         <constraint firstAttribute="width" constant="25" id="K65-cO-MY6"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="zau-MI-rm9" appends="YES" id="cdr-tv-kfc"/>
+                    </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hz-fw-Dbh">
                     <rect key="frame" x="41" y="25" width="29" height="17"/>
@@ -35,13 +39,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="携童" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-A2-yb4">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="携童" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-A2-yb4">
                     <rect key="frame" x="338" y="18" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-SE-MGW">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-SE-MGW">
                     <rect key="frame" x="313" y="16" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="lFh-Yg-cMn"/>
@@ -49,14 +53,17 @@
                     </constraints>
                     <state key="normal" image="勾1"/>
                     <state key="selected" image="勾2"/>
+                    <connections>
+                        <action selector="gouAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LL7-9V-FEO"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="半票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usU-wI-fvM">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="半票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usU-wI-fvM">
                     <rect key="frame" x="338" y="50" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMk-R7-mO9">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMk-R7-mO9">
                     <rect key="frame" x="313" y="48.5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="2FB-uD-l0E"/>
@@ -64,6 +71,9 @@
                     </constraints>
                     <state key="normal" image="勾1"/>
                     <state key="selected" image="勾2"/>
+                    <connections>
+                        <action selector="gouAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="bTw-Cv-YOx"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcT-zy-MvG">
                     <rect key="frame" x="0.0" y="84" width="375" height="1"/>
@@ -95,8 +105,21 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="gou1" destination="uhq-SE-MGW" id="WOa-sD-1ET"/>
+                <outlet property="gou2" destination="SMk-R7-mO9" id="uol-7j-Sks"/>
+                <outlet property="idCard" destination="ekK-Xb-Q8h" id="MoU-1Q-z4B"/>
+                <outlet property="label1" destination="o1Z-A2-yb4" id="fFs-b4-O70"/>
+                <outlet property="label2" destination="usU-wI-fvM" id="YTU-Zg-O8S"/>
+                <outlet property="name" destination="6Hz-fw-Dbh" id="8iX-Kf-ZUO"/>
+            </connections>
             <point key="canvasLocation" x="48.5" y="54.5"/>
         </view>
+        <tapGestureRecognizer id="zau-MI-rm9">
+            <connections>
+                <action selector="delete:" destination="iN0-l3-epB" id="QMz-f7-i9O"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="减号" width="20" height="20"/>

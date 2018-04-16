@@ -51,7 +51,7 @@
 
 - (NSString *)limitDate{
     NSDate *currentDate = [self.formatter dateFromString:self.currentDate];
-    NSDate *limitDate = [NSDate dateWithTimeInterval:24*60*60*5 sinceDate:currentDate];
+    NSDate *limitDate = [NSDate dateWithTimeInterval:24*60*60*self.sellDay sinceDate:currentDate];
     NSString *limitDateStr = [self.formatter stringFromDate:limitDate];
     return limitDateStr;
 }

@@ -10,6 +10,7 @@
 #define LRMacroDefinitionHeader_h
 #import "UIImage+Color.h"
 #import "KRMainNetTool.h"
+#import "KRUserInfo.h"
 /**
  定义输出
  

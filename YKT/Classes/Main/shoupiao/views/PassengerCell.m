@@ -14,6 +14,10 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)gouAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.block(sender.selected);
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

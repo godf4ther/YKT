@@ -54,6 +54,11 @@
 		115B356F2080AD150043A6F3 /* StationChooseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115B356D2080AD150043A6F3 /* StationChooseController.xib */; };
 		115B35722080B4C70043A6F3 /* KRMainNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35712080B4C70043A6F3 /* KRMainNetTool.m */; };
 		115B35762080B5560043A6F3 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B35752080B5560043A6F3 /* MBProgressHUD+KR.m */; };
+		11C753B720844BAA006A8F2D /* KRUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C753B620844BAA006A8F2D /* KRUserInfo.m */; };
+		11C753BC20844C00006A8F2D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C753BA20844C00006A8F2D /* LoginViewController.m */; };
+		11C753BD20844C00006A8F2D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11C753BB20844C00006A8F2D /* LoginViewController.xib */; };
+		11C753C2208478DF006A8F2D /* EditPassengerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C753C0208478DF006A8F2D /* EditPassengerController.m */; };
+		11C753C3208478DF006A8F2D /* EditPassengerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11C753C1208478DF006A8F2D /* EditPassengerController.xib */; };
 		5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824300207F92CD00F483F6 /* SaleTicketMainController.m */; };
 		5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */; };
 		5A824307207F99E500F483F6 /* TicketListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824305207F99E500F483F6 /* TicketListController.m */; };
@@ -163,6 +168,14 @@
 		115B35732080B5050043A6F3 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		115B35742080B5560043A6F3 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
 		115B35752080B5560043A6F3 /* MBProgressHUD+KR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+KR.m"; sourceTree = "<group>"; };
+		11C753B520844BAA006A8F2D /* KRUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRUserInfo.h; sourceTree = "<group>"; };
+		11C753B620844BAA006A8F2D /* KRUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRUserInfo.m; sourceTree = "<group>"; };
+		11C753B920844C00006A8F2D /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		11C753BA20844C00006A8F2D /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		11C753BB20844C00006A8F2D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		11C753BF208478DF006A8F2D /* EditPassengerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPassengerController.h; sourceTree = "<group>"; };
+		11C753C0208478DF006A8F2D /* EditPassengerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPassengerController.m; sourceTree = "<group>"; };
+		11C753C1208478DF006A8F2D /* EditPassengerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPassengerController.xib; sourceTree = "<group>"; };
 		5A8242FF207F92CD00F483F6 /* SaleTicketMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleTicketMainController.h; sourceTree = "<group>"; };
 		5A824300207F92CD00F483F6 /* SaleTicketMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleTicketMainController.m; sourceTree = "<group>"; };
 		5A824301207F92CD00F483F6 /* SaleTicketMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleTicketMainController.xib; sourceTree = "<group>"; };
@@ -260,6 +273,8 @@
 		115B3486207F5DFD0043A6F3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				11C753B520844BAA006A8F2D /* KRUserInfo.h */,
+				11C753B620844BAA006A8F2D /* KRUserInfo.m */,
 				115B35702080B4C70043A6F3 /* KRMainNetTool.h */,
 				115B35712080B4C70043A6F3 /* KRMainNetTool.m */,
 				115B35732080B5050043A6F3 /* Singleton.h */,
@@ -365,9 +380,34 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		11C753B820844BEF006A8F2D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				11C753B920844C00006A8F2D /* LoginViewController.h */,
+				11C753BA20844C00006A8F2D /* LoginViewController.m */,
+				11C753BB20844C00006A8F2D /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		11C753BE208478B3006A8F2D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				115B3514208060AE0043A6F3 /* PassengerListViewController.h */,
+				115B3515208060AE0043A6F3 /* PassengerListViewController.m */,
+				115B3516208060AE0043A6F3 /* PassengerListViewController.xib */,
+				11C753BF208478DF006A8F2D /* EditPassengerController.h */,
+				11C753C0208478DF006A8F2D /* EditPassengerController.m */,
+				11C753C1208478DF006A8F2D /* EditPassengerController.xib */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		5A8242FA207F91E300F483F6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				11C753BE208478B3006A8F2D /* Common */,
+				11C753B820844BEF006A8F2D /* Login */,
 				5A8242FB207F91F800F483F6 /* shoupiao */,
 			);
 			path = Main;
@@ -388,9 +428,6 @@
 				115B34C0208043A60043A6F3 /* EidtTicketOrderController.h */,
 				115B34C1208043A60043A6F3 /* EidtTicketOrderController.m */,
 				115B34C2208043A60043A6F3 /* EidtTicketOrderController.xib */,
-				115B3514208060AE0043A6F3 /* PassengerListViewController.h */,
-				115B3515208060AE0043A6F3 /* PassengerListViewController.m */,
-				115B3516208060AE0043A6F3 /* PassengerListViewController.xib */,
 				115B3548208080530043A6F3 /* PayTicketController.h */,
 				115B3549208080530043A6F3 /* PayTicketController.m */,
 				115B354A208080530043A6F3 /* PayTicketController.xib */,
@@ -502,6 +539,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C753BD20844C00006A8F2D /* LoginViewController.xib in Resources */,
 				115B34C4208043A60043A6F3 /* EidtTicketOrderController.xib in Resources */,
 				115B34B5207F62820043A6F3 /* Info.plist in Resources */,
 				5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */,
@@ -511,6 +549,7 @@
 				5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */,
 				115B355620808E300043A6F3 /* RefundController.xib in Resources */,
 				115B356F2080AD150043A6F3 /* StationChooseController.xib in Resources */,
+				11C753C3208478DF006A8F2D /* EditPassengerController.xib in Resources */,
 				115B3518208060AE0043A6F3 /* PassengerListViewController.xib in Resources */,
 				115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */,
 				115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */,
@@ -530,11 +569,13 @@
 				115B34BB207F62820043A6F3 /* MASViewConstraint.m in Sources */,
 				115B35662080A8D10043A6F3 /* AFNetworkReachabilityManager.m in Sources */,
 				115B350C20805BDC0043A6F3 /* TickerOrderPeople.m in Sources */,
+				11C753C2208478DF006A8F2D /* EditPassengerController.m in Sources */,
 				115B356E2080AD150043A6F3 /* StationChooseController.m in Sources */,
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
 				5AF80AC22080FD9900CD28F0 /* DateChooseController.m in Sources */,
 				5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */,
 				115B34BA207F62820043A6F3 /* MASViewAttribute.m in Sources */,
+				11C753BC20844C00006A8F2D /* LoginViewController.m in Sources */,
 				115B3485207F5DCD0043A6F3 /* BaseViewController.m in Sources */,
 				5A824307207F99E500F483F6 /* TicketListController.m in Sources */,
 				115B355520808E300043A6F3 /* RefundController.m in Sources */,
@@ -547,6 +588,7 @@
 				115B35692080A8D10043A6F3 /* AFURLResponseSerialization.m in Sources */,
 				115B351C2080611A0043A6F3 /* PassengerCell.m in Sources */,
 				115B34B8207F62820043A6F3 /* MASConstraintMaker.m in Sources */,
+				11C753B720844BAA006A8F2D /* KRUserInfo.m in Sources */,
 				115B3517208060AE0043A6F3 /* PassengerListViewController.m in Sources */,
 				115B34BE207F62820043A6F3 /* View+MASAdditions.m in Sources */,
 				115B34B9207F62820043A6F3 /* MASLayoutConstraint.m in Sources */,

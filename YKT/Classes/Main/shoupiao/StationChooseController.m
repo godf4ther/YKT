@@ -102,6 +102,7 @@
         dic[@"StationName"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationName"];
     }
     else {
+        [dic addEntriesFromDictionary:self.dataArr[indexPath.section][@"data"][indexPath.row]];
         dic[@"StationId"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"id"];
         dic[@"StationName"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"stationName"];
     }

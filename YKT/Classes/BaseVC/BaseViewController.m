@@ -193,6 +193,11 @@
     }
     return NO;
 }
+
+- (NSString *)ensureIDNumber:(NSString *)idNumber {
+    return [NSString stringWithFormat:@"%@******%@", [idNumber substringToIndex:4], [idNumber substringFromIndex:10]];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
  

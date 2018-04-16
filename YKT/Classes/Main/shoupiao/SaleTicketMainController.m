@@ -11,6 +11,7 @@
 #import "TicketListController.h"
 #import "StationChooseController.h"
 #import "DateChooseController.h"
+#import "KRUserInfo.h"
 @interface SaleTicketMainController ()
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *endStation;
@@ -57,6 +58,8 @@
     NSDate *todayDate = [NSDate date];
     self.dateLabel.text = [self.formatter stringFromDate:todayDate];
     self.currentDate = self.dateLabel.text;
+    NSDictionary *userInfoDic = [self getFromDefaultsWithKey:@"USERINFO"];
+    [[KRUserInfo sharedKRUserInfo] setValuesForKeysWithDictionary:userInfoDic];
     [self setHisStation];
     
     // Do any additional setup after loading the view from its nib.
@@ -102,6 +105,7 @@
         self.startStationDic = dic;
         self.startStation.text = dic[@"StationName"];
         self.startStation.textColor = [UIColor blackColor];
+        [KRUserInfo sharedKRUserInfo].startStationDic = dic;
     };
     [self.navigationController pushViewController:chooseVC animated:YES];
 }
@@ -121,9 +125,14 @@
     [self.navigationController pushViewController:chooseVC animated:YES];
 }
 - (IBAction)chooseDate:(id)sender {
+    if (!self.startStationDic) {
+        [self showHUDWithText:@"请先选择出发城市"];
+        return;
+    }
     DateChooseController *dateVC = [DateChooseController new];
     dateVC.currentDate = self.currentDate;
     dateVC.selectDate = self.dateLabel.text;
+    dateVC.sellDay = [self.startStationDic[@"sellDay"] integerValue];
     dateVC.block = ^(NSString *date) {
         self.dateLabel.text = date;
     };
@@ -160,6 +169,7 @@
     self.endStation.textColor = [UIColor blackColor];
     self.startStationDic = startStation;
     self.endStationDic = endStation;
+    [KRUserInfo sharedKRUserInfo].startStationDic = startStation;
 }
 
 

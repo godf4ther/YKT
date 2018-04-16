@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^selectBlock)(BOOL);
 @interface PassengerCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *gouBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gouBtnWidth;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *isDefaultBtn;
+@property (weak, nonatomic) IBOutlet UILabel *cardNum;
+@property (nonatomic, strong) selectBlock block;
 @end

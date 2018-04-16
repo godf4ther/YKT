@@ -31,5 +31,7 @@
 //隐藏加载
 - (void)hideHUD;
 - (BOOL)cheakIsNull:(NSString *)str;
+//身份证号加星号
+- (NSString *)ensureIDNumber:(NSString *)idNumber;
 
 @end

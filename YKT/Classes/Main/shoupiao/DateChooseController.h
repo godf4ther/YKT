@@ -12,4 +12,5 @@ typedef void (^chooseBlock)(NSString *);
 @property (nonatomic, strong) chooseBlock block;
 @property (nonatomic, strong) NSString *currentDate;
 @property (nonatomic, strong) NSString *selectDate;
+@property (nonatomic, assign) NSInteger sellDay;
 @end

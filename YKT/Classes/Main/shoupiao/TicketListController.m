@@ -12,12 +12,18 @@
 #import "LRMacroDefinitionHeader.h"
 #import "DateChooseController.h"
 #import "EidtTicketOrderController.h"
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
+#import "KRUserInfo.h"
 @interface TicketListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *centerBtn;
 @property (nonatomic, strong) NSArray *dataArr;
 @property (nonatomic, strong) NSDateFormatter *formatter;
 @property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
+@property (nonatomic, strong) NSString *sellDayDate;
+@property (weak, nonatomic) IBOutlet UIButton *lastDayBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nextDayBtn;
 @end
 
 @implementation TicketListController
@@ -49,6 +55,11 @@
     [self popOut];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@",self.startStationDic[@"StationName"],self.endStationDic[@"StationName"]];
     [self.centerBtn setTitle:[self dateStrChange:self.centerDate] forState:UIControlStateNormal];
+    NSDate *date = [self.formatter dateFromString:self.currentDate];
+    NSInteger sellDay = [self.startStationDic[@"sellDay"] integerValue];
+    NSDate *sellDayDate = [NSDate dateWithTimeInterval:24*60*60*sellDay sinceDate:date];
+    self.sellDayDate = [self.formatter stringFromDate:sellDayDate];
+    [self cheakDate];
     self.tableView.rowHeight = 70;
     [self.tableView registerNib:[UINib nibWithNibName:@"TicketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TicketCell"];
     self.tableView.delegate = self;
@@ -77,22 +88,26 @@
     NSDate *lastDate = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];
     self.centerDate = [self.formatter stringFromDate:lastDate];
     [self.centerBtn setTitle:[self dateStrChange:self.centerDate] forState:UIControlStateNormal];
+    [self cheakDate];
     [self requestData];
 }
 - (IBAction)nextDay:(UIButton *)sender {
     NSDate *date = [self.formatter dateFromString:self.centerDate];
-    NSDate *lastDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];
-    self.centerDate = [self.formatter stringFromDate:lastDate];
+    NSDate *nextDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];
+    self.centerDate = [self.formatter stringFromDate:nextDate];
     [self.centerBtn setTitle:[self dateStrChange:self.centerDate] forState:UIControlStateNormal];
+    [self cheakDate];
     [self requestData];
 }
 - (IBAction)centerDayChoose:(UIButton *)sender {
     DateChooseController *dateVC = [DateChooseController new];
     dateVC.currentDate = self.currentDate;
     dateVC.selectDate = self.centerDate;
+    dateVC.sellDay = [self.startStationDic[@"sellDay"] integerValue];
     dateVC.block = ^(NSString *date) {
         self.centerDate = date;
         [self.centerBtn setTitle:[self dateStrChange:self.centerDate] forState:UIControlStateNormal];
+        [self cheakDate];
         [self requestData];
     };
     [self.navigationController pushViewController:dateVC animated:YES];
@@ -101,6 +116,25 @@
     NSString *month = [date substringWithRange:NSMakeRange(5, 2)];
     NSString *day = [date substringWithRange:NSMakeRange(8, 2)];
     return [NSString stringWithFormat:@"%@月%@日",month,day];
+}
+
+- (void)cheakDate {
+    if ([self.centerDate isEqualToString:self.currentDate]) {
+        self.lastDayBtn.enabled = NO;
+    }
+    else {
+        self.lastDayBtn.enabled = YES;
+    }
+    if ([self.centerDate isEqualToString:self.sellDayDate]) {
+        self.nextDayBtn.enabled = NO;
+    }
+    else {
+        self.nextDayBtn.enabled = YES;
+    }
+    if ([self.startStationDic[@"sellDay"] integerValue] < 1) {
+        self.nextDayBtn.enabled = NO;
+        self.lastDayBtn.enabled = NO;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -125,9 +159,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EidtTicketOrderController *editVC = [EidtTicketOrderController new];
-    editVC.ticketDic = self.dataArr[indexPath.row];
-    [self.navigationController pushViewController:editVC animated:YES];
+    if (![KRUserInfo sharedKRUserInfo].memberId) {
+        LoginViewController *loginVC = [LoginViewController new];
+        BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:navi animated:YES completion:nil];
+    }
+    else {
+        EidtTicketOrderController *editVC = [EidtTicketOrderController new];
+        editVC.ticketDic = self.dataArr[indexPath.row];
+        [self.navigationController pushViewController:editVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
