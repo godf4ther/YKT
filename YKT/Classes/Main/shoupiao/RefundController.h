@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface RefundController : BaseViewController
-
+@property (nonatomic, copy) NSString *orderId;
 @end

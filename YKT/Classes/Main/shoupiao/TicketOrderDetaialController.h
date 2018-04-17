@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface TicketOrderDetaialController : BaseViewController
-
+@property (nonatomic, copy) NSString *orderId;
 @end

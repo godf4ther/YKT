@@ -12,6 +12,11 @@
 #import "StationChooseController.h"
 #import "DateChooseController.h"
 #import "KRUserInfo.h"
+#import "PopupView.h"
+#import "PassengerListViewController.h"
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
+#import "TicketOrderListController.h"
 @interface SaleTicketMainController ()
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *endStation;
@@ -24,6 +29,7 @@
 @property (nonatomic, strong) NSDictionary *startStationDic;
 @property (nonatomic, strong) NSDictionary *endStationDic;
 @property (nonatomic, strong) NSString *currentDate;
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 @end
 
 @implementation SaleTicketMainController
@@ -55,6 +61,8 @@
     [super viewDidLoad];
     [self popOut];
     self.navigationItem.title = @"汽车票";
+    _rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rightItem"] style:UIBarButtonItemStyleDone target:self action:@selector(showPopView)];
+    self.navigationItem.rightBarButtonItem = _rightItem;
     NSDate *todayDate = [NSDate date];
     self.dateLabel.text = [self.formatter stringFromDate:todayDate];
     self.currentDate = self.dateLabel.text;
@@ -63,6 +71,33 @@
     [self setHisStation];
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)showPopView {
+    [PopupView addCellWithIcon:nil text:@"常用乘客" action:^{
+        if (![KRUserInfo sharedKRUserInfo].memberId) {
+            LoginViewController *loginVC = [LoginViewController new];
+            BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
+            [self presentViewController:navi animated:YES completion:nil];
+        }
+        else {
+            PassengerListViewController *listVC = [PassengerListViewController new];
+            listVC.isSelect = NO;
+            [self.navigationController pushViewController:listVC animated:YES];
+        }
+    }];
+    [PopupView addCellWithIcon:nil text:@"我的订单" action:^{
+        if (![KRUserInfo sharedKRUserInfo].memberId) {
+            LoginViewController *loginVC = [LoginViewController new];
+            BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
+            [self presentViewController:navi animated:YES completion:nil];
+        }
+        else {
+            TicketOrderListController *listVC = [TicketOrderListController new];
+            [self.navigationController pushViewController:listVC animated:YES];
+        }
+    }];
+    [PopupView popupViewInPosition:ShowRight];
 }
 
 - (void)setHisStation{

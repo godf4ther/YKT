@@ -13,6 +13,8 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+KR.h"
 #import "KRUserInfo.h"
+#import "LoginViewController.h"
+#import "BaseNaviViewController.h"
 @implementation KRMainNetTool
 singleton_implementation(KRMainNetTool)
 //不需要上传文件的接口方法
@@ -83,8 +85,16 @@ singleton_implementation(KRMainNetTool)
                 complet([self getModelArrayWith:response[@"result"] andModel:model],nil);
             }
         } else {
-            [MBProgressHUD showError:response[@"message"] toView:waitView];
-            complet(nil,response[@"message"]);
+            if ([response[@"message"] isEqualToString:@"授权失败，请重新登录"]) {
+                LoginViewController *loginVC = [LoginViewController new];
+                BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navi animated:YES completion:nil];
+            }
+            else {
+                [MBProgressHUD showError:response[@"message"] toView:waitView];
+                complet(nil,response[@"message"]);
+            }
+            
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.isGet = NO;
