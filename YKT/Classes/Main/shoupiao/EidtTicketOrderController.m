@@ -86,6 +86,7 @@
             params[@"passengerIDCard"] = dic[@"idCard"];
             params[@"passengerName"] = dic[@"passengerName"];
             params[@"passengerPhone"] = dic[@"mobile"];
+            params[@"passengerSex"] = @"男";
             params[@"ticketType"] = [dic[@"passengerType"] integerValue] == 3 ? @"1" : @"2";
             CGFloat ticketPrice = [self.ticketDic[@"FullPrice"] floatValue];
             params[@"ticketPrice"] = [dic[@"passengerType"] integerValue] == 3 ? [NSString stringWithFormat:@"%.2f",ticketPrice] : [NSString stringWithFormat:@"%.2f",ticketPrice / 2];
@@ -111,7 +112,7 @@
         peopleView.gblock = ^(NSInteger type, BOOL select) {
             if (type == 1) {
                 if (select) {
-                    dic[@"ticketType"] = @"4";
+                    dic[@"ticketType"] = @"3";
                 }
                 else {
                     dic[@"ticketType"] = @"1";
@@ -120,13 +121,18 @@
             else {
                 if (select) {
                     dic[@"ticketType"] = @"2";
+                    CGFloat ticketPrice = [self.ticketDic[@"FullPrice"] floatValue];
+                    dic[@"ticketPrice"] = [NSString stringWithFormat:@"%.2f",ticketPrice / 2];
                 }
                 else {
                     dic[@"ticketType"] = @"1";
+                    CGFloat ticketPrice = [self.ticketDic[@"FullPrice"] floatValue];
+                    dic[@"ticketPrice"] = [NSString stringWithFormat:@"%.2f",ticketPrice];
                 }
+                [self mathPrice];
             }
         };
-        if ([[KRUserInfo sharedKRUserInfo].startStationDic[@"isHalf"] boolValue] && [dic[@"passengerType"] integerValue] == 2) {
+        if ([[KRUserInfo sharedKRUserInfo].startStationDic[@"isHalf"] boolValue] && [dic[@"passengerType"] integerValue] != 3) {
             peopleView.gou2.hidden = NO;
             peopleView.label2.hidden = NO;
             peopleView.gou2.selected = YES;
@@ -137,10 +143,10 @@
                 peopleView.gou2.selected = NO;
             }
         }
-        if ([[KRUserInfo sharedKRUserInfo].startStationDic[@"isChildren"] boolValue] && [dic[@"passengerCardType"] integerValue] == 3) {
+        if ([[KRUserInfo sharedKRUserInfo].startStationDic[@"isChildren"] boolValue] && [dic[@"passengerType"] integerValue] == 3) {
             peopleView.gou1.hidden = NO;
             peopleView.label1.hidden = NO;
-            if ([dic[@"ticketType"] integerValue] == 4) {
+            if ([dic[@"ticketType"] integerValue] == 3) {
                 peopleView.gou1.selected = YES;
             }
             else {
@@ -148,14 +154,46 @@
             }
         }
     }
+    [self mathPrice];
 }
 
 - (void)mathPrice {
-    
+    NSMutableString *stringM = [NSMutableString stringWithFormat:@"￥"];
+    CGFloat totalPrice = 0.00;
+//    CGFloat ticketPrice = [self.ticketDic[@"FullPrice"] floatValue];
+    for (NSMutableDictionary *dic in self.passengerArr) {
+        totalPrice += [dic[@"ticketPrice"] floatValue];
+        NSInteger index = [self.passengerArr indexOfObject:dic];
+        [stringM appendFormat:@"%@%@",index == 0 ? @"":@"+",dic[@"ticketPrice"]];
+    }
+    self.actualPrice.text = [NSString stringWithFormat:@"￥%.2f",totalPrice];
+    self.AllPrice.text = [NSString stringWithFormat:@"总额：%.2f",totalPrice];
+    self.PriceMath.text = stringM;
 }
 
 - (IBAction)submitOrder:(UIButton *)sender {
-    
+    if (self.passengerArr.count == 0) {
+        [self showHUDWithText:@"请选择乘客"];
+        return;
+    }
+    if ([self cheakIsNull:self.pickTicketPeoeleField.text]) {
+        [self showHUDWithText:@"请输入取票人"];
+        return;
+    }
+    if ([self cheakIsNull:self.pickTicketPhoneField.text]) {
+        [self showHUDWithText:@"请输入取票手机号"];
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"busInfo"] = @{@"busDate":self.ticketDic[@"BusDate"],@"busId":self.ticketDic[@"BusId"],@"busKind":self.ticketDic[@"BusKind"],@"busStartTime":self.ticketDic[@"BusStartTime"],@"buyType":@4,@"checkGate":self.ticketDic[@"CheckGateName"],@"endStationId":self.ticketDic[@"StationId"],@"endStationName":self.ticketDic[@"RouteEndStationName"],@"fullTicketPrice":self.ticketDic[@"FullPrice"],@"halfTicketPrice":self.ticketDic[@"HalfPrice"],@"routeName":self.ticketDic[@"RouteName"],@"startStationId":self.ticketDic[@"SellStationId"],@"startStationName":self.ticketDic[@"SellStationName"],@"vehicleTypeName":self.ticketDic[@"VehicleTypeName"]};
+    params[@"gettkMan"] = self.pickTicketPeoeleField.text;
+    params[@"gettkPhone"] = self.pickTicketPhoneField.text;
+    params[@"passengers"] = self.passengerArr;
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/makeOrder.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (showdata) {
+            
+        }
+    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
