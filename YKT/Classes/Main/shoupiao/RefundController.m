@@ -7,16 +7,40 @@
 //
 
 #import "RefundController.h"
-
+#import "LRMacroDefinitionHeader.h"
 @interface RefundController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *money;
+@property (nonatomic, strong) NSString *totalCharge;
 @end
 
 @implementation RefundController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"退款";
+    [self popOut];
+    [self requestData];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)requestData {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/getReturnOrderCharge.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (showdata) {
+            NSDictionary *dic = showdata;
+            self.money.text = [NSString stringWithFormat:@"￥%@",dic[@"totalCharge"]];
+        }
+    }];
+}
+- (IBAction)cancel:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)refund:(UIButton *)sender {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/returnOrder.do" params:@{@"orderId":self.orderId,@"charge":self.totalCharge} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (!error) {
+            [self showHUDWithText:@"退款成功"];
+            [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
