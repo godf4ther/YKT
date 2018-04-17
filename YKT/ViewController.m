@@ -25,6 +25,7 @@
     [self presentViewController:navi animated:YES completion:nil];
 }
 - (IBAction)logout:(id)sender {
+    
 }
 - (IBAction)baoche:(id)sender {
 }

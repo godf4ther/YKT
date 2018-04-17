@@ -153,6 +153,7 @@
                 peopleView.gou1.selected = NO;
             }
         }
+        [self.passengerArr[i] removeObjectForKey:@"passengerType"];
     }
     [self mathPrice];
 }
