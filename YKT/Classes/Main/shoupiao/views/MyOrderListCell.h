@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *endStation;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UILabel *orderType;
+@property (weak, nonatomic) IBOutlet UIImageView *carIcon;
 
 @end

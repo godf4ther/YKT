@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSArray *passengerArr;
 @property (weak, nonatomic) IBOutlet UIView *passengerContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerHeight;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 @end
 
 @implementation TicketOrderDetaialController
@@ -48,7 +49,7 @@
 - (void)requestData{
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/findBusOrderInfoDetail.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            NSDictionary *dic = showdata;
+            NSDictionary *dic = showdata[0];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
             NSString *busTime = dic[@"busTime"];
             self.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)] ];
@@ -72,6 +73,7 @@
             }
             else {
                 self.bottomHeight.constant = 0;
+                self.bottomView.hidden = YES;
             }
         }
     }];
@@ -150,12 +152,20 @@
 }
 - (IBAction)cancelAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {
-        [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/cancelOrder.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
-            if (!error) {
-                [self showHUDWithText:@"取消成功"];
-                [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
-            }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/cancelOrder.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+                if (!error) {
+                    [self showHUDWithText:@"取消成功"];
+                    [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
+                }
+            }];
         }];
+        [alert addAction:cancelAction];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
     }
     else if ([sender.titleLabel.text isEqualToString:@"退票"]) {
         RefundController *refundVC = [RefundController new];

@@ -43,7 +43,7 @@
 - (void)requestData{
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/findBusOrderInfoDetail.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            NSDictionary *dic = showdata;
+            NSDictionary *dic = showdata[0];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
             NSString *timeStr = dic[@"busTime"];
             self.timeLabel.text = [NSString stringWithFormat:@"%@-%@-%@",[timeStr substringWithRange:NSMakeRange(0, 4)],[timeStr substringWithRange:NSMakeRange(4, 2)],[timeStr substringWithRange:NSMakeRange(6, 2)] ];
@@ -59,7 +59,7 @@
 
 - (void)countDown{
     self.leftTime -- ;
-    if (self.leftTime >= 1000) {
+    if (self.leftTime) {
         self.countDownLabel.text = [NSString stringWithFormat:@"请在%@内支付哦否则将关闭",[self changeTime:self.leftTime]];
     }
     else {
@@ -69,8 +69,8 @@
 }
 
 - (NSString *)changeTime:(NSInteger)leftTime{
-    NSInteger min = leftTime / 1000 / 60;
-    NSInteger second = leftTime / 1000 % 60;
+    NSInteger min = leftTime / 60;
+    NSInteger second = leftTime  % 60;
     return [NSString stringWithFormat:@"%02ld:%02ld",min,second];
 }
 

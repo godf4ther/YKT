@@ -10,7 +10,8 @@
 #import "PassengerListViewController.h"
 #import "TickerOrderPeople.h"
 #import "LRMacroDefinitionHeader.h"
-
+#import "PayTicketController.h"
+#import "AFNetworking.h"
 @interface EidtTicketOrderController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -186,16 +187,58 @@
         return;
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"busInfo"] = @{@"busDate":self.ticketDic[@"BusDate"],@"busId":self.ticketDic[@"BusId"],@"busKind":self.ticketDic[@"BusKind"],@"busStartTime":self.ticketDic[@"BusStartTime"],@"buyType":@4,@"checkGate":self.ticketDic[@"CheckGateName"],@"endStationId":self.ticketDic[@"StationId"],@"endStationName":self.ticketDic[@"RouteEndStationName"],@"fullTicketPrice":self.ticketDic[@"FullPrice"],@"halfTicketPrice":self.ticketDic[@"HalfPrice"],@"routeName":self.ticketDic[@"RouteName"],@"startStationId":self.ticketDic[@"SellStationId"],@"startStationName":self.ticketDic[@"SellStationName"],@"vehicleTypeName":self.ticketDic[@"VehicleTypeName"]};
+    params[@"busInfo"] = [self changeStr:@{@"busDate":self.ticketDic[@"BusDate"],@"busId":self.ticketDic[@"BusId"],@"busKind":self.ticketDic[@"BusKind"],@"busStartTime":self.ticketDic[@"BusStartTime"],@"buyType":@4,@"checkGate":self.ticketDic[@"CheckGateName"],@"endStationId":self.ticketDic[@"StationId"],@"endStationName":self.ticketDic[@"RouteEndStationName"],@"fullTicketPrice":self.ticketDic[@"FullPrice"],@"halfTicketPrice":self.ticketDic[@"HalfPrice"],@"routeName":self.ticketDic[@"RouteName"],@"startStationId":self.ticketDic[@"SellStationId"],@"startStationName":self.ticketDic[@"SellStationName"],@"vehicleTypeName":self.ticketDic[@"VehicleTypeName"]}];
     params[@"gettkMan"] = self.pickTicketPeoeleField.text;
     params[@"gettkPhone"] = self.pickTicketPhoneField.text;
-    params[@"passengers"] = self.passengerArr;
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/makeOrder.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
-        if (showdata) {
-            
+    params[@"passengers"] = [self changeStr:self.passengerArr];
+    params[@"token"] = [KRUserInfo sharedKRUserInfo].token;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://116.62.10.65:7070/member/order/makeOrder.do"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15.0];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    NSMutableString *paraString = [NSMutableString string];
+    for (NSString *key in [params allKeys]) {
+        [paraString appendFormat:@"&%@=%@",key,params[key]];
+    }
+    [paraString deleteCharactersInRange:NSMakeRange(0, 1)];
+    [request setHTTPBody:[paraString dataUsingEncoding:NSUTF8StringEncoding]];
+    // 初始化AFManager
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration: [NSURLSessionConfiguration defaultSessionConfiguration]];
+    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+    serializer.acceptableContentTypes = [NSSet setWithObjects:
+                                         @"text/plain",
+                                         @"application/json",
+                                         @"text/html", nil];
+    manager.responseSerializer = serializer;
+    // 构建请求任务
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [self showHUDWithText:@"网络错误"];
+        } else {
+            NSDictionary *dic = responseObject;
+            if ([dic[@"success"] boolValue]) {
+                PayTicketController *payVC = [PayTicketController new];
+                payVC.orderId = dic[@"result"][@"orderId"];
+                [self.navigationController pushViewController:payVC animated:YES];
+            }
+            else {
+                [self showHUDWithText:dic[@"message"]];
+            }
         }
     }];
+    // 发起请求
+    [dataTask resume];
 }
+
+- (NSString *)changeStr:(id)value {
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
+    NSString *jsonString =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *str = [jsonString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *str1 = [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return str1;
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];

@@ -9,6 +9,8 @@
 #import "TicketOrderListController.h"
 #import "MyOrderListCell.h"
 #import "LRMacroDefinitionHeader.h"
+#import "PayTicketController.h"
+#import "TicketOrderDetaialController.h"
 @interface TicketOrderListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
@@ -16,20 +18,26 @@
 
 @implementation TicketOrderListController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self popOut];
     self.navigationItem.title = @"我的订单";
     self.tableView.rowHeight = 190;
     [self.tableView registerNib:[UINib nibWithNibName:@"MyOrderListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyOrderListCell"];
-    [self requestData];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)requestData {
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/findOrderInfoByCondition.do" params:nil withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            
+            self.dataArr = showdata;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -44,7 +52,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderListCell" forIndexPath:indexPath];
+    NSDictionary *dic = self.dataArr[indexPath.row];
+    cell.orderNo.text = dic[@"organName"];
+    cell.statusLabel.text = dic[@"statusName"];
+    cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+    cell.orderType.text = dic[@"orderTypeName"];
+    if ([cell.orderType.text isEqualToString:@"汽车票"]) {
+        cell.busId.hidden = NO;
+        cell.carIcon.hidden = NO;
+        cell.busId.text = dic[@"busId"];
+        cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
+        cell.startStation.text = dic[@"sellStationName"];
+        cell.endStation.text = dic[@"endStationName"];
+    }
+    else {
+        if ([dic[@"journeyType"] isEqualToString:@"1"]) {
+            cell.busId.hidden = YES;
+            cell.carIcon.hidden = YES;
+            cell.busTime.text = dic[@"journeyStartTime"];
+        }
+        else {
+            cell.busId.hidden = NO;
+            cell.carIcon.hidden = NO;
+            cell.busId.text = dic[@"journeyStartTime"];
+            cell.busTime.text = dic[@"journeyEndTime"];
+        }
+        cell.startStation.text = dic[@"startPointName"];
+        cell.endStation.text = dic[@"endPointName"];
+    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+        TicketOrderDetaialController *detailVC = [TicketOrderDetaialController new];
+        detailVC.orderId = self.dataArr[indexPath.row][@"id"];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
