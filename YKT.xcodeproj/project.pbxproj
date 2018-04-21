@@ -439,9 +439,17 @@
 			path = DropChoiceView;
 			sourceTree = "<group>";
 		};
+		11C753DC2086DC45006A8F2D /* bc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = bc;
+			sourceTree = "<group>";
+		};
 		5A8242FA207F91E300F483F6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				11C753DC2086DC45006A8F2D /* bc */,
 				11C753BE208478B3006A8F2D /* Common */,
 				11C753B820844BEF006A8F2D /* Login */,
 				5A8242FB207F91F800F483F6 /* shoupiao */,

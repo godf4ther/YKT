@@ -56,9 +56,8 @@ singleton_implementation(KRMainNetTool)
     [params addEntriesFromDictionary:dic];
     params[@"token"] = [KRUserInfo sharedKRUserInfo].token;
     if (self.isGet) {
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        manager.responseSerializer =  [AFJSONResponseSerializer serializer];
-        [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     }
     [manager POST:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         //请求成功，隐藏HUD并销毁
@@ -85,10 +84,18 @@ singleton_implementation(KRMainNetTool)
                 complet([self getModelArrayWith:response[@"result"] andModel:model],nil);
             }
         } else {
-            if ([response[@"message"] isEqualToString:@"授权失败，请重新登录"]) {
+            if ([response[@"message"] isEqualToString:@"授权失败，请重新登录"] || [response[@"message"] isEqualToString:@"token失效，请重新登陆"]) {
                 LoginViewController *loginVC = [LoginViewController new];
                 BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
-                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navi animated:YES completion:nil];
+                UIViewController *topRootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                // 在这里加一个这个样式的循环
+                while (topRootViewController.presentedViewController)
+                {
+                    // 这里固定写法
+                    topRootViewController = topRootViewController.presentedViewController;
+                }
+                // 然后再进行present操作
+                [topRootViewController presentViewController:navi animated:YES completion:nil];
             }
             else {
                 [MBProgressHUD showError:response[@"message"] toView:waitView];

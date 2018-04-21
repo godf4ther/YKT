@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TicketOrderDetaialController">
             <connections>
                 <outlet property="bottomHeight" destination="2sP-VL-JdB" id="JIm-rE-xcD"/>
+                <outlet property="bottomView" destination="m6y-jb-T4f" id="meI-zW-eKm"/>
                 <outlet property="busTime" destination="d9M-yQ-2kb" id="pO1-gd-yG7"/>
                 <outlet property="cancelBtn" destination="7GZ-xL-kcf" id="yD2-RF-qtQ"/>
                 <outlet property="endStation" destination="P3B-Sm-ZfG" id="a1v-wo-NOz"/>
