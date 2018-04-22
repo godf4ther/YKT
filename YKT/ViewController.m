@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SaleTicketMainController.h"
 #import "BaseNaviViewController.h"
+#import "BCHomeController.h"
 @interface ViewController ()
 
 @end
@@ -28,6 +29,9 @@
     
 }
 - (IBAction)baoche:(id)sender {
+    BCHomeController *vc = [BCHomeController new];
+    BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:vc];
+    [self presentViewController:navi animated:YES completion:nil];
 }
 
 

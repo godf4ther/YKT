@@ -74,6 +74,16 @@
 		5A824308207F99E500F483F6 /* TicketListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824306207F99E500F483F6 /* TicketListController.xib */; };
 		5A824312207F9D0F00F483F6 /* TicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A824310207F9D0F00F483F6 /* TicketCell.m */; };
 		5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A824311207F9D0F00F483F6 /* TicketCell.xib */; };
+		5AEE8F52208B52BF005DCA65 /* LocaleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F4B208B52BF005DCA65 /* LocaleController.xib */; };
+		5AEE8F53208B52BF005DCA65 /* LocaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F4D208B52BF005DCA65 /* LocaleController.m */; };
+		5AEE8F54208B52BF005DCA65 /* BCHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F4E208B52BF005DCA65 /* BCHomeController.m */; };
+		5AEE8F55208B52BF005DCA65 /* BCHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F4F208B52BF005DCA65 /* BCHomeController.xib */; };
+		5AEE8F59208B5A2E005DCA65 /* LocaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F57208B5A2E005DCA65 /* LocaleCell.m */; };
+		5AEE8F5A208B5A2E005DCA65 /* LocaleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F58208B5A2E005DCA65 /* LocaleCell.xib */; };
+		5AEE8F5E208B5CD2005DCA65 /* CityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F5C208B5CD2005DCA65 /* CityController.m */; };
+		5AEE8F5F208B5CD2005DCA65 /* CityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F5D208B5CD2005DCA65 /* CityController.xib */; };
+		5AEE8F63208B7E06005DCA65 /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F61208B7E06005DCA65 /* WriteOrderViewController.m */; };
+		5AEE8F64208B7E06005DCA65 /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F62208B7E06005DCA65 /* WriteOrderViewController.xib */; };
 		5AF3B0D320837B9B003B7B18 /* CalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C520837B9A003B7B18 /* CalenderView.m */; };
 		5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */; };
 		5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C920837B9A003B7B18 /* CalenderModel.m */; };
@@ -208,6 +218,21 @@
 		5A82430F207F9D0F00F483F6 /* TicketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketCell.h; sourceTree = "<group>"; };
 		5A824310207F9D0F00F483F6 /* TicketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketCell.m; sourceTree = "<group>"; };
 		5A824311207F9D0F00F483F6 /* TicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketCell.xib; sourceTree = "<group>"; };
+		5AEE8F4B208B52BF005DCA65 /* LocaleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocaleController.xib; sourceTree = "<group>"; };
+		5AEE8F4C208B52BF005DCA65 /* BCHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCHomeController.h; sourceTree = "<group>"; };
+		5AEE8F4D208B52BF005DCA65 /* LocaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaleController.m; sourceTree = "<group>"; };
+		5AEE8F4E208B52BF005DCA65 /* BCHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCHomeController.m; sourceTree = "<group>"; };
+		5AEE8F4F208B52BF005DCA65 /* BCHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BCHomeController.xib; sourceTree = "<group>"; };
+		5AEE8F50208B52BF005DCA65 /* LocaleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaleController.h; sourceTree = "<group>"; };
+		5AEE8F56208B5A2E005DCA65 /* LocaleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocaleCell.h; sourceTree = "<group>"; };
+		5AEE8F57208B5A2E005DCA65 /* LocaleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocaleCell.m; sourceTree = "<group>"; };
+		5AEE8F58208B5A2E005DCA65 /* LocaleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocaleCell.xib; sourceTree = "<group>"; };
+		5AEE8F5B208B5CD2005DCA65 /* CityController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityController.h; sourceTree = "<group>"; };
+		5AEE8F5C208B5CD2005DCA65 /* CityController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityController.m; sourceTree = "<group>"; };
+		5AEE8F5D208B5CD2005DCA65 /* CityController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityController.xib; sourceTree = "<group>"; };
+		5AEE8F60208B7E06005DCA65 /* WriteOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
+		5AEE8F61208B7E06005DCA65 /* WriteOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
+		5AEE8F62208B7E06005DCA65 /* WriteOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
 		5AF3B0C520837B9A003B7B18 /* CalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderView.m; sourceTree = "<group>"; };
 		5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderCollectionCell.m; sourceTree = "<group>"; };
 		5AF3B0C720837B9A003B7B18 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -439,17 +464,10 @@
 			path = DropChoiceView;
 			sourceTree = "<group>";
 		};
-		11C753DC2086DC45006A8F2D /* bc */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = bc;
-			sourceTree = "<group>";
-		};
 		5A8242FA207F91E300F483F6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				11C753DC2086DC45006A8F2D /* bc */,
+				5AEE8F4A208B52BF005DCA65 /* bc */,
 				11C753BE208478B3006A8F2D /* Common */,
 				11C753B820844BEF006A8F2D /* Login */,
 				5A8242FB207F91F800F483F6 /* shoupiao */,
@@ -509,6 +527,36 @@
 				11C753D72085F1FB006A8F2D /* MyOrderListCell.h */,
 				11C753D82085F1FB006A8F2D /* MyOrderListCell.m */,
 				11C753D92085F1FB006A8F2D /* MyOrderListCell.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		5AEE8F4A208B52BF005DCA65 /* bc */ = {
+			isa = PBXGroup;
+			children = (
+				5AEE8F51208B52BF005DCA65 /* views */,
+				5AEE8F50208B52BF005DCA65 /* LocaleController.h */,
+				5AEE8F4D208B52BF005DCA65 /* LocaleController.m */,
+				5AEE8F4B208B52BF005DCA65 /* LocaleController.xib */,
+				5AEE8F4C208B52BF005DCA65 /* BCHomeController.h */,
+				5AEE8F4E208B52BF005DCA65 /* BCHomeController.m */,
+				5AEE8F4F208B52BF005DCA65 /* BCHomeController.xib */,
+				5AEE8F5B208B5CD2005DCA65 /* CityController.h */,
+				5AEE8F5C208B5CD2005DCA65 /* CityController.m */,
+				5AEE8F5D208B5CD2005DCA65 /* CityController.xib */,
+				5AEE8F60208B7E06005DCA65 /* WriteOrderViewController.h */,
+				5AEE8F61208B7E06005DCA65 /* WriteOrderViewController.m */,
+				5AEE8F62208B7E06005DCA65 /* WriteOrderViewController.xib */,
+			);
+			path = bc;
+			sourceTree = "<group>";
+		};
+		5AEE8F51208B52BF005DCA65 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5AEE8F56208B5A2E005DCA65 /* LocaleCell.h */,
+				5AEE8F57208B5A2E005DCA65 /* LocaleCell.m */,
+				5AEE8F58208B5A2E005DCA65 /* LocaleCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -603,15 +651,20 @@
 				115B3421207EEEAC0043A6F3 /* LaunchScreen.storyboard in Resources */,
 				115B3551208087D90043A6F3 /* TicketOrderDetaialController.xib in Resources */,
 				5A824313207F9D0F00F483F6 /* TicketCell.xib in Resources */,
+				5AEE8F5F208B5CD2005DCA65 /* CityController.xib in Resources */,
 				11C753D02085DF6E006A8F2D /* PopupTableViewCell.xib in Resources */,
+				5AEE8F64208B7E06005DCA65 /* WriteOrderViewController.xib in Resources */,
 				115B355620808E300043A6F3 /* RefundController.xib in Resources */,
 				115B356F2080AD150043A6F3 /* StationChooseController.xib in Resources */,
 				11C753C3208478DF006A8F2D /* EditPassengerController.xib in Resources */,
+				5AEE8F5A208B5A2E005DCA65 /* LocaleCell.xib in Resources */,
 				115B3518208060AE0043A6F3 /* PassengerListViewController.xib in Resources */,
 				115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */,
+				5AEE8F52208B52BF005DCA65 /* LocaleController.xib in Resources */,
 				115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */,
 				5A824308207F99E500F483F6 /* TicketListController.xib in Resources */,
 				115B354C208080530043A6F3 /* PayTicketController.xib in Resources */,
+				5AEE8F55208B52BF005DCA65 /* BCHomeController.xib in Resources */,
 				115B350E20805BF90043A6F3 /* TickerOrderPeople.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,7 +683,9 @@
 				115B356E2080AD150043A6F3 /* StationChooseController.m in Sources */,
 				115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */,
 				5AF80AC22080FD9900CD28F0 /* DateChooseController.m in Sources */,
+				5AEE8F54208B52BF005DCA65 /* BCHomeController.m in Sources */,
 				5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */,
+				5AEE8F53208B52BF005DCA65 /* LocaleController.m in Sources */,
 				115B34BA207F62820043A6F3 /* MASViewAttribute.m in Sources */,
 				11C753BC20844C00006A8F2D /* LoginViewController.m in Sources */,
 				11C753DA2085F1FB006A8F2D /* MyOrderListCell.m in Sources */,
@@ -658,7 +713,9 @@
 				5AF3B0D820837B9B003B7B18 /* NSDate+Extension.m in Sources */,
 				5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */,
 				115B35682080A8D10043A6F3 /* AFURLRequestSerialization.m in Sources */,
+				5AEE8F63208B7E06005DCA65 /* WriteOrderViewController.m in Sources */,
 				5AF3B0D920837B9B003B7B18 /* UIColor+Extension.m in Sources */,
+				5AEE8F59208B5A2E005DCA65 /* LocaleCell.m in Sources */,
 				11C753D52085EFF5006A8F2D /* TicketOrderListController.m in Sources */,
 				115B34BF207F62820043A6F3 /* ViewController+MASAdditions.m in Sources */,
 				115B34B7207F62820043A6F3 /* MASConstraint.m in Sources */,
@@ -666,6 +723,7 @@
 				115B3424207EEEAC0043A6F3 /* main.m in Sources */,
 				115B34BC207F62820043A6F3 /* NSArray+MASAdditions.m in Sources */,
 				115B3550208087D90043A6F3 /* TicketOrderDetaialController.m in Sources */,
+				5AEE8F5E208B5CD2005DCA65 /* CityController.m in Sources */,
 				5AF3B0D720837B9B003B7B18 /* CalenderWeekView.m in Sources */,
 				5A824302207F92CD00F483F6 /* SaleTicketMainController.m in Sources */,
 				115B34BD207F62820043A6F3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
