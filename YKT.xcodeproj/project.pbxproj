@@ -130,6 +130,17 @@
 		5AEE8F94208E0B23005DCA65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F93208E0B23005DCA65 /* Foundation.framework */; };
 		5AEE8F96208E0B2D005DCA65 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */; };
 		5AEE8F98208E0B33005DCA65 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */; };
+		5AEE8F9E208E1E7D005DCA65 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F9B208E1E79005DCA65 /* AMapSearchKit.framework */; };
+		5AEE8F9F208E1E7D005DCA65 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F9C208E1E79005DCA65 /* AMapFoundationKit.framework */; };
+		5AEE8FA0208E1E7D005DCA65 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F9D208E1E7D005DCA65 /* MAMapKit.framework */; };
+		5AEE8FA2208E1EA7005DCA65 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8FA1208E1EA7005DCA65 /* AMap.bundle */; };
+		5AEE8FA4208E1EBC005DCA65 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FA3208E1EBC005DCA65 /* GLKit.framework */; };
+		5AEE8FA6208E1EC4005DCA65 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FA5208E1EC4005DCA65 /* OpenGLES.framework */; };
+		5AEE8FA8208E1ED1005DCA65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FA7208E1ED1005DCA65 /* CoreLocation.framework */; };
+		5AEE8FAA208E1EE6005DCA65 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FA9208E1EE6005DCA65 /* Security.framework */; };
+		5AEE8FAC208E1EEB005DCA65 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FAB208E1EEB005DCA65 /* AdSupport.framework */; };
+		5AEE8FAE208E1EF0005DCA65 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FAD208E1EF0005DCA65 /* JavaScriptCore.framework */; };
+		5AEE8FB0208E1EFD005DCA65 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8FAF208E1EFD005DCA65 /* libstdc++.6.0.9.tbd */; };
 		5AF3B0D320837B9B003B7B18 /* CalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C520837B9A003B7B18 /* CalenderView.m */; };
 		5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */; };
 		5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C920837B9A003B7B18 /* CalenderModel.m */; };
@@ -356,6 +367,17 @@
 		5AEE8F93208E0B23005DCA65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		5AEE8F9B208E1E79005DCA65 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		5AEE8F9C208E1E79005DCA65 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
+		5AEE8F9D208E1E7D005DCA65 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
+		5AEE8FA1208E1EA7005DCA65 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
+		5AEE8FA3208E1EBC005DCA65 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		5AEE8FA5208E1EC4005DCA65 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5AEE8FA7208E1ED1005DCA65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5AEE8FA9208E1EE6005DCA65 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5AEE8FAB208E1EEB005DCA65 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		5AEE8FAD208E1EF0005DCA65 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		5AEE8FAF208E1EFD005DCA65 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		5AF3B0C520837B9A003B7B18 /* CalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderView.m; sourceTree = "<group>"; };
 		5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderCollectionCell.m; sourceTree = "<group>"; };
 		5AF3B0C720837B9A003B7B18 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -379,17 +401,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AEE8F85208E0AEF005DCA65 /* libc++.tbd in Frameworks */,
+				5AEE8FB0208E1EFD005DCA65 /* libstdc++.6.0.9.tbd in Frameworks */,
+				5AEE8F87208E0AF9005DCA65 /* libz.tbd in Frameworks */,
+				5AEE8FAE208E1EF0005DCA65 /* JavaScriptCore.framework in Frameworks */,
+				5AEE8FAC208E1EEB005DCA65 /* AdSupport.framework in Frameworks */,
+				5AEE8FAA208E1EE6005DCA65 /* Security.framework in Frameworks */,
+				5AEE8FA8208E1ED1005DCA65 /* CoreLocation.framework in Frameworks */,
+				5AEE8F91208E0B19005DCA65 /* CoreGraphics.framework in Frameworks */,
+				5AEE8FA6208E1EC4005DCA65 /* OpenGLES.framework in Frameworks */,
+				5AEE8FA4208E1EBC005DCA65 /* GLKit.framework in Frameworks */,
 				5AEE8F98208E0B33005DCA65 /* CoreMotion.framework in Frameworks */,
 				5AEE8F96208E0B2D005DCA65 /* CFNetwork.framework in Frameworks */,
 				5AEE8F94208E0B23005DCA65 /* Foundation.framework in Frameworks */,
 				5AEE8F92208E0B1D005DCA65 /* UIKit.framework in Frameworks */,
-				5AEE8F91208E0B19005DCA65 /* CoreGraphics.framework in Frameworks */,
 				5AEE8F8F208E0B11005DCA65 /* CoreText.framework in Frameworks */,
 				5AEE8F8D208E0B0B005DCA65 /* QuartzCore.framework in Frameworks */,
+				5AEE8F9E208E1E7D005DCA65 /* AMapSearchKit.framework in Frameworks */,
 				5AEE8F8B208E0B05005DCA65 /* CoreTelephony.framework in Frameworks */,
+				5AEE8FA0208E1E7D005DCA65 /* MAMapKit.framework in Frameworks */,
 				5AEE8F89208E0AFF005DCA65 /* SystemConfiguration.framework in Frameworks */,
-				5AEE8F87208E0AF9005DCA65 /* libz.tbd in Frameworks */,
-				5AEE8F85208E0AEF005DCA65 /* libc++.tbd in Frameworks */,
+				5AEE8F9F208E1E7D005DCA65 /* AMapFoundationKit.framework in Frameworks */,
 				5AEE8F83208E0ACA005DCA65 /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +583,13 @@
 		115B3492207F5FA40043A6F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5AEE8FAF208E1EFD005DCA65 /* libstdc++.6.0.9.tbd */,
+				5AEE8FAD208E1EF0005DCA65 /* JavaScriptCore.framework */,
+				5AEE8FAB208E1EEB005DCA65 /* AdSupport.framework */,
+				5AEE8FA9208E1EE6005DCA65 /* Security.framework */,
+				5AEE8FA7208E1ED1005DCA65 /* CoreLocation.framework */,
+				5AEE8FA5208E1EC4005DCA65 /* OpenGLES.framework */,
+				5AEE8FA3208E1EBC005DCA65 /* GLKit.framework */,
 				5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */,
 				5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */,
 				5AEE8F93208E0B23005DCA65 /* Foundation.framework */,
@@ -569,6 +608,7 @@
 		115B3495207F60850043A6F3 /* ThirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				5AEE8F9A208E1E6A005DCA65 /* AMap */,
 				5AEE8F7F208E0ABD005DCA65 /* AliPay */,
 				1133F5AF208DA93100D32E00 /* SDWebImage */,
 				11C753C92085DF6E006A8F2D /* DropChoiceView */,
@@ -789,6 +829,17 @@
 			path = AliPay;
 			sourceTree = "<group>";
 		};
+		5AEE8F9A208E1E6A005DCA65 /* AMap */ = {
+			isa = PBXGroup;
+			children = (
+				5AEE8FA1208E1EA7005DCA65 /* AMap.bundle */,
+				5AEE8F9C208E1E79005DCA65 /* AMapFoundationKit.framework */,
+				5AEE8F9B208E1E79005DCA65 /* AMapSearchKit.framework */,
+				5AEE8F9D208E1E7D005DCA65 /* MAMapKit.framework */,
+			);
+			path = AMap;
+			sourceTree = "<group>";
+		};
 		5AF3B0C420837B9A003B7B18 /* Calender */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,6 +919,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AEE8FA2208E1EA7005DCA65 /* AMap.bundle in Resources */,
 				11C753BD20844C00006A8F2D /* LoginViewController.xib in Resources */,
 				115B34C4208043A60043A6F3 /* EidtTicketOrderController.xib in Resources */,
 				115B34B5207F62820043A6F3 /* Info.plist in Resources */,
@@ -1135,6 +1187,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AliPay",
+					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AMap",
 				);
 				INFOPLIST_FILE = YKT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1153,6 +1206,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AliPay",
+					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AMap",
 				);
 				INFOPLIST_FILE = YKT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
