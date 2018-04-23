@@ -74,7 +74,13 @@ singleton_implementation(KRMainNetTool)
         if (state) {
             if (model == nil) {
                 if (response) {
-                    complet(response[@"result"],nil);
+                    if (self.isSB) {
+                        self.isSB = NO;
+                        complet(response[@"payInfo"],nil);
+                    }
+                    else {
+                        complet(response[@"result"],nil);
+                    }
                 } else {
                     [MBProgressHUD showError:response[@"message"] toView:waitView];
                     complet(nil,response[@"message"]);

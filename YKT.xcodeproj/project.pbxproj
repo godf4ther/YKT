@@ -117,6 +117,19 @@
 		5AEE8F5F208B5CD2005DCA65 /* CityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F5D208B5CD2005DCA65 /* CityController.xib */; };
 		5AEE8F63208B7E06005DCA65 /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEE8F61208B7E06005DCA65 /* WriteOrderViewController.m */; };
 		5AEE8F64208B7E06005DCA65 /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F62208B7E06005DCA65 /* WriteOrderViewController.xib */; };
+		5AEE8F82208E0ACA005DCA65 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5AEE8F80208E0ACA005DCA65 /* AlipaySDK.bundle */; };
+		5AEE8F83208E0ACA005DCA65 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F81208E0ACA005DCA65 /* AlipaySDK.framework */; };
+		5AEE8F85208E0AEF005DCA65 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F84208E0AEF005DCA65 /* libc++.tbd */; };
+		5AEE8F87208E0AF9005DCA65 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F86208E0AF9005DCA65 /* libz.tbd */; };
+		5AEE8F89208E0AFF005DCA65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F88208E0AFF005DCA65 /* SystemConfiguration.framework */; };
+		5AEE8F8B208E0B05005DCA65 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F8A208E0B05005DCA65 /* CoreTelephony.framework */; };
+		5AEE8F8D208E0B0B005DCA65 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F8C208E0B0B005DCA65 /* QuartzCore.framework */; };
+		5AEE8F8F208E0B11005DCA65 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F8E208E0B11005DCA65 /* CoreText.framework */; };
+		5AEE8F91208E0B19005DCA65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F90208E0B19005DCA65 /* CoreGraphics.framework */; };
+		5AEE8F92208E0B1D005DCA65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115B3493207F5FA40043A6F3 /* UIKit.framework */; };
+		5AEE8F94208E0B23005DCA65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F93208E0B23005DCA65 /* Foundation.framework */; };
+		5AEE8F96208E0B2D005DCA65 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */; };
+		5AEE8F98208E0B33005DCA65 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */; };
 		5AF3B0D320837B9B003B7B18 /* CalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C520837B9A003B7B18 /* CalenderView.m */; };
 		5AF3B0D420837B9B003B7B18 /* CalenderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */; };
 		5AF3B0D520837B9B003B7B18 /* CalenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF3B0C920837B9A003B7B18 /* CalenderModel.m */; };
@@ -331,6 +344,18 @@
 		5AEE8F60208B7E06005DCA65 /* WriteOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
 		5AEE8F61208B7E06005DCA65 /* WriteOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
 		5AEE8F62208B7E06005DCA65 /* WriteOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
+		5AEE8F80208E0ACA005DCA65 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		5AEE8F81208E0ACA005DCA65 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		5AEE8F84208E0AEF005DCA65 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		5AEE8F86208E0AF9005DCA65 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		5AEE8F88208E0AFF005DCA65 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5AEE8F8A208E0B05005DCA65 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5AEE8F8C208E0B0B005DCA65 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5AEE8F8E208E0B11005DCA65 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		5AEE8F90208E0B19005DCA65 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5AEE8F93208E0B23005DCA65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5AF3B0C520837B9A003B7B18 /* CalenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderView.m; sourceTree = "<group>"; };
 		5AF3B0C620837B9A003B7B18 /* CalenderCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderCollectionCell.m; sourceTree = "<group>"; };
 		5AF3B0C720837B9A003B7B18 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
@@ -354,6 +379,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AEE8F98208E0B33005DCA65 /* CoreMotion.framework in Frameworks */,
+				5AEE8F96208E0B2D005DCA65 /* CFNetwork.framework in Frameworks */,
+				5AEE8F94208E0B23005DCA65 /* Foundation.framework in Frameworks */,
+				5AEE8F92208E0B1D005DCA65 /* UIKit.framework in Frameworks */,
+				5AEE8F91208E0B19005DCA65 /* CoreGraphics.framework in Frameworks */,
+				5AEE8F8F208E0B11005DCA65 /* CoreText.framework in Frameworks */,
+				5AEE8F8D208E0B0B005DCA65 /* QuartzCore.framework in Frameworks */,
+				5AEE8F8B208E0B05005DCA65 /* CoreTelephony.framework in Frameworks */,
+				5AEE8F89208E0AFF005DCA65 /* SystemConfiguration.framework in Frameworks */,
+				5AEE8F87208E0AF9005DCA65 /* libz.tbd in Frameworks */,
+				5AEE8F85208E0AEF005DCA65 /* libc++.tbd in Frameworks */,
+				5AEE8F83208E0ACA005DCA65 /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +551,16 @@
 		115B3492207F5FA40043A6F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5AEE8F97208E0B33005DCA65 /* CoreMotion.framework */,
+				5AEE8F95208E0B2D005DCA65 /* CFNetwork.framework */,
+				5AEE8F93208E0B23005DCA65 /* Foundation.framework */,
+				5AEE8F90208E0B19005DCA65 /* CoreGraphics.framework */,
+				5AEE8F8E208E0B11005DCA65 /* CoreText.framework */,
+				5AEE8F8C208E0B0B005DCA65 /* QuartzCore.framework */,
+				5AEE8F8A208E0B05005DCA65 /* CoreTelephony.framework */,
+				5AEE8F88208E0AFF005DCA65 /* SystemConfiguration.framework */,
+				5AEE8F86208E0AF9005DCA65 /* libz.tbd */,
+				5AEE8F84208E0AEF005DCA65 /* libc++.tbd */,
 				115B3493207F5FA40043A6F3 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -522,6 +569,7 @@
 		115B3495207F60850043A6F3 /* ThirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				5AEE8F7F208E0ABD005DCA65 /* AliPay */,
 				1133F5AF208DA93100D32E00 /* SDWebImage */,
 				11C753C92085DF6E006A8F2D /* DropChoiceView */,
 				5AF3B0C420837B9A003B7B18 /* Calender */,
@@ -732,6 +780,15 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		5AEE8F7F208E0ABD005DCA65 /* AliPay */ = {
+			isa = PBXGroup;
+			children = (
+				5AEE8F80208E0ACA005DCA65 /* AlipaySDK.bundle */,
+				5AEE8F81208E0ACA005DCA65 /* AlipaySDK.framework */,
+			);
+			path = AliPay;
+			sourceTree = "<group>";
+		};
 		5AF3B0C420837B9A003B7B18 /* Calender */ = {
 			isa = PBXGroup;
 			children = (
@@ -832,6 +889,7 @@
 				5AEE8F5A208B5A2E005DCA65 /* LocaleCell.xib in Resources */,
 				115B3518208060AE0043A6F3 /* PassengerListViewController.xib in Resources */,
 				115B341E207EEEAC0043A6F3 /* Assets.xcassets in Resources */,
+				5AEE8F82208E0ACA005DCA65 /* AlipaySDK.bundle in Resources */,
 				5AEE8F52208B52BF005DCA65 /* LocaleController.xib in Resources */,
 				1133F5AE208D78AF00D32E00 /* KRDatePicker.xib in Resources */,
 				115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */,
@@ -1073,7 +1131,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XZN34NH8JQ;
+				DEVELOPMENT_TEAM = 87GAA3US64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AliPay",
+				);
 				INFOPLIST_FILE = YKT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.YKT.www;
@@ -1087,7 +1149,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XZN34NH8JQ;
+				DEVELOPMENT_TEAM = 87GAA3US64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YKT/Classes/ThirdSDK/AliPay",
+				);
 				INFOPLIST_FILE = YKT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.YKT.www;

@@ -30,4 +30,5 @@ singleton_interface(KRMainNetTool)
 @property (nonatomic, strong) NSString *isShow;
 
 @property (nonatomic, assign) BOOL isGet;
+@property (nonatomic, assign) BOOL isSB;
 @end

@@ -11,8 +11,8 @@
 @interface CityController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *dataArr;
-@property (nonatomic, strong) NSArray *orlDataArr;
+@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) NSDictionary *orlData;
 @property (nonatomic, strong) NSArray *indexArr;
 @end
 
@@ -40,33 +40,27 @@
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)editChange:(UITextField *)sender {
-    NSMutableArray *Muarr = [NSMutableArray array];
-    for (NSDictionary *dic in self.orlDataArr) {
-        NSMutableString *mustr = [NSMutableString stringWithString:dic[@"name"]];
-        CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformMandarinLatin, NO);
-        CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformStripDiacritics, NO);
-        NSString *pinYin = [mustr capitalizedString];
-        NSString *predix = [pinYin substringToIndex:1];
-        if ([sender.text rangeOfString:dic[@"name"]].location != NSNotFound|| [predix isEqualToString:sender.text] || [predix.lowercaseString isEqualToString:sender.text]) {
-            [Muarr addObject:dic];
-        }
-    }
-    if (Muarr.count == 0) {
-        self.dataArr = nil;
-        self.indexArr = nil;
-        [self.tableView reloadData];
-    }
-    else {
-        [self sorting:Muarr];
-        [self.tableView reloadData];
-    }
+//    NSMutableArray *Muarr = [NSMutableArray array];
+//    for (NSString *prefix in self.orlData.allKeys) {
+//        if ([self.orlData[prefix] containsObject:sender.text]) {
+//            self.data[prefix] =
+//        }
+//    }
+//    if (Muarr.count == 0) {
+//        self.data = nil;
+//        self.indexArr = nil;
+//        [self.tableView reloadData];
+//    }
+//    else {
+//        [self sorting:Muarr];
+//        [self.tableView reloadData];
+//    }
 }
 
 - (void)requestData {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"paramName":@"cityJsonList",@"token":[KRUserInfo sharedKRUserInfo].token}];
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getPositionInfoByGD.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            self.orlDataArr = showdata;
             [self sorting:showdata];
             [self.tableView reloadData];
         }
@@ -74,11 +68,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataArr.count;
+    return self.data.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.dataArr[section][@"data"] count];
+    NSString *prefix = self.indexArr[section];
+    return [self.data[prefix] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -88,12 +83,13 @@
         cell.textLabel.font = [UIFont systemFontOfSize:HEIGHT(32)];
         cell.textLabel.textColor = ColorRgbValue(0x333333);
     }
-    cell.textLabel.text = self.dataArr[indexPath.section][@"data"][indexPath.row][@"name"];
+    NSString *prefix = self.indexArr[indexPath.section];
+    cell.textLabel.text = self.data[prefix][indexPath.row][@"name"];
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.dataArr[section][@"prefix"];
+    return self.indexArr[section];
 }
 
 - (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -102,42 +98,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.block(self.dataArr[indexPath.section][@"data"][indexPath.row]);
+//    self.block(self.dataArr[indexPath.section][@"data"][indexPath.row]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 
 -(void)sorting:(NSArray *)arr{
-    
-    NSMutableArray *indexArr = [[NSMutableArray alloc] init];
-    NSMutableArray *dataArr = [[NSMutableArray alloc] init];
-    for(int i='A';i<='Z';i++)
-    {
-        NSString *str = [NSString stringWithFormat:@"%c",i];
-        NSMutableArray *data = [NSMutableArray array];
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        for (NSDictionary *dic in arr) {
-            NSMutableString *mustr = [NSMutableString stringWithString:dic[@"name"]];
-            CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformMandarinLatin, NO);
-            CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformStripDiacritics, NO);
-            NSString *pinYin = [mustr capitalizedString];
-            NSString *predix = [pinYin substringToIndex:1];
-            if ([predix isEqualToString:str]) {
-                [data addObject:dic];
-            }
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    for (NSDictionary *dic in arr) {
+        
+        NSMutableString *mustr = [NSMutableString stringWithString:dic[@"name"]];
+        CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformMandarinLatin, NO);
+        CFStringTransform((CFMutableStringRef) mustr, NULL, kCFStringTransformStripDiacritics, NO);
+        NSString *pinYin = [mustr capitalizedString];
+        NSString *predix = [pinYin substringToIndex:1];
+        NSMutableArray *citys = data[predix];
+        if (citys.count) {
+            [citys addObject:dic];
+            data[predix] = citys;
         }
-        if (data.count > 0) {
-            params[@"prefix"] = str;
-            params[@"data"] = data;
-        }
-        if ([params allKeys].count > 0) {
-            [indexArr addObject:str];
-            [dataArr addObject:params];
+        else {
+            data[predix] = @[dic].mutableCopy;
         }
     }
+    
+    
+    NSArray *indexArr = [data.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
     self.indexArr = indexArr;
-    self.dataArr = dataArr;
+    self.data = data;
+    self.orlData = data;
 }
 
 

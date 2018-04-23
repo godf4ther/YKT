@@ -30,12 +30,15 @@
 @end
 
 @implementation BcDetailController
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"订单详情";
     [self popOut];
-    [self requestData];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -8,6 +8,8 @@
 
 #import "PayTicketController.h"
 #import "LRMacroDefinitionHeader.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "TicketOrderListController.h"
 @interface PayTicketController ()
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -107,8 +109,36 @@
 }
 - (IBAction)payAction:(UIButton *)sender {
     //获取支付宝支付参数
-//    [KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"" params:<#(NSDictionary *)#> withModel:<#(__unsafe_unretained Class)#> complateHandle:<#^(id showdata, NSString *error)complet#>
+    NSString *url = self.isBC ? @"eBusiness/bc/orderAliPrepay4AppBc.do" : @"";
+    if (self.isBC) {
+        [KRMainNetTool sharedKRMainNetTool].isSB = YES;
+    }
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (showdata) {
+            NSString *appScheme = @"唯一标识符";
+            NSString * orderString = showdata;
+            // NOTE: 调用支付结果开始支付
+            [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                NSLog(@"reslut = %@",resultDic);
+                NSString * memo = resultDic[@"memo"];
+                NSLog(@"===memo:%@", memo);
+                if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+                    [self showHUDWithText:@"支付成功"];
+                    [self goList];
+                }else{
+                    [self showHUDWithText:memo];
+                }
+                
+            }];
+        }
+    }];
 }
+
+- (void)goList {
+    TicketOrderListController *orderList = [TicketOrderListController new];
+    [self.navigationController pushViewController:orderList animated:YES];
+}
+
 - (IBAction)cancelAction:(id)sender {
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/cancelOrder.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (!error) {
