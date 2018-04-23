@@ -9,5 +9,8 @@
 #import "BaseViewController.h"
 
 @interface WriteOrderViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *journeyType;
+@property (nonatomic, strong) NSString *journeyStartTime;
+@property (nonatomic, strong) NSString *journeyEndTime;
+@property (nonatomic, strong) NSString *valuationMileage;
 @end

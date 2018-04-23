@@ -8,8 +8,11 @@
 
 #import "BaseViewController.h"
 typedef void (^sureBlock) (NSArray *);
+typedef void (^singleBlock) (NSDictionary *);
 @interface PassengerListViewController : BaseViewController
 @property (nonatomic, assign) BOOL isSelect;
 @property (nonatomic, strong) NSMutableArray *selectArr;
 @property (nonatomic, strong) sureBlock block;
+@property (nonatomic, strong) singleBlock sblock;
+@property (nonatomic, assign) BOOL isSingleSelect;
 @end

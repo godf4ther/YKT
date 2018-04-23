@@ -186,6 +186,7 @@
         [self showHUDWithText:@"请输入取票手机号"];
         return;
     }
+    [self showLoadingHUD];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"busInfo"] = [self changeStr:@{@"busDate":self.ticketDic[@"BusDate"],@"busId":self.ticketDic[@"BusId"],@"busKind":self.ticketDic[@"BusKind"],@"busStartTime":self.ticketDic[@"BusStartTime"],@"buyType":@4,@"checkGate":self.ticketDic[@"CheckGateName"],@"endStationId":self.ticketDic[@"StationId"],@"endStationName":self.ticketDic[@"RouteEndStationName"],@"fullTicketPrice":self.ticketDic[@"FullPrice"],@"halfTicketPrice":self.ticketDic[@"HalfPrice"],@"routeName":self.ticketDic[@"RouteName"],@"startStationId":self.ticketDic[@"SellStationId"],@"startStationName":self.ticketDic[@"SellStationName"],@"vehicleTypeName":self.ticketDic[@"VehicleTypeName"]}];
     params[@"gettkMan"] = self.pickTicketPeoeleField.text;
@@ -212,6 +213,7 @@
     manager.responseSerializer = serializer;
     // 构建请求任务
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
+        [self hideHUD];
         if (error) {
             [self showHUDWithText:@"网络错误"];
         } else {

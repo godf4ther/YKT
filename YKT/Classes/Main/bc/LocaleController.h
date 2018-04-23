@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^addressBlock) (NSDictionary *dic);
 @interface LocaleController : BaseViewController
+@property (nonatomic, strong) addressBlock block;
 @property (nonatomic, strong) NSDictionary *selectCityDic;
 @end

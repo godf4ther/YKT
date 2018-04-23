@@ -12,6 +12,8 @@
 #import "LRMacroDefinitionHeader.h"
 #import "LocaleController.h"
 #import "LoginViewController.h"
+#import "KRDatePicker.h"
+#import "WriteOrderViewController.h"
 @interface BCHomeController ()
 @property (weak, nonatomic) IBOutlet UIButton *oneWayBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twoWayBtn;
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) UIButton *preBtn;
 @property (weak, nonatomic) IBOutlet UIView *endContainer;
 @property (weak, nonatomic) IBOutlet UIButton *gpsBtn;
+@property (nonatomic, strong) NSDateFormatter *formatter;
 //@property (nonatomic, strong) MAMapView *mapView;
 //@property (nonatomic, strong) MAAnnotationView *userLocationAnnotationView;//定位点图标
 
@@ -32,7 +35,13 @@
 
 @implementation BCHomeController
 
-
+- (NSDateFormatter *)formatter{
+    if (!_formatter) {
+        _formatter = [[NSDateFormatter alloc] init];
+        [_formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    }
+    return _formatter;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -140,8 +149,20 @@
 //
 //
 - (IBAction)chooseStartTime:(id)sender {
+    KRDatePicker *picker = [[NSBundle mainBundle] loadNibNamed:@"KRDatePicker" owner:self options:nil].lastObject;
+    picker.block = ^(NSDate *date) {
+        NSString *dateStr = [self.formatter stringFromDate:date];
+        self.startTimeField.text = dateStr;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:picker];
 }
 - (IBAction)chooseEndTime:(id)sender {
+    KRDatePicker *picker = [[NSBundle mainBundle] loadNibNamed:@"KRDatePicker" owner:self options:nil].lastObject;
+    picker.block = ^(NSDate *date) {
+        NSString *dateStr = [self.formatter stringFromDate:date];
+        self.endTimeField.text = dateStr;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:picker];
 }
 - (IBAction)chooseStartAddress:(id)sender {
     if (![KRUserInfo sharedKRUserInfo].memberId) {
@@ -150,9 +171,22 @@
         return;
     }
     LocaleController *LocaleVC = [LocaleController new];
+    LocaleVC.block = ^(NSDictionary *dic) {
+        self.startPlaceLabel.text = dic[@"name"];
+    };
     [self.navigationController pushViewController:LocaleVC animated:YES];
 }
 - (IBAction)chooseEndAddress:(id)sender {
+    WriteOrderViewController *writeVC = [WriteOrderViewController new];
+    writeVC.journeyEndTime = @"2018-04-24 14:25:19";
+    writeVC.journeyStartTime = self.startTimeField.text;
+    if ([self.preBtn.titleLabel.text isEqualToString:@"单程"]) {
+        writeVC.journeyType = @"1";
+    }
+    else {
+        writeVC.journeyType = @"2";
+    }
+    [self.navigationController pushViewController:writeVC animated:YES];
 }
 
 - (void)popOutAction {

@@ -47,7 +47,8 @@
 }
 
 - (void)requestData{
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/findBusOrderInfoDetail.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    NSString *url = @"member/order/findBusOrderInfoDetail.do";
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata[0];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];

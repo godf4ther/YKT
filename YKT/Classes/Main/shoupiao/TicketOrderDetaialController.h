@@ -10,4 +10,6 @@
 
 @interface TicketOrderDetaialController : BaseViewController
 @property (nonatomic, copy) NSString *orderId;
+@property (nonatomic, strong) NSString *journeyStartTime;
+@property (nonatomic, strong) NSString *journeyEndTime;
 @end

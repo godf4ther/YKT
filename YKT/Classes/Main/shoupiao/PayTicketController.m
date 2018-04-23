@@ -11,6 +11,7 @@
 @interface PayTicketController ()
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *startStationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endStationLabel;
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) UIButton *preBtn;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger leftTime;
+@property (weak, nonatomic) IBOutlet UILabel *bcType;
 @end
 
 @implementation PayTicketController
@@ -41,14 +43,32 @@
 }
 
 - (void)requestData{
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/findBusOrderInfoDetail.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    NSString *url = self.isBC ? @"eBusiness/bc/findBcOrderInfoDetail.do" : @"member/order/findBusOrderInfoDetail.do";
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata[0];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
-            NSString *timeStr = dic[@"busTime"];
-            self.timeLabel.text = [NSString stringWithFormat:@"%@-%@-%@",[timeStr substringWithRange:NSMakeRange(0, 4)],[timeStr substringWithRange:NSMakeRange(4, 2)],[timeStr substringWithRange:NSMakeRange(6, 2)] ];
-            self.startStationLabel.text = dic[@"sellStationName"];
-            self.endStationLabel.text = dic[@"endStationName"];
+            if (self.isBC) {
+                self.bcType.hidden = NO;
+                if ([dic[@"journeyType"] isEqualToString:@"1"]) {
+                    self.bcType.text = @"单程";
+                    self.timeLabel1.hidden = YES;
+                }
+                else {
+                    self.bcType.text = @"往返";
+                    self.timeLabel1.hidden = NO;
+                    self.timeLabel1.text = self.journeyEndTime;
+                }
+                self.timeLabel.text = self.journeyStartTime;
+                self.startStationLabel.text = dic[@"startPointName"];
+                self.endStationLabel.text = dic[@"endPointName"];
+            }
+            else {
+                NSString *timeStr = dic[@"busTime"];
+                self.timeLabel.text = [NSString stringWithFormat:@"%@-%@-%@",[timeStr substringWithRange:NSMakeRange(0, 4)],[timeStr substringWithRange:NSMakeRange(4, 2)],[timeStr substringWithRange:NSMakeRange(6, 2)] ];
+                self.startStationLabel.text = dic[@"sellStationName"];
+                self.endStationLabel.text = dic[@"endStationName"];
+            }
             NSInteger leftTime = labs([dic[@"leftTime"] integerValue]);
             self.leftTime = leftTime;
             self.countDownLabel.text = [NSString stringWithFormat:@"请在%@内支付哦否则将关闭",[self changeTime:leftTime]];

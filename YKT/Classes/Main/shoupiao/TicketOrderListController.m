@@ -11,6 +11,7 @@
 #import "LRMacroDefinitionHeader.h"
 #import "PayTicketController.h"
 #import "TicketOrderDetaialController.h"
+#import "BcDetailController.h"
 @interface TicketOrderListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
@@ -86,9 +87,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary *dic = self.dataArr[indexPath.row];
+    if ([dic[@"orderTypeName"] isEqualToString:@"汽车票"]) {
         TicketOrderDetaialController *detailVC = [TicketOrderDetaialController new];
-        detailVC.orderId = self.dataArr[indexPath.row][@"id"];
+        detailVC.orderId = dic[@"id"];
         [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    else {
+        BcDetailController *bcDetailVC = [BcDetailController new];
+        bcDetailVC.orderId = dic[@"id"];
+        bcDetailVC.journeyStartTime = dic[@"journeyStartTime"];
+        bcDetailVC.journeyEndTime = dic[@"journeyEndTime"];
+        [self.navigationController pushViewController:bcDetailVC animated:YES];
+    }
     
 }
 

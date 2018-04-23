@@ -108,13 +108,19 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EditPassengerController *editVC = [EditPassengerController new];
-    editVC.dic = self.dataArr[indexPath.row];
-    editVC.block = ^{
-        [self requesetData:NO];
-    };
-    [self.navigationController pushViewController:editVC animated:YES];
+    if (self.isSingleSelect) {
+        self.sblock(self.dataArr[indexPath.row]);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        EditPassengerController *editVC = [EditPassengerController new];
+        editVC.dic = self.dataArr[indexPath.row];
+        editVC.block = ^{
+            [self requesetData:NO];
+        };
+        [self.navigationController pushViewController:editVC animated:YES];
+    }
 }
 
 

@@ -10,4 +10,7 @@
 
 @interface PayTicketController : BaseViewController
 @property (nonatomic, copy) NSString *orderId;
+@property (nonatomic, assign) BOOL isBC;
+@property (nonatomic, strong) NSString *journeyStartTime;
+@property (nonatomic, strong) NSString *journeyEndTime;
 @end

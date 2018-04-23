@@ -103,6 +103,7 @@
         [Muarr insertObject:dic atIndex:0];
     }
     [self saveToUserDefaultsWithKey:@"addressHis" Value:Muarr];
+    self.block(dic);
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -10,4 +10,5 @@
 
 @interface EidtTicketOrderController : BaseViewController
 @property (nonatomic, strong) NSDictionary *ticketDic;
+
 @end
