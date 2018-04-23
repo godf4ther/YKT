@@ -65,7 +65,7 @@
 }
 
 - (void)requestData {
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getInputtipsByGD.do" params:@{@"city":@"杭州市",@"keywords":self.addressField.text,@"location":@"120.209789,30.24692",@"token":[KRUserInfo sharedKRUserInfo].token} withModel:nil complateHandle:^(id showdata, NSString *error) {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getInputtipsByGD.do" params:@{@"city":self.selectCityDic[@"name"],@"keywords":self.addressField.text,@"location":self.selectCityDic[@"center"],@"token":[KRUserInfo sharedKRUserInfo].token} withModel:nil complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             [self.dataArr removeAllObjects];
             NSArray *arr = [self getFromDefaultsWithKey:@"addressHis"];

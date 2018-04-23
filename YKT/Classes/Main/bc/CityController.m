@@ -98,7 +98,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    self.block(self.dataArr[indexPath.section][@"data"][indexPath.row]);
+    NSString *prefix = self.indexArr[indexPath.section];
+    self.block(self.data[prefix][indexPath.row]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
