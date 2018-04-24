@@ -14,7 +14,9 @@
 #import "LoginViewController.h"
 #import "KRDatePicker.h"
 #import "WriteOrderViewController.h"
-@interface BCHomeController ()<MAMapViewDelegate>
+#import <AMapSearchKit/AMapSearchKit.h>
+
+@interface BCHomeController ()<MAMapViewDelegate,AMapSearchDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *oneWayBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twoWayBtn;
 @property (weak, nonatomic) IBOutlet UITextField *startTimeField;
@@ -30,7 +32,12 @@
 @property (nonatomic, strong) NSDateFormatter *formatter;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) MAAnnotationView *userLocationAnnotationView;//定位点图标
-
+@property (nonatomic, strong) MAPointAnnotation *pointAnnotation; //大头针参数
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
+@property (nonatomic, assign) BOOL isFirst;//初始化话定位
+@property (nonatomic, strong) AMapSearchAPI *search;
+@property (nonatomic, strong) NSDictionary *journeyStartDic;
+@property (nonatomic, strong) NSDictionary *selectCityDic;
 @end
 
 @implementation BCHomeController
@@ -41,6 +48,14 @@
         [_formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     }
     return _formatter;
+}
+
+- (UIActivityIndicatorView *)indicatorView {
+    if (!_indicatorView) {
+        _indicatorView = [[UIActivityIndicatorView alloc] init];
+        _indicatorView.tintColor = [UIColor blackColor];
+    }
+    return _indicatorView;
 }
 
 - (void)viewDidLoad {
@@ -71,10 +86,14 @@
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
     [pointAnnotation setLockedScreenPoint:CGPointMake(self.view.center.x, self.view.center.y - 52.5)];
     [pointAnnotation setLockedToScreen:YES];
+    self.pointAnnotation = pointAnnotation;
     [_mapView addAnnotation:pointAnnotation];
     [_mapView selectAnnotation:pointAnnotation animated:YES];
     self.mapView = _mapView;
     [self.view insertSubview:_mapView atIndex:0];
+    self.search = [[AMapSearchAPI alloc] init];
+    self.search.delegate = self;
+
 }
 - (IBAction)typeChoose:(UIButton *)sender {
     self.preBtn.backgroundColor = [UIColor whiteColor];
@@ -125,13 +144,34 @@
             annotationView.canShowCallout            = YES;
             annotationView.draggable                 = YES;
             annotationView.image = [UIImage imageNamed:@"location"];
+//            annotationView.rightCalloutAccessoryView = self.indicatorView;
         }
-
         return annotationView;
     }
 
     return nil;
 }
+
+- (void)mapView:(MAMapView *)mapView didAnnotationViewCalloutTapped:(MAAnnotationView *)view{
+    if (![KRUserInfo sharedKRUserInfo].memberId) {
+        LoginViewController *loginVC = [LoginViewController new];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
+    LocaleController *LocaleVC = [LocaleController new];
+    LocaleVC.selectCityDic = self.selectCityDic;
+    LocaleVC.block = ^(NSDictionary *dic) {
+        self.startPlaceLabel.text = dic[@"name"];
+        self.journeyStartDic = dic;
+        CLLocationCoordinate2D coordinate = {[dic[@"latitude"] doubleValue],[dic[@"longitude"] doubleValue]};
+        [self.mapView setCenterCoordinate:coordinate  animated:YES];
+        [self.pointAnnotation setTitle:dic[@"name"]];
+    };
+    [self.navigationController pushViewController:LocaleVC animated:YES];
+}
+
+
+
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
 {
@@ -144,8 +184,64 @@
 
         }];
     }
+    if (!self.isFirst) {
+        self.isFirst = YES;
+        CLLocationCoordinate2D coordinate = userLocation.coordinate;
+        MACoordinateSpan span = {0.01,0.01};
+        MACoordinateRegion region = {coordinate,span};
+        mapView.region = region;
+        [self searchReGeocodeWithCoordinate:userLocation.coordinate];
+    }
+    
 }
 
+
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [self searchReGeocodeWithCoordinate:mapView.centerCoordinate];
+}
+
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    regeo.location                    = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    regeo.requireExtension            = YES;
+    
+    [self.search AMapReGoecodeSearch:regeo];
+}
+
+
+#pragma mark - AMapSearchDelegate
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+}
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    AMapReGeocode *ReGeocode = response.regeocode;
+    if (ReGeocode.aois.count > 0) {
+        AMapAOI *ob = (AMapAOI *)ReGeocode.aois[0];
+        [self.pointAnnotation setTitle:ob.name];
+        self.startPlaceLabel.text = ob.name;
+        NSDictionary *dic = @{@"city":ReGeocode.addressComponent.city,@"adcode":ReGeocode.addressComponent.adcode,@"location":[NSString stringWithFormat:@"%f,%f",ob.location.longitude,ob.location.latitude],@"longitude":[NSString stringWithFormat:@"%f",ob.location.longitude],@"latitude":[NSString stringWithFormat:@"%f",ob.location.latitude],@"name":ob.name};
+        self.journeyStartDic = dic;
+        self.selectCityDic = @{@"name":ReGeocode.addressComponent.city,@"center":[NSString stringWithFormat:@"%f,%f",ob.location.longitude,ob.location.latitude]};
+    }
+    else if (ReGeocode.pois.count > 0){
+        AMapPOI *ob = (AMapPOI *)ReGeocode.pois[0];
+        [self.pointAnnotation setTitle:ob.name];
+        self.startPlaceLabel.text = ob.name;
+        NSDictionary *dic = @{@"city":ReGeocode.addressComponent.city,@"adcode":ReGeocode.addressComponent.adcode,@"location":[NSString stringWithFormat:@"%f,%f",ob.location.longitude,ob.location.latitude],@"longitude":[NSString stringWithFormat:@"%f",ob.location.longitude],@"latitude":[NSString stringWithFormat:@"%f",ob.location.latitude],@"name":ob.name};
+        self.journeyStartDic = dic;
+        self.selectCityDic = @{@"name":ReGeocode.addressComponent.city,@"center":[NSString stringWithFormat:@"%f,%f",ob.location.longitude,ob.location.latitude]};
+    }
+    else {
+
+    }
+    
+}
 
 
 - (IBAction)chooseStartTime:(id)sender {
@@ -171,23 +267,63 @@
         return;
     }
     LocaleController *LocaleVC = [LocaleController new];
+    LocaleVC.selectCityDic = self.selectCityDic;
     LocaleVC.block = ^(NSDictionary *dic) {
         self.startPlaceLabel.text = dic[@"name"];
+        self.journeyStartDic = dic;
+        CLLocationCoordinate2D coordinate = {[dic[@"latitude"] doubleValue],[dic[@"longitude"] doubleValue]};
+        [self.mapView setCenterCoordinate:coordinate  animated:YES];
+        [self.pointAnnotation setTitle:dic[@"name"]];
     };
     [self.navigationController pushViewController:LocaleVC animated:YES];
 }
 - (IBAction)chooseEndAddress:(id)sender {
-    WriteOrderViewController *writeVC = [WriteOrderViewController new];
-    writeVC.journeyEndTime = @"2018-04-24 14:25:19";
-    writeVC.journeyStartTime = self.startTimeField.text;
+    if (!self.isFirst) {
+        return;
+    }
+    if (![KRUserInfo sharedKRUserInfo].memberId) {
+        LoginViewController *loginVC = [LoginViewController new];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
+    LocaleController *LocaleVC = [LocaleController new];
     if ([self.preBtn.titleLabel.text isEqualToString:@"单程"]) {
-        writeVC.journeyType = @"1";
+        LocaleVC.journeyType = @"1";
+        if ([self cheakIsNull:self.startTimeField.text]) {
+            [self showHUDWithText:@"请选择起始时间"];
+            return;
+        }
+        LocaleVC.journeyStartTime = self.startTimeField.text;
+        LocaleVC.journeyEndTime = @"2018-04-25 14:25:19";
     }
     else {
-        writeVC.journeyType = @"2";
+        LocaleVC.journeyType = @"2";
+        if ([self cheakIsNull:self.startTimeField.text]) {
+            [self showHUDWithText:@"请选择起始时间"];
+            return;
+        }
+        LocaleVC.journeyStartTime = self.startTimeField.text;
+        if ([self cheakIsNull:self.endTimeField.text]) {
+            [self showHUDWithText:@"请选择结束时间"];
+            return;
+        }
+        LocaleVC.journeyEndTime = self.endTimeField.text;
     }
-    [self.navigationController pushViewController:writeVC animated:YES];
+    LocaleVC.journeyStartDic = self.journeyStartDic;
+    LocaleVC.selectCityDic = self.selectCityDic;
+    LocaleVC.isGoSearch = YES;
+
+    
+    [self.navigationController pushViewController:LocaleVC animated:YES];
 }
+
+
+
+
+- (void)dealloc {
+   
+}
+
 
 - (void)popOutAction {
     [self dismissViewControllerAnimated:YES completion:nil];

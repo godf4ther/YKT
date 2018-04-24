@@ -11,4 +11,13 @@ typedef void (^addressBlock) (NSDictionary *dic);
 @interface LocaleController : BaseViewController
 @property (nonatomic, strong) addressBlock block;
 @property (nonatomic, strong) NSDictionary *selectCityDic;
+@property (nonatomic, assign) BOOL isGoSearch;
+
+
+@property (nonatomic, strong) NSString *journeyType;
+@property (nonatomic, strong) NSString *journeyStartTime;
+@property (nonatomic, strong) NSString *journeyEndTime;
+@property (nonatomic, strong) NSDictionary *journeyStartDic;
+
+
 @end

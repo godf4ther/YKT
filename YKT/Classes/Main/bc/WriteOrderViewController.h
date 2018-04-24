@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSString *journeyType;
 @property (nonatomic, strong) NSString *journeyStartTime;
 @property (nonatomic, strong) NSString *journeyEndTime;
-@property (nonatomic, strong) NSString *valuationMileage;
+@property (nonatomic, strong) NSDictionary *journeyStartDic;
+@property (nonatomic, strong) NSDictionary *journeyEndDic;
 @end

@@ -10,12 +10,14 @@
 #import "LRMacroDefinitionHeader.h"
 #import "LocaleCell.h"
 #import "CityController.h"
+#import "WriteOrderViewController.h"
 @interface LocaleController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong) NSDictionary *cityDic;
 @end
 
 @implementation LocaleController
@@ -61,6 +63,7 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 70;
     [self.addressField becomeFirstResponder];
+    self.cityLabel.text = self.selectCityDic[@"name"];
     // Do any additional setup after loading the view f rom its nib.
 }
 
@@ -98,13 +101,28 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:self.dataArr[indexPath.row]];
     dic[@"isHistory"] = @"YES";
+    NSArray *arr = [dic[@"location"] componentsSeparatedByString:@","];
+    dic[@"longitude"] = arr[0];
+    dic[@"latitude"] = arr[1];
+    dic[@"city"] = self.selectCityDic[@"name"];
     NSMutableArray *Muarr = [NSMutableArray arrayWithArray:[self getFromDefaultsWithKey:@"addressHis"]];
     if (![Muarr containsObject:dic]) {
         [Muarr insertObject:dic atIndex:0];
     }
     [self saveToUserDefaultsWithKey:@"addressHis" Value:Muarr];
-    self.block(dic);
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isGoSearch) {
+        WriteOrderViewController *writeVC = [WriteOrderViewController new];
+        writeVC.journeyEndTime = self.journeyEndTime;
+        writeVC.journeyStartTime = self.journeyStartTime;
+        writeVC.journeyType = self.journeyType;
+        writeVC.journeyStartDic = self.journeyStartDic;
+        writeVC.journeyEndDic = dic;
+        [self.navigationController pushViewController:writeVC animated:YES];
+    }
+    else {
+        self.block(dic);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

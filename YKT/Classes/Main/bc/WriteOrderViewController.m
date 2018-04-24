@@ -12,7 +12,15 @@
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
 #import "PayTicketController.h"
-@interface WriteOrderViewController ()<UIScrollViewDelegate>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import "MANaviRoute.h"
+#import "CommonUtility.h"
+
+static const NSInteger RoutePlanningPaddingEdge                    = 20;
+@interface WriteOrderViewController ()<UIScrollViewDelegate,MAMapViewDelegate,AMapSearchDelegate>
+@property (nonatomic, strong) NSDateFormatter *formatter;
 @property (weak, nonatomic) IBOutlet UILabel *linkmanLabel;
 @property (nonatomic, strong) NSDictionary *linkmanDic;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
@@ -24,10 +32,30 @@
 @property (weak, nonatomic) IBOutlet UITextView *markDetail;
 @property (nonatomic, strong) NSArray *carArr;
 @property (nonatomic, strong) NSMutableArray *orlBusInfoList;
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) AMapSearchAPI *search;
+@property (nonatomic, strong) AMapRoute *route;
+
+@property (nonatomic, strong) MAPointAnnotation *startAnnotation;
+@property (nonatomic, strong) MAPointAnnotation *destinationAnnotation;
+
+@property (nonatomic, strong) NSString *valuationMileage;
+@property (nonatomic, assign) NSInteger duration;
+
+/* 用于显示当前路线方案. */
+@property (nonatomic) MANaviRoute * naviRoute;
 
 @end
 
 @implementation WriteOrderViewController
+
+- (NSDateFormatter *)formatter{
+    if (!_formatter) {
+        _formatter = [[NSDateFormatter alloc] init];
+        [_formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    }
+    return _formatter;
+}
 
 - (NSMutableArray *)markBtnArr {
     if (!_markBtnArr) {
@@ -50,17 +78,108 @@
     [self popOut];
     self.scrollView.delegate = self;
     self.navigationItem.title = @"订单填写";
-    [self requestData];
+    [self setAMap];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)setAMap {
+    MAMapView *_mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+    _mapView.showsCompass = NO; // 设置成NO表示关闭指南针；YES表示显示指南针
+    _mapView.delegate = self;;
+    _mapView.userTrackingMode = MAUserTrackingModeFollow;
+    self.mapView = _mapView;
+    
+    MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
+    CLLocationCoordinate2D startCoordinate = {[self.journeyStartDic[@"latitude"] doubleValue],[self.journeyStartDic[@"longitude"] doubleValue]};
+    startAnnotation.coordinate = startCoordinate;
+    startAnnotation.title = @"起点";
+    self.startAnnotation = startAnnotation;
+    CLLocationCoordinate2D endCoordinate = {[self.journeyEndDic[@"latitude"] doubleValue],[self.journeyEndDic[@"longitude"] doubleValue]};
+    MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
+    destinationAnnotation.coordinate = endCoordinate;
+    destinationAnnotation.title = @"终点";
+    self.destinationAnnotation = destinationAnnotation;
+    [self.mapView addAnnotation:startAnnotation];
+    [self.mapView addAnnotation:destinationAnnotation];
+    [self.view insertSubview:_mapView atIndex:0];
+    
+    self.search = [[AMapSearchAPI alloc] init];
+    self.search.delegate = self;
+    [self searchRoutePlanningDrive];
+}
+
+#pragma mark - do search
+- (void)searchRoutePlanningDrive
+{
+    AMapDrivingRouteSearchRequest *navi = [[AMapDrivingRouteSearchRequest alloc] init];
+    
+    navi.requireExtension = YES;
+    //    navi.strategy = 5;
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude
+                                           longitude:self.startAnnotation.coordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude
+                                                longitude:self.destinationAnnotation.coordinate.longitude];
+    
+    [self.search AMapDrivingRouteSearch:navi];
+}
+
+#pragma mark - AMapSearchDelegate
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+}
+
+/* 路径规划搜索回调. */
+- (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response
+{
+    if (response.route == nil)
+    {
+        return;
+    }
+    
+    self.route = response.route;
+    if (response.count > 0)
+    {
+        [self presentCurrentCourse];
+    }
+}
+
+/* 展示当前路线方案. */
+- (void)presentCurrentCourse
+{
+    
+    self.valuationMileage = [NSString stringWithFormat:@"%.1f",self.route.paths[0].distance / 1000.0];
+    self.duration = self.route.paths[0].duration;
+    [self requestData];    MANaviAnnotationType type = MANaviAnnotationTypeDrive;
+    self.naviRoute = [MANaviRoute naviRouteForPath:self.route.paths[0] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+    [self.naviRoute addToMapView:self.mapView];
+    
+    /* 缩放地图使其适应polylines的展示. */
+    [self.mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.naviRoute.routePolylines]
+                        edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, 354 , RoutePlanningPaddingEdge)
+                           animated:YES];
+}
+
+
+- (void)popOutAction {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)requestData {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"isHighWay"] = @"0";
     params[@"journeyStartTime"] = self.journeyStartTime;
-    params[@"journeyEndTime"] = self.journeyEndTime;
+    if ([self.journeyType isEqualToString:@"1"]) {
+        NSDate *endDate = [NSDate dateWithTimeInterval:self.duration sinceDate:[self.formatter dateFromString:self.journeyStartTime]];
+        params[@"journeyEndTime"] = [self.formatter stringFromDate:endDate];
+    }
+    else {
+        params[@"journeyEndTime"] = self.journeyEndTime;
+    }
     params[@"journeyType"] = self.journeyType;
-    params[@"valuationMileage"] = @"10";
+    params[@"valuationMileage"] = self.valuationMileage;
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/findAllVehicleType.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             self.carArr = showdata;
@@ -157,6 +276,10 @@
     [self math];
 }
 - (IBAction)submit:(UIButton *)sender {
+    if (self.linkmanDic.count == 0) {
+        [self showHUDWithText:@"请选择联系人"];
+        return;
+    }
     [self showLoadingHUD];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSMutableArray *busInfoList = [NSMutableArray array];
@@ -170,25 +293,25 @@
     NSString *jsonString1 =[[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];
     params[@"busInfoList"] = jsonString1;
     params[@"buyType"] = @"4";
-    params[@"endPointCity"] = @"杭州";
-    params[@"endPointName"] = @"浙宝大厦";
-    params[@"endPointCityCode"] = @"222";
-    params[@"endXAxial"] = @"120.204057";
-    params[@"endYAxial"] = @"30.32106";
+    params[@"endPointCity"] = self.journeyEndDic[@"city"];
+    params[@"endPointName"] = self.journeyEndDic[@"name"];
+    params[@"endPointCityCode"] = self.journeyEndDic[@"adcode"];
+    params[@"endXAxial"] = self.journeyEndDic[@"longitude"];
+    params[@"endYAxial"] = self.journeyEndDic[@"latitude"];;
     params[@"journeyType"] = self.journeyType;
     params[@"largeBaggageCount"] = @"0";
-    params[@"orderAnnotation"] = @"123456";
+    params[@"orderAnnotation"] = self.markDetail.text;
     params[@"orderPerson"] = self.linkmanDic[@"passengerName"];
     params[@"orderPersonPhone"] = self.linkmanDic[@"mobile"];
     params[@"pessangeCount"] = @"1";
-    params[@"startPointCity"] = @"杭州";
-    params[@"startPointName"] = @"下沙商贸城(4号大街)";
-    params[@"startPointCityCode"] = @"222";
-    params[@"startXAxial"] = @"120.339367";
-    params[@"startYAxial"] = @"30.306266";
+    params[@"startPointCity"] = self.journeyStartDic[@"city"];
+    params[@"startPointName"] = self.journeyStartDic[@"name"];
+    params[@"startPointCityCode"] = self.journeyStartDic[@"adcode"];
+    params[@"startXAxial"] = self.journeyStartDic[@"longitude"];
+    params[@"startYAxial"] = self.journeyStartDic[@"latitude"];
     params[@"token"] = [KRUserInfo sharedKRUserInfo].token;
     params[@"totalFee"] = [self.allPrice.text substringFromIndex:1];
-    params[@"valuationMileage"] = @"10";
+    params[@"valuationMileage"] = self.valuationMileage;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://116.62.10.65:7070/eBusiness/bc/saveBcOrderInfo.do"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15.0];
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -266,6 +389,79 @@
     self.allPrice.text = [NSString stringWithFormat:@"￥%.2f",allPrice];
     self.detail.text = Mustr;
 }
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+        static NSString *routePlanningCellIdentifier = @"RoutePlanningCellIdentifier";
+        
+        MAAnnotationView *poiAnnotationView = (MAAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:routePlanningCellIdentifier];
+        if (poiAnnotationView == nil)
+        {
+            poiAnnotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                             reuseIdentifier:routePlanningCellIdentifier];
+            poiAnnotationView.canShowCallout = NO;
+        }
+        if ([annotation.title isEqualToString:@"起点"]) {
+            poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+        }
+        else if ([annotation.title isEqualToString:@"终点"]) {
+            poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+        }
+        return poiAnnotationView;
+        
+    }
+    return nil;
+}
+
+
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[LineDashPolyline class]])
+    {
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:((LineDashPolyline *)overlay).polyline];
+        polylineRenderer.lineWidth = 7;
+        polylineRenderer.lineDashType = kMALineDashTypeSquare;
+        polylineRenderer.strokeColor = ThemeColor;
+        
+        return polylineRenderer;
+    }
+    if ([overlay isKindOfClass:[MANaviPolyline class]])
+    {
+        MANaviPolyline *naviPolyline = (MANaviPolyline *)overlay;
+        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:naviPolyline.polyline];
+        
+        polylineRenderer.lineWidth = 7;
+        
+        if (naviPolyline.type == MANaviAnnotationTypeWalking)
+        {
+            polylineRenderer.strokeColor = ThemeColor;
+        }
+        else if (naviPolyline.type == MANaviAnnotationTypeRailway)
+        {
+            polylineRenderer.strokeColor = ThemeColor;
+        }
+        else
+        {
+            polylineRenderer.strokeColor = ThemeColor;
+        }
+        
+        return polylineRenderer;
+    }
+    if ([overlay isKindOfClass:[MAMultiPolyline class]])
+    {
+        MAMultiColoredPolylineRenderer * polylineRenderer = [[MAMultiColoredPolylineRenderer alloc] initWithMultiPolyline:overlay];
+        
+        polylineRenderer.lineWidth = 7;
+        polylineRenderer.strokeColor = ThemeColor;
+        
+        return polylineRenderer;
+    }
+    
+    return nil;
+}
+
+
+
 
 /*
 #pragma mark - Navigation
