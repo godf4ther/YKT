@@ -11,7 +11,7 @@
 #import "LocaleCell.h"
 #import "CityController.h"
 #import "WriteOrderViewController.h"
-@interface LocaleController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LocaleController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
@@ -77,6 +77,12 @@
             [self.tableView reloadData];
         }
     }];
+}
+
+
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

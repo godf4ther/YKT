@@ -62,8 +62,6 @@
     [super viewDidLoad];
     [self popOut];
     [self setAMap];
-    NSDictionary *userInfoDic = [self getFromDefaultsWithKey:@"USERINFO"];
-    [[KRUserInfo sharedKRUserInfo] setValuesForKeysWithDictionary:userInfoDic];
     LRViewBorderRadius(self.bottomContainer, 10, 0, [UIColor whiteColor]);
     LRViewBorderRadius(self.btnsContainer, 20, 0, [UIColor whiteColor]);
     LRViewBorderRadius(self.oneWayBtn, 15, 0, [UIColor whiteColor]);
@@ -221,6 +219,7 @@
 - (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
 {
     AMapReGeocode *ReGeocode = response.regeocode;
+    self.navigationItem.title = ReGeocode.addressComponent.city;
     if (ReGeocode.aois.count > 0) {
         AMapAOI *ob = (AMapAOI *)ReGeocode.aois[0];
         [self.pointAnnotation setTitle:ob.name];

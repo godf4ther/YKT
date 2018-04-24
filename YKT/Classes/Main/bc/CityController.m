@@ -8,12 +8,13 @@
 
 #import "CityController.h"
 #import "LRMacroDefinitionHeader.h"
-@interface CityController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CityController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *cityField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSDictionary *data;
 @property (nonatomic, strong) NSDictionary *orlData;
 @property (nonatomic, strong) NSArray *indexArr;
+@property (nonatomic, strong) NSArray *orlIndexArr;
 @end
 
 @implementation CityController
@@ -37,24 +38,52 @@
     [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
     [self.tableView setSectionIndexColor:ThemeColor];
     [self.tableView setSeparatorColor:COLOR(236, 236, 236, 1)];
+    [self.cityField becomeFirstResponder];
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)editChange:(UITextField *)sender {
-//    NSMutableArray *Muarr = [NSMutableArray array];
-//    for (NSString *prefix in self.orlData.allKeys) {
-//        if ([self.orlData[prefix] containsObject:sender.text]) {
-//            self.data[prefix] =
+    if (sender.text.length == 0) {
+        self.data = self.orlData;
+        self.indexArr = self.orlIndexArr;
+        [self.tableView reloadData];
+    }
+    else if (sender.text.length == 1) {
+//        NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+//        BOOL isChinese = [predicate evaluateWithObject:self];
+//        if (isChinese) {
+//            for (NSString *key in self.orlData) {
+//                
+//            }
 //        }
-//    }
-//    if (Muarr.count == 0) {
-//        self.data = nil;
-//        self.indexArr = nil;
-//        [self.tableView reloadData];
-//    }
-//    else {
-//        [self sorting:Muarr];
-//        [self.tableView reloadData];
-//    }
+//        else {
+//            for (NSString *key in self.orlData.allKeys) {
+//                if ([key isEqualToString:sender.text.uppercaseString]) {
+//                    self.data = @{key:self.orlData[key]};
+//                    self.indexArr = @[key];
+//                    [self.tableView reloadData];
+//                }
+//            }
+//        }
+    }
+    else {
+        NSMutableDictionary *dic = self.orlData.mutableCopy;
+        for (NSString *key in dic) {
+            NSMutableArray *arr = [dic[key] mutableCopy];
+            for (NSDictionary *city in arr) {
+                if (![city[@"name"] containsString:sender.text]) {
+                    [arr removeObject:city];
+                }
+            }
+        }
+        self.data = dic;
+        [self.tableView reloadData];
+    }
 }
 
 - (void)requestData {
@@ -129,6 +158,7 @@
         return [obj1 compare:obj2 options:NSNumericSearch];
     }];
     self.indexArr = indexArr;
+    self.orlIndexArr = indexArr;
     self.data = data;
     self.orlData = data;
 }

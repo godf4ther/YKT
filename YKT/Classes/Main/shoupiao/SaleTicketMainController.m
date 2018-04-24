@@ -66,8 +66,6 @@
     NSDate *todayDate = [NSDate date];
     self.dateLabel.text = [self.formatter stringFromDate:todayDate];
     self.currentDate = self.dateLabel.text;
-    NSDictionary *userInfoDic = [self getFromDefaultsWithKey:@"USERINFO"];
-    [[KRUserInfo sharedKRUserInfo] setValuesForKeysWithDictionary:userInfoDic];
     [self setHisStation];
     
     // Do any additional setup after loading the view from its nib.

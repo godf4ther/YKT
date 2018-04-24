@@ -71,7 +71,7 @@
             }
             else if ([status isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"退款" forState:UIControlStateNormal];
-                [self.cancelBtn setTitle:@"评价" forState:UIControlStateNormal];
+                [self.sureBtn setTitle:@"评价" forState:UIControlStateNormal];
             }
             else {
                 self.bottomHeight.constant = 0;
@@ -103,6 +103,7 @@
     else if ([sender.titleLabel.text isEqualToString:@"退款"]) {
         RefundController *refundVC = [RefundController new];
         refundVC.orderId = self.orderId;
+        refundVC.isBC = YES;
         [self.navigationController pushViewController:refundVC animated:YES];
     }
 }

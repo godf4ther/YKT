@@ -10,4 +10,5 @@
 
 @interface RefundController : BaseViewController
 @property (nonatomic, copy) NSString *orderId;
+@property (nonatomic, assign) BOOL isBC;
 @end

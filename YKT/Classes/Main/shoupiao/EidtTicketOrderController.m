@@ -12,6 +12,7 @@
 #import "LRMacroDefinitionHeader.h"
 #import "PayTicketController.h"
 #import "AFNetworking.h"
+#import "IQKeyboardManager.h"
 @interface EidtTicketOrderController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -46,6 +47,16 @@
         _passengerArr = [NSMutableArray array];
     }
     return _passengerArr;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].enable = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [IQKeyboardManager sharedManager].enable = YES;
 }
 
 
@@ -95,12 +106,15 @@
             [self.passengerArr addObject:params];
         }
         [self setUpPassengerUI];
+        
     };
     [self.navigationController pushViewController:passengerVC animated:YES];
 }
 
 - (void)setUpPassengerUI {
     self.passengerViewHeight.constant = 85 * self.passengerArr.count;
+    self.pickTicketPeoeleField.text = self.passengerArr[0][@"passengerName"];
+    self.pickTicketPhoneField.text = self.passengerArr[0][@"passengerPhone"];
     for (int i = 0; i < self.passengerArr.count; i ++) {
         TickerOrderPeople *peopleView = self.passengerViewArr[i];
         NSMutableDictionary *dic = self.passengerArr[i];
@@ -144,6 +158,10 @@
                 peopleView.gou2.selected = NO;
             }
         }
+        else {
+            peopleView.gou2.hidden = YES;
+            peopleView.label2.hidden = YES;
+        }
         if ([[KRUserInfo sharedKRUserInfo].startStationDic[@"isChildren"] boolValue] && [dic[@"passengerType"] integerValue] == 3) {
             peopleView.gou1.hidden = NO;
             peopleView.label1.hidden = NO;
@@ -153,6 +171,10 @@
             else {
                 peopleView.gou1.selected = NO;
             }
+        }
+        else {
+            peopleView.gou1.hidden = YES;
+            peopleView.label1.hidden = YES;
         }
         [self.passengerArr[i] removeObjectForKey:@"passengerType"];
     }
@@ -182,7 +204,7 @@
         [self showHUDWithText:@"请输入取票人"];
         return;
     }
-    if ([self cheakIsNull:self.pickTicketPhoneField.text]) {
+    if ([self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
         [self showHUDWithText:@"请输入取票手机号"];
         return;
     }

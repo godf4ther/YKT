@@ -41,6 +41,8 @@
     [self popOut];
     self.preBtn = self.zfbIcon;
     [self requestData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:@"ALIPAYSUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFail) name:@"ALIPAYFAIL" object:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -109,30 +111,39 @@
 }
 - (IBAction)payAction:(UIButton *)sender {
     //获取支付宝支付参数
-    NSString *url = self.isBC ? @"eBusiness/bc/orderAliPrepay4AppBc.do" : @"";
+    NSString *url = self.isBC ? @"eBusiness/bc/orderAliPrepay4AppBc.do" : @"member/order/orderAliPrepay4App.do";
     if (self.isBC) {
         [KRMainNetTool sharedKRMainNetTool].isSB = YES;
     }
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            NSString *appScheme = @"唯一标识符";
-            NSString * orderString = showdata;
+            NSString *appScheme = @"ALIYKT";
+            NSString * orderString =  [self.isBC ? showdata :showdata[@"payInfo"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
             // NOTE: 调用支付结果开始支付
             [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                 NSLog(@"reslut = %@",resultDic);
                 NSString * memo = resultDic[@"memo"];
                 NSLog(@"===memo:%@", memo);
                 if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
-                    [self showHUDWithText:@"支付成功"];
-                    [self goList];
+                    [self paySuccess];
                 }else{
-                    [self showHUDWithText:memo];
+                    [self payFail];
                 }
                 
             }];
         }
     }];
 }
+
+- (void)paySuccess {
+    [self showHUDWithText:@"支付成功"];
+    [self goList];
+}
+
+- (void)payFail {
+    [self showHUDWithText:@"支付失败"];
+}
+
 
 - (void)goList {
     TicketOrderListController *orderList = [TicketOrderListController new];
@@ -146,6 +157,10 @@
             [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3] animated:YES];
         }
     }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,6 +10,7 @@
 #import "SaleTicketMainController.h"
 #import "BaseNaviViewController.h"
 #import "BCHomeController.h"
+#import "LRMacroDefinitionHeader.h"
 @interface ViewController ()
 
 @end
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSDictionary *userInfoDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERINFO"];
+    [[KRUserInfo sharedKRUserInfo] setValuesForKeysWithDictionary:userInfoDic];
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (IBAction)shoupiao:(id)sender {
@@ -26,7 +29,11 @@
     [self presentViewController:navi animated:YES completion:nil];
 }
 - (IBAction)logout:(id)sender {
-    
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/login/logout.do" params:nil withModel:nil complateHandle:^(id showdata, NSString *error) {
+        if (!error) {
+            [KRUserInfo sharedKRUserInfo].memberId = nil;
+        }
+    }];
 }
 - (IBAction)baoche:(id)sender {
     BCHomeController *vc = [BCHomeController new];

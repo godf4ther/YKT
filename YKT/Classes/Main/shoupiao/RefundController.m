@@ -24,10 +24,15 @@
 }
 
 - (void)requestData {
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/getReturnOrderCharge.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:self.isBC ? @"eBusiness/bc/calculateCharge.do":@"member/order/getReturnOrderCharge.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata;
-            self.money.text = [NSString stringWithFormat:@"￥%@",dic[@"totalCharge"]];
+            if (self.isBC) {
+                self.money.text = [NSString stringWithFormat:@"￥%@",dic[@"totalFee"]];
+            }
+            else {
+                self.money.text = [NSString stringWithFormat:@"￥%@",dic[@"totalCharge"]];
+            }
         }
     }];
 }
@@ -35,7 +40,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)refund:(UIButton *)sender {
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/returnOrder.do" params:@{@"orderId":self.orderId,@"charge":self.totalCharge} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:self.isBC ? @"eBusiness/bc/cancelBcOrderInfo.do":@"member/order/returnOrder.do" params:self.isBC ? @{@"ids":self.orderId}:@{@"orderId":self.orderId,@"charge":self.totalCharge} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (!error) {
             [self showHUDWithText:@"退款成功"];
             [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
