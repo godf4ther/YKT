@@ -13,6 +13,7 @@
 #import "PayTicketController.h"
 #import "AFNetworking.h"
 #import "IQKeyboardManager.h"
+#import "webViewController.h"
 @interface EidtTicketOrderController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *startStation;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -86,6 +87,8 @@
 }
 
 - (IBAction)needToKnow:(UIButton *)sender {
+    webViewController *webViewVC = [webViewController new];
+    [self.navigationController pushViewController:webViewVC animated:YES];
 }
 - (IBAction)addPassenger:(UIButton *)sender {
     PassengerListViewController *passengerVC = [PassengerListViewController new];

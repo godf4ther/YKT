@@ -280,7 +280,6 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
         [self showHUDWithText:@"请选择联系人"];
         return;
     }
-    [self showLoadingHUD];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSMutableArray *busInfoList = [NSMutableArray array];
     for (NSMutableDictionary *info in self.orlBusInfoList) {
@@ -288,6 +287,11 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
             [busInfoList addObject:info];
         }
     }
+    if (busInfoList.count == 0) {
+        [self showHUDWithText:@"请选择车辆"];
+        return;
+    }
+    [self showLoadingHUD];
     NSData *jsonData1 = [NSJSONSerialization dataWithJSONObject:busInfoList options:NSJSONWritingPrettyPrinted
                                                          error:nil];
     NSString *jsonString1 =[[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];

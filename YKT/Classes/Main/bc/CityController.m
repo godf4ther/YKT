@@ -72,17 +72,17 @@
 //        }
     }
     else {
-        NSMutableDictionary *dic = self.orlData.mutableCopy;
-        for (NSString *key in dic) {
-            NSMutableArray *arr = [dic[key] mutableCopy];
-            for (NSDictionary *city in arr) {
-                if (![city[@"name"] containsString:sender.text]) {
-                    [arr removeObject:city];
-                }
-            }
-        }
-        self.data = dic;
-        [self.tableView reloadData];
+//        NSMutableDictionary *dic = self.orlData.mutableCopy;
+//        for (NSString *key in dic) {
+//            NSMutableArray *arr = [dic[key] mutableCopy];
+//            for (NSDictionary *city in arr) {
+//                if (![city[@"name"] containsString:sender.text]) {
+//                    [arr removeObject:city];
+//                }
+//            }
+//        }
+//        self.data = dic;
+//        [self.tableView reloadData];
     }
 }
 

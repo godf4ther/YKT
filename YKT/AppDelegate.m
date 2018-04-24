@@ -49,7 +49,11 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYSUCCESS" object:nil];
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYFAIL" object:nil];
+            }
         }];
     }
     return YES;
