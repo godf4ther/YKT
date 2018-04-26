@@ -118,8 +118,7 @@
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSString *appScheme = @"ALIYKT";
-            NSString * orderString =  [self.isBC ? showdata :showdata[@"payInfo"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
-            // NOTE: 调用支付结果开始支付
+            NSString * orderString = [self URLDecodedString:self.isBC ? showdata :showdata[@"payInfo"]];
             [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                 NSLog(@"reslut = %@",resultDic);
                 NSString * memo = resultDic[@"memo"];
@@ -144,6 +143,12 @@
     [self showHUDWithText:@"支付失败"];
 }
 
+-(NSString *)URLDecodedString:(NSString *)str
+{
+    NSString *decodedString=(__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (__bridge CFStringRef)str, CFSTR(""), CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    
+    return decodedString;
+}
 
 - (void)goList {
     TicketOrderListController *orderList = [TicketOrderListController new];
