@@ -10,6 +10,10 @@
 #import "LRMacroDefinitionHeader.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "TicketOrderListController.h"
+#import "SPayClient.h"
+#import "NSString+SPayUtilsExtras.h"
+#import "NSDictionary+SPayUtilsExtras.h"
+#import "WXApi.h"
 @interface PayTicketController ()
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -43,6 +47,7 @@
     [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:@"ALIPAYSUCCESS" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payFail) name:@"ALIPAYFAIL" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WXpayResult:) name:@"wxPaySucceed" object:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -110,28 +115,69 @@
     self.preBtn = self.wxIcon;
 }
 - (IBAction)payAction:(UIButton *)sender {
-    //获取支付宝支付参数
-    NSString *url = self.isBC ? @"eBusiness/bc/orderAliPrepay4AppBc.do" : @"member/order/orderAliPrepay4App.do";
-    if (self.isBC) {
-        [KRMainNetTool sharedKRMainNetTool].isSB = YES;
-    }
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
-        if (showdata) {
-            NSString *appScheme = @"ALIYKT";
-            NSString * orderString = [self URLDecodedString:self.isBC ? showdata :showdata[@"payInfo"]];
-            [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-                NSLog(@"reslut = %@",resultDic);
-                NSString * memo = resultDic[@"memo"];
-                NSLog(@"===memo:%@", memo);
-                if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
-                    [self paySuccess];
-                }else{
-                    [self payFail];
-                }
-                
-            }];
+    if (self.preBtn == self.zfbIcon) {
+        //获取支付宝支付参数
+        NSString *url = self.isBC ? @"eBusiness/bc/orderAliPrepay4AppBc.do" : @"member/order/orderAliPrepay4App.do";
+        if (self.isBC) {
+            [KRMainNetTool sharedKRMainNetTool].isSB = YES;
         }
-    }];
+        [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+            if (showdata) {
+                NSString *appScheme = @"ALIYKT";
+                NSString * orderString = self.isBC ? showdata :showdata[@"payInfo"];
+                [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                    NSLog(@"reslut = %@",resultDic);
+                    NSString * memo = resultDic[@"memo"];
+                    NSLog(@"===memo:%@", memo);
+                    if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+                        [self paySuccess];
+                    }else{
+                        [self payFail];
+                    }
+                    
+                }];
+            }
+        }];
+    }
+    else {
+        NSString *url = self.isBC ? @"eBusiness/bc/orderSwiftPrepay.do" : @"member/order/orderSwiftPrepay.do";
+        if (self.isBC) {
+            [KRMainNetTool sharedKRMainNetTool].isSB = YES;
+        }
+        [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+            if (showdata) {
+                NSData *jsonData;
+                if (self.isBC) {
+                    jsonData = [showdata dataUsingEncoding:NSUTF8StringEncoding];
+                }
+                else {
+                    jsonData = [showdata[@"payInfo"] dataUsingEncoding:NSUTF8StringEncoding];
+                }
+                NSError *err;
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                    options:NSJSONReadingMutableContainers
+                                                                      error:&err];
+                BOOL isInstalled=[WXApi isWXAppInstalled];
+
+                if (isInstalled) {
+                    NSMutableString *stamp  = [dic objectForKey:@"timestamp"];
+                    //调起微信支付
+                    PayReq* req             = [[PayReq alloc] init];
+                    req.openID              = [dic objectForKey:@"appid"];
+                    req.partnerId           = [dic objectForKey:@"partnerid"];
+                    req.prepayId            = [dic objectForKey:@"prepayid"];
+                    req.nonceStr            = [dic objectForKey:@"noncestr"];
+                    req.timeStamp           = [stamp intValue];
+                    req.package             = [dic objectForKey:@"package"];
+                    req.sign                = [dic objectForKey:@"sign"];
+                    //self.isReturn = YES;
+                    [WXApi sendReq:req];
+                }else{
+                    [self showHUDWithText:@"请安装微信后才能快捷支付"];
+                }
+            }
+        }];
+    }
 }
 
 - (void)paySuccess {
@@ -162,6 +208,16 @@
             [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3] animated:YES];
         }
     }];
+}
+
+-(void)WXpayResult:(NSNotification*)sender{
+    NSDictionary *dic = sender.userInfo;
+    if ([dic[@"pay"] isEqualToString:@"1"]) {
+        [self paySuccess];
+    } else {
+        [self payFail];
+    }
+    
 }
 
 - (void)dealloc {

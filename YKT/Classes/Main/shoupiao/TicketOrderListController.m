@@ -19,9 +19,16 @@
 
 @implementation TicketOrderListController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self requestData];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidLoad {

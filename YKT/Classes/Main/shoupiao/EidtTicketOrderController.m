@@ -207,7 +207,7 @@
         [self showHUDWithText:@"请输入取票人"];
         return;
     }
-    if ([self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
+    if (![self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
         [self showHUDWithText:@"请输入取票手机号"];
         return;
     }

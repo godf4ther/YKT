@@ -41,6 +41,7 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:COLOR(95, 150, 250, 1) Size:CGSizeMake(SIZEWIDTH, 88)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -48,6 +49,7 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] Size:CGSizeMake(SIZEWIDTH, 88)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
 }
 
 - (void)viewDidLoad {
@@ -67,6 +69,8 @@
     [self requestData];
     // Do any additional setup after loading the view from its nib.
 }
+
+
 
 - (void)requestData{
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"/bus/findBus.do" params:@{@"busDate":self.centerDate,@"startStationId":self.startStationDic[@"StationId"],@"endStationId":self.endStationDic[@"StationId"]} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {

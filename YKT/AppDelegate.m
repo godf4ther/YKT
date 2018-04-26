@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "IQKeyboardManager.h"
-@interface AppDelegate ()
+#import "SPayClient.h"
+#import "WXApi.h"
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -18,10 +20,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [WXApi registerApp:@"wx2a5538052969956e"];
+    
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.enableAutoToolbar = NO;
+    
+//    SPayClientWechatConfigModel *wechatConfigModel = [[SPayClientWechatConfigModel alloc] init];
+//    wechatConfigModel.appScheme = @"wxd3a1cdf74d0c41b3";
+//    wechatConfigModel.wechatAppid = @"wxd3a1cdf74d0c41b3";
+//    wechatConfigModel.isEnableMTA =YES;
+    
+    
+    
+    //配置微信APP支付
+//    [[SPayClient sharedInstance] wechatpPayConfig:wechatConfigModel];
+    
+//    [[SPayClient sharedInstance] application:application
+//               didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 
@@ -33,12 +51,15 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+            if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYSUCCESS" object:nil];
             }else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYFAIL" object:nil];
             }
         }];
+    }
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];//微信支付
     }
     return YES;
 }
@@ -49,14 +70,49 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+            if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYSUCCESS" object:nil];
             }else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAYFAIL" object:nil];
             }
         }];
     }
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];//微信支付
+    }
     return YES;
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle;
+    
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+                strMsg = @"支付结果：成功！";
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"wxPaySucceed" object:nil userInfo:@{@"pay":@"1"}];
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+                
+            default:
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"wxPaySucceed" object:nil userInfo:@{@"pay":@"0"}];
+                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                
+                break;
+        }
+    }
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //    [alert show];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
