@@ -35,7 +35,7 @@
     // 2. 恢复滤镜的默认属性
     [filter setDefaults];
     // 3. 将字符串转换成NSData
-    NSString *urlStr = self.billGetId;
+    NSString *urlStr = [NSString stringWithFormat:@"%@&%@",self.outTradeNo,self.billGetId];
     NSData *data = [urlStr dataUsingEncoding:NSUTF8StringEncoding];
     // 4. 通过KVO设置滤镜inputMessage数据
     [filter setValue:data forKey:@"inputMessage"];
@@ -68,7 +68,7 @@
 
 
 - (void)setBarCode {
-    self.barCode.image = [self generateBarcodeWithInputMessage:self.outTradeNo Width:self.barCode.bounds.size.width Height:self.barCode.bounds.size.height];
+    self.barCode.image = [self generateBarcodeWithInputMessage:[NSString stringWithFormat:@"%@&%@",self.outTradeNo,self.billGetId] Width:self.barCode.bounds.size.width Height:self.barCode.bounds.size.height];
 }
 
 

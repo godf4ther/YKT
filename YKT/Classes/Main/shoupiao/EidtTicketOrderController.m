@@ -116,6 +116,11 @@
 
 - (void)setUpPassengerUI {
     self.passengerViewHeight.constant = 85 * self.passengerArr.count;
+    if (self.passengerArr.count == 0) {
+        self.pickTicketPeoeleField.text = nil;
+        self.pickTicketPhoneField.text = nil;
+        return;
+    }
     self.pickTicketPeoeleField.text = self.passengerArr[0][@"passengerName"];
     self.pickTicketPhoneField.text = self.passengerArr[0][@"passengerPhone"];
     for (int i = 0; i < self.passengerArr.count; i ++) {
@@ -179,7 +184,6 @@
             peopleView.gou1.hidden = YES;
             peopleView.label1.hidden = YES;
         }
-        [self.passengerArr[i] removeObjectForKey:@"passengerType"];
     }
     [self mathPrice];
 }
@@ -194,7 +198,7 @@
         [stringM appendFormat:@"%@%@",index == 0 ? @"":@"+",dic[@"ticketPrice"]];
     }
     self.actualPrice.text = [NSString stringWithFormat:@"￥%.2f",totalPrice];
-    self.AllPrice.text = [NSString stringWithFormat:@"总额：%.2f",totalPrice];
+    self.AllPrice.text = [NSString stringWithFormat:@"总额：￥%.2f",totalPrice];
     self.PriceMath.text = stringM;
 }
 

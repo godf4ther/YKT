@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UITextField *cardField;
 @property (nonatomic, strong) UIButton *preBtn;
+@property (weak, nonatomic) IBOutlet UIButton *isDefaultBtn;
 @end
 
 @implementation EditPassengerController
@@ -29,6 +30,7 @@
         self.realName.text = self.dic[@"passengerName"];
         self.phoneField.text = self.dic[@"mobile"];
         self.cardField.text = self.dic[@"idCard"];
+        self.isDefaultBtn.selected = [self.dic[@"isDefault"] integerValue] == 1;
         NSInteger type = [self.dic[@"passengerType"] integerValue];
         for (int i = 1; i <= 3; i ++) {
             if (i == type) {
@@ -72,11 +74,11 @@
     NSString *url;
     if (self.dic) {
         url = @"member/linkman/updateLinkman.do";
-        params = @{@"idCard":self.cardField.text,@"linkmanId":self.dic[@"id"],@"mobile":self.phoneField.text,@"name":self.realName.text,@"passengerType":@(self.preBtn.tag)};
+        params = @{@"idCard":self.cardField.text,@"linkmanId":self.dic[@"id"],@"mobile":self.phoneField.text,@"name":self.realName.text,@"passengerType":@(self.preBtn.tag),@"isDefault":self.isDefaultBtn.selected ? @(1):@(0)};
     }
     else {
         url = @"member/linkman/saveLinkman.do";
-        params = @{@"idCard":self.cardField.text,@"mobile":self.phoneField.text,@"name":self.realName.text,@"passengerType":@(self.preBtn.tag)};
+        params = @{@"idCard":self.cardField.text,@"mobile":self.phoneField.text,@"name":self.realName.text,@"passengerType":@(self.preBtn.tag),@"isDefault":self.isDefaultBtn.selected ? @(1):@(0)};
     }
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (!error) {

@@ -15,4 +15,5 @@ typedef void (^selectBlock)(BOOL);
 @property (weak, nonatomic) IBOutlet UIButton *isDefaultBtn;
 @property (weak, nonatomic) IBOutlet UILabel *cardNum;
 @property (nonatomic, strong) selectBlock block;
+@property (nonatomic, assign) BOOL isSingle;
 @end

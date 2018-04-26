@@ -15,7 +15,9 @@
     // Initialization code
 }
 - (IBAction)gouAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    if (!self.isSingle) {
+        sender.selected = !sender.selected;
+    }
     self.block(sender.selected);
 }
 

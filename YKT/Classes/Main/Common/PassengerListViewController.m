@@ -13,14 +13,21 @@
 @interface PassengerListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
-
+@property (nonatomic, assign) NSInteger singleIndex;
 @end
 
 @implementation PassengerListViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self requesetData:NO];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self popOut];
+    self.singleIndex = -1;
     self.navigationItem.title = @"选择乘客";
     self.tableView.rowHeight = 75;
     self.tableView.delegate = self;
@@ -29,7 +36,6 @@
     if (self.isSelect) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sure)];
     }
-    [self requesetData:NO];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -55,21 +61,32 @@
 }
 
 - (void)sure{
-    BOOL isReady = NO;
-    NSMutableArray *muArr = [NSMutableArray array];
-    for (int i = 0; i < self.selectArr.count; i++) {
-        if ([self.selectArr[i] boolValue]) {
-            [muArr addObject:self.dataArr[i]];
-            isReady = YES;
+    if (!self.isSingleSelect) {
+        BOOL isReady = NO;
+        NSMutableArray *muArr = [NSMutableArray array];
+        for (int i = 0; i < self.selectArr.count; i++) {
+            if ([self.selectArr[i] boolValue]) {
+                [muArr addObject:self.dataArr[i]];
+                isReady = YES;
+            }
+        }
+        if (muArr.count > 5) {
+            [self showHUDWithText:@"最多选择5个"];
+            return;
+        }
+        if (isReady) {
+            self.block(muArr);
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    if (muArr.count > 5) {
-        [self showHUDWithText:@"最多选择5个"];
-        return;
-    }
-    if (isReady) {
-        self.block(muArr);
-        [self.navigationController popViewControllerAnimated:YES];
+    else {
+        if (self.singleIndex == -1) {
+            return;
+        }
+        else {
+            self.sblock(self.dataArr[self.singleIndex]);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -96,31 +113,40 @@
     cell.isDefaultBtn.backgroundColor = [dic[@"isDefault"] integerValue] == 0 ? [UIColor lightGrayColor] : ThemeColor;
     cell.cardNum.text = [NSString stringWithFormat:@"身份证：%@",dic[@"idCard"]];
     cell.block = ^(BOOL select) {
-        [self.selectArr replaceObjectAtIndex:indexPath.row withObject:@(select)];
+        if (!self.isSingleSelect) {
+            [self.selectArr replaceObjectAtIndex:indexPath.row withObject:@(select)];
+        }
+        else {
+            if (!select) {
+                self.singleIndex = -1;
+            }
+            else {
+                self.singleIndex = indexPath.row;
+            }
+        }
     };
     if (!self.isSelect) {
         cell.gouBtnWidth.constant = 0;
     }
     else {
-        cell.gouBtn.selected = [self.selectArr[indexPath.row] boolValue];
+        if (!self.isSingleSelect) {
+            cell.gouBtn.selected = [self.selectArr[indexPath.row] boolValue];
+        }
+        else {
+            cell.gouBtn.selected = self.singleIndex == indexPath.row;
+        }
     }
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isSingleSelect) {
-        self.sblock(self.dataArr[indexPath.row]);
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        EditPassengerController *editVC = [EditPassengerController new];
-        editVC.dic = self.dataArr[indexPath.row];
-        editVC.block = ^{
-            [self requesetData:NO];
-        };
-        [self.navigationController pushViewController:editVC animated:YES];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    EditPassengerController *editVC = [EditPassengerController new];
+    editVC.dic = self.dataArr[indexPath.row];
+    editVC.block = ^{
+        [self requesetData:NO];
+    };
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 

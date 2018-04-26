@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *passengerContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerHeight;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (nonatomic, assign) BOOL isLS;
 @end
 
 @implementation TicketOrderDetaialController
@@ -63,11 +64,11 @@
             self.endStation.text = dic[@"endStationName"];
             self.pwdLabel.text = dic[@"billGetId"];
             self.orderNo.text = dic[@"outTradeNo"];
-            NSString *operatorTime = dic[@"operatorTime"];
-            self.orderTime.text = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",[operatorTime substringWithRange:NSMakeRange(0, 4)],[operatorTime substringWithRange:NSMakeRange(4, 2)],[operatorTime substringWithRange:NSMakeRange(6, 2)],[operatorTime substringWithRange:NSMakeRange(8, 2)],[operatorTime substringWithRange:NSMakeRange(10, 2)],[operatorTime substringWithRange:NSMakeRange(12, 2)]];
+            self.orderTime.text = dic[@"operatorTime"];
             self.pickPeople.text = [NSString stringWithFormat:@"取票人：%@",dic[@"gettkMan"]];
             self.pickPhone.text = dic[@"gettkPhone"];
             self.statusLabel.text = dic[@"busStatusName"];
+            self.isLS = [dic[@"busKind"] integerValue] == 1;
             NSString *status = dic[@"busStatus"];
             if ([status isEqualToString:@"0"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -130,9 +131,9 @@
         if ([dic[@"ticketType"] isEqualToString:@"3"]) {
             ticketType = @"全票（携童）";
         }
-        detailLabel.text = [NSString stringWithFormat:@"%@ 座位号：%@",ticketType,dic[@"seatNo"]];
+        detailLabel.text = self.isLS ? @"流水发班" : [NSString stringWithFormat:@"%@ 座位号：%@",ticketType,dic[@"seatNo"]];
         [container addSubview:detailLabel];
-        [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(nameLabel.mas_right).offset(12);
             make.centerY.equalTo(nameLabel.mas_centerY);
         }];

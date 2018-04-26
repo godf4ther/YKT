@@ -181,7 +181,10 @@
     if (hisArr.count == 4) {
         [hisArr removeObjectAtIndex:0];
     }
-    [hisArr addObject:@{@"startStation":self.startStationDic,@"endStation":self.endStationDic}];
+    NSDictionary *dic = @{@"startStation":self.startStationDic,@"endStation":self.endStationDic};
+    if (![hisArr containsObject:dic]) {
+        [hisArr addObject:dic];
+    }
     [self saveToUserDefaultsWithKey:@"HIS_STATION" Value:hisArr];
     [self setHisStation];
     TicketListController *ticketList = [TicketListController new];

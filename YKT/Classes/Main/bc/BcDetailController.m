@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
 @property (weak, nonatomic) IBOutlet UILabel *startPlace;
 @property (weak, nonatomic) IBOutlet UILabel *endPlace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startPlaceTop;
 
 @end
 
@@ -56,6 +57,7 @@
             if ([dic[@"journeyType"] isEqualToString:@"1"]) {
                 self.timeLabel2.hidden = YES;
                 self.bcType.text = @"单程";
+                self.startPlaceTop.constant = 10;
             }
             else {
                 self.timeLabel2.hidden = NO;

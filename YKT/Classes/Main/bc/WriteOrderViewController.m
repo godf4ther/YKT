@@ -250,9 +250,10 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     PassengerListViewController *listVC = [PassengerListViewController new];
     listVC.sblock = ^(NSDictionary *dic) {
         self.linkmanDic = dic;
-        self.linkmanLabel.text = dic[@"mobile"];
+        self.linkmanLabel.text = dic[@"passengerName"];
     };
     listVC.isSingleSelect = YES;
+    listVC.isSelect = YES;
     [self.navigationController pushViewController:listVC animated:YES];
 }
 - (IBAction)remark:(id)sender {
