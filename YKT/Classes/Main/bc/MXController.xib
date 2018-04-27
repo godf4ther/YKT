@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSP-46-LAR">
-                    <rect key="frame" x="163.5" y="50" width="49" height="36"/>
+                    <rect key="frame" x="163.5" y="30" width="49" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAY-7D-xSu">
-                    <rect key="frame" x="0.0" y="116" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="96" width="375" height="48"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw2-aa-xgU">
                             <rect key="frame" x="12" y="15.5" width="31" height="18"/>
@@ -56,13 +55,12 @@
             </subviews>
             <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="uAY-7D-xSu" secondAttribute="trailing" id="2PK-Bd-bVN"/>
-                <constraint firstItem="dSP-46-LAR" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="UXq-0t-U1Q"/>
+                <constraint firstAttribute="trailing" secondItem="uAY-7D-xSu" secondAttribute="trailing" id="2PK-Bd-bVN"/>
+                <constraint firstItem="dSP-46-LAR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="UXq-0t-U1Q"/>
                 <constraint firstItem="dSP-46-LAR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xjp-xn-zxP"/>
-                <constraint firstItem="uAY-7D-xSu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="jcO-Ea-Wca"/>
+                <constraint firstItem="uAY-7D-xSu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jcO-Ea-Wca"/>
                 <constraint firstItem="uAY-7D-xSu" firstAttribute="top" secondItem="dSP-46-LAR" secondAttribute="bottom" constant="30" id="n2Q-XX-uhK"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
 </document>

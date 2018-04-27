@@ -123,6 +123,7 @@
             else {
                 self.singleIndex = indexPath.row;
             }
+            [tableView reloadData];
         }
     };
     if (!self.isSelect) {

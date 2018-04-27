@@ -82,7 +82,7 @@
     _mapView.showsCompass = NO; // 设置成NO表示关闭指南针；YES表示显示指南针
     _mapView.delegate = self;
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    [pointAnnotation setLockedScreenPoint:CGPointMake(self.view.center.x, self.view.center.y - 52.5)];
+    [pointAnnotation setLockedScreenPoint:CGPointMake(SIZEWIDTH / 2, (SIZEHEIGHT - navHight) / 2 - 17.5)];
     [pointAnnotation setLockedToScreen:YES];
     self.pointAnnotation = pointAnnotation;
     [_mapView addAnnotation:pointAnnotation];
