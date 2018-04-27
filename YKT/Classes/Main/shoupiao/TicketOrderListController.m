@@ -70,7 +70,7 @@
         cell.busId.hidden = NO;
         cell.carIcon.hidden = NO;
         cell.busId.text = dic[@"busId"];
-        cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
+        cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(8, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(10, 2)]];
         cell.startStation.text = dic[@"sellStationName"];
         cell.endStation.text = dic[@"endStationName"];
         cell.busIdHeight.constant = 25;

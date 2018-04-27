@@ -129,7 +129,7 @@
                     NSLog(@"reslut = %@",resultDic);
                     NSString * memo = resultDic[@"memo"];
                     NSLog(@"===memo:%@", memo);
-                    if ([resultDic[@"ResultStatus"] isEqualToString:@"9000"]) {
+                    if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
                         [self paySuccess];
                     }else{
                         [self payFail];

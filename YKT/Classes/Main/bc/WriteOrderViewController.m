@@ -279,8 +279,10 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     [self math];
 }
 - (IBAction)submit:(UIButton *)sender {
+    sender.enabled = NO;
     if (self.linkmanDic.count == 0) {
         [self showHUDWithText:@"请选择联系人"];
+        sender.enabled = YES;
         return;
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -292,6 +294,7 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     }
     if (busInfoList.count == 0) {
         [self showHUDWithText:@"请选择车辆"];
+        sender.enabled = YES;
         return;
     }
     [self showLoadingHUD];
@@ -340,8 +343,10 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         [self hideHUD];
         if (error) {
+            sender.enabled = YES;
             [self showHUDWithText:@"网络错误"];
         } else {
+            sender.enabled = YES;
             NSDictionary *dic = responseObject;
             if ([dic[@"success"] boolValue]) {
                 PayTicketController *payVC = [PayTicketController new];

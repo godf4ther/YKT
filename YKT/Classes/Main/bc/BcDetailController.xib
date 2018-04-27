@@ -27,6 +27,7 @@
                 <outlet property="startPlaceTop" destination="SxD-Vb-3pb" id="rwR-TO-7rv"/>
                 <outlet property="statusLabel" destination="slC-7V-m9v" id="Q81-zb-YQj"/>
                 <outlet property="sureBtn" destination="jVy-Xe-ZwM" id="doi-6d-bTl"/>
+                <outlet property="sureBtnWidth" destination="nVJ-67-ZNN" id="Oem-de-0OK"/>
                 <outlet property="timeLabel1" destination="aeS-9u-CWm" id="e0e-nR-CEG"/>
                 <outlet property="timeLabel2" destination="c8G-Dv-zPl" id="TLj-mp-KYU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -383,7 +384,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVy-Xe-ZwM">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
                             <color key="backgroundColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="支付/去评价">
+                            <state key="normal">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -393,7 +394,10 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Q0-2l-GQs">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" title="取消订单">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="187.5" id="nVJ-67-ZNN"/>
+                            </constraints>
+                            <state key="normal">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -403,7 +407,6 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="jVy-Xe-ZwM" firstAttribute="width" secondItem="1Q0-2l-GQs" secondAttribute="width" id="5yp-zd-iHt"/>
                         <constraint firstItem="jVy-Xe-ZwM" firstAttribute="leading" secondItem="1Q0-2l-GQs" secondAttribute="trailing" id="7U9-pU-Zqj"/>
                         <constraint firstItem="jVy-Xe-ZwM" firstAttribute="top" secondItem="hHs-4m-zaF" secondAttribute="top" id="Lax-PZ-FDi"/>
                         <constraint firstItem="1Q0-2l-GQs" firstAttribute="top" secondItem="hHs-4m-zaF" secondAttribute="top" id="MqX-ch-cjb"/>

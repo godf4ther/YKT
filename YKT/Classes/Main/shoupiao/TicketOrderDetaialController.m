@@ -61,7 +61,7 @@
             NSDictionary *dic = showdata[0];
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
             NSString *busTime = dic[@"busTime"];
-            self.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)] ];
+            self.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)],[busTime substringWithRange:NSMakeRange(8, 2)],[busTime substringWithRange:NSMakeRange(10, 2)]];
             self.startStation.text = dic[@"sellStationName"];
             self.endStation.text = dic[@"endStationName"];
             self.pwdLabel.text = dic[@"billGetId"];
@@ -78,7 +78,10 @@
             }
             else if ([status isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"退票" forState:UIControlStateNormal];
-                [self.cancelBtn setTitle:@"评价" forState:UIControlStateNormal];
+                [self.sureBtn setTitle:@"改签" forState:UIControlStateNormal];
+                if (<#condition#>) {
+                    <#statements#>
+                }
             }
             else {
                 self.bottomHeight.constant = 0;

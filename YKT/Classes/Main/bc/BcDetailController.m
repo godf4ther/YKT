@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startPlaceTop;
 @property (nonatomic, strong) NSDictionary *data;
 @property (weak, nonatomic) IBOutlet UILabel *payType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sureBtnWidth;
 @end
 
 @implementation BcDetailController
@@ -89,6 +90,8 @@
             else if ([status isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"退款" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"评价" forState:UIControlStateNormal];
+                self.sureBtnWidth.constant = SIZEWIDTH;
+                self.sureBtn.hidden = YES;
             }
             else {
                 self.bottomHeight.constant = 0;

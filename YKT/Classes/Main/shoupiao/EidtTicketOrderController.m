@@ -203,16 +203,20 @@
 }
 
 - (IBAction)submitOrder:(UIButton *)sender {
+    sender.enabled = NO;
     if (self.passengerArr.count == 0) {
         [self showHUDWithText:@"请选择乘客"];
+        sender.enabled = NO;
         return;
     }
     if ([self cheakIsNull:self.pickTicketPeoeleField.text]) {
         [self showHUDWithText:@"请输入取票人"];
+        sender.enabled = NO;
         return;
     }
     if (![self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
         [self showHUDWithText:@"请输入取票手机号"];
+        sender.enabled = NO;
         return;
     }
     [self showLoadingHUD];
@@ -244,8 +248,10 @@
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         [self hideHUD];
         if (error) {
+            sender.enabled = NO;
             [self showHUDWithText:@"网络错误"];
         } else {
+            sender.enabled = NO;
             NSDictionary *dic = responseObject;
             if ([dic[@"success"] boolValue]) {
                 PayTicketController *payVC = [PayTicketController new];
