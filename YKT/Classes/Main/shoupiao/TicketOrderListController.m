@@ -35,7 +35,8 @@
     [super viewDidLoad];
     [self popOut];
     self.navigationItem.title = @"我的订单";
-    self.tableView.rowHeight = 190;
+    self.tableView.estimatedRowHeight = 190;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"MyOrderListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyOrderListCell"];
     
     // Do any additional setup after loading the view from its nib.
@@ -72,18 +73,21 @@
         cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
         cell.startStation.text = dic[@"sellStationName"];
         cell.endStation.text = dic[@"endStationName"];
+        cell.busIdHeight.constant = 25;
     }
     else {
         if ([dic[@"journeyType"] isEqualToString:@"1"]) {
             cell.busId.hidden = YES;
             cell.carIcon.hidden = YES;
             cell.busTime.text = dic[@"journeyStartTime"];
+            cell.busIdHeight.constant = 0;
         }
         else {
             cell.busId.hidden = NO;
             cell.carIcon.hidden = NO;
             cell.busId.text = dic[@"journeyStartTime"];
             cell.busTime.text = dic[@"journeyEndTime"];
+            cell.busIdHeight.constant = 25;
         }
         cell.startStation.text = dic[@"startPointName"];
         cell.endStation.text = dic[@"endPointName"];

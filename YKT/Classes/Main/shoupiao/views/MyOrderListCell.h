@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIView *container;
 @property (weak, nonatomic) IBOutlet UILabel *orderType;
 @property (weak, nonatomic) IBOutlet UIImageView *carIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *busIdHeight;
 
 @end

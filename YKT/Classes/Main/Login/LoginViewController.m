@@ -10,6 +10,8 @@
 #import "KRMainNetTool.h"
 #import "KRUserInfo.h"
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UITextField *pwdField;
 
 @end
 
@@ -21,7 +23,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)login:(id)sender {
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/login/login4App.do" params:@{@"mobile":@"18072250018",@"password":@"123"} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/login/login4App.do" params:@{@"mobile":self.phoneField.text,@"password":self.pwdField.text} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             [self saveToUserDefaultsWithKey:@"USERINFO" Value:showdata];
             [[KRUserInfo sharedKRUserInfo] setValuesForKeysWithDictionary:showdata];

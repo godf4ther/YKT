@@ -11,6 +11,7 @@
 #import "CodeController.h"
 #import "PayTicketController.h"
 #import "RefundController.h"
+#import "NeedToKownController.h"
 @interface TicketOrderDetaialController ()
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *busTime;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerHeight;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (nonatomic, assign) BOOL isLS;
+@property (weak, nonatomic) IBOutlet UILabel *payType;
 @end
 
 @implementation TicketOrderDetaialController
@@ -81,6 +83,24 @@
             else {
                 self.bottomHeight.constant = 0;
                 self.bottomView.hidden = YES;
+            }
+            if ([dic[@"payType"] isEqualToString:@""]) {
+                self.payType.text = @"未支付";
+            }
+            else {
+                NSString *payType = dic[@"payType"];
+                if ([payType isEqualToString:@"1"]) {
+                    self.payType.text = @"支付宝";
+                }
+                else if ([payType isEqualToString:@"2"]) {
+                    self.payType.text = @"银联";
+                }
+                else if ([payType isEqualToString:@"3"]) {
+                    self.payType.text = @"微信";
+                }
+                else if ([payType isEqualToString:@"4"]) {
+                    self.payType.text = @"小步云公交卡";
+                }
             }
         }
     }];
@@ -156,6 +176,8 @@
     [self.navigationController pushViewController:codeVC animated:YES];
 }
 - (IBAction)goExplain:(id)sender {
+    NeedToKownController *needVC = [NeedToKownController new];
+    [self.navigationController pushViewController:needVC animated:YES];
 }
 - (IBAction)cancelAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {

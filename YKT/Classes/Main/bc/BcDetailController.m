@@ -10,6 +10,8 @@
 #import "LRMacroDefinitionHeader.h"
 #import "RefundController.h"
 #import "PayTicketController.h"
+#import "NeedToKownController.h"
+#import "MXController.h"
 @interface BcDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *allPrice;
@@ -27,7 +29,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *startPlace;
 @property (weak, nonatomic) IBOutlet UILabel *endPlace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *startPlaceTop;
-
+@property (nonatomic, strong) NSDictionary *data;
+@property (weak, nonatomic) IBOutlet UILabel *payType;
 @end
 
 @implementation BcDetailController
@@ -39,6 +42,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self requestData];
+}
+- (IBAction)cheakDetail:(UIButton *)sender {
+    MXController *mxVC = [MXController new];
+    mxVC.price = self.data[@"totalPrice"];
+    mxVC.isPay = [self.data[@"status"] isEqualToString:@"1"];
+    [self.navigationController pushViewController:mxVC animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -52,6 +61,7 @@
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/findBcOrderInfoDetail.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata[0];
+            self.data = dic;
             self.statusLabel.text = dic[@"statusName"];
             self.allPrice.text = [NSString stringWithFormat:@"￥%@",dic[@"totalPrice"]];
             if ([dic[@"journeyType"] isEqualToString:@"1"]) {
@@ -84,11 +94,32 @@
                 self.bottomHeight.constant = 0;
                 self.bottomVIew.hidden = YES;
             }
+            if ([dic[@"payType"] isEqualToString:@""]) {
+                self.payType.text = @"未支付";
+            }
+            else {
+                NSString *payType = dic[@"payType"];
+                if ([payType isEqualToString:@"1"]) {
+                    self.payType.text = @"支付宝";
+                }
+                else if ([payType isEqualToString:@"2"]) {
+                    self.payType.text = @"银联";
+                }
+                else if ([payType isEqualToString:@"3"]) {
+                    self.payType.text = @"微信";
+                }
+                else if ([payType isEqualToString:@"4"]) {
+                    self.payType.text = @"小步云公交卡";
+                }
+            }
+            
         }
     }];
 }
 
 - (IBAction)goExplain:(id)sender {
+    NeedToKownController *needVC = [NeedToKownController new];
+    [self.navigationController pushViewController:needVC animated:YES];
 }
 - (IBAction)cancel:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {

@@ -65,6 +65,8 @@
 		113A522F2091716500128C08 /* libSPaySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 113A521A2091716500128C08 /* libSPaySDK.a */; };
 		113A52302091716500128C08 /* SPaySDKResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 113A522E2091716500128C08 /* SPaySDKResource.bundle */; };
 		113A52322091718000128C08 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113A52312091718000128C08 /* AVFoundation.framework */; };
+		113A52D72092E61000128C08 /* MXController.m in Sources */ = {isa = PBXBuildFile; fileRef = 113A52D52092E60F00128C08 /* MXController.m */; };
+		113A52D82092E61000128C08 /* MXController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113A52D62092E60F00128C08 /* MXController.xib */; };
 		115B3416207EEEAC0043A6F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3415207EEEAC0043A6F3 /* AppDelegate.m */; };
 		115B3419207EEEAC0043A6F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B3418207EEEAC0043A6F3 /* ViewController.m */; };
 		115B341C207EEEAC0043A6F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 115B341A207EEEAC0043A6F3 /* Main.storyboard */; };
@@ -311,6 +313,9 @@
 		113A522D2091716500128C08 /* SPBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseModel.h; sourceTree = "<group>"; };
 		113A522E2091716500128C08 /* SPaySDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SPaySDKResource.bundle; sourceTree = "<group>"; };
 		113A52312091718000128C08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		113A52D42092E60F00128C08 /* MXController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXController.h; sourceTree = "<group>"; };
+		113A52D52092E60F00128C08 /* MXController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXController.m; sourceTree = "<group>"; };
+		113A52D62092E60F00128C08 /* MXController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MXController.xib; sourceTree = "<group>"; };
 		115B3411207EEEAC0043A6F3 /* YKT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YKT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		115B3414207EEEAC0043A6F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		115B3415207EEEAC0043A6F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1068,6 +1073,9 @@
 				5A5DE8B3208F86490080B78C /* NeedToKownController.h */,
 				5A5DE8B4208F86490080B78C /* NeedToKownController.m */,
 				5A5DE8B5208F86490080B78C /* NeedToKownController.xib */,
+				113A52D42092E60F00128C08 /* MXController.h */,
+				113A52D52092E60F00128C08 /* MXController.m */,
+				113A52D62092E60F00128C08 /* MXController.xib */,
 			);
 			path = bc;
 			sourceTree = "<group>";
@@ -1146,7 +1154,7 @@
 				TargetAttributes = {
 					115B3410207EEEAC0043A6F3 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1178,6 +1186,7 @@
 				11C753BD20844C00006A8F2D /* LoginViewController.xib in Resources */,
 				115B34C4208043A60043A6F3 /* EidtTicketOrderController.xib in Resources */,
 				115B34B5207F62820043A6F3 /* Info.plist in Resources */,
+				113A52D82092E61000128C08 /* MXController.xib in Resources */,
 				5A824303207F92CD00F483F6 /* SaleTicketMainController.xib in Resources */,
 				11C753C82085D3E0006A8F2D /* CodeController.xib in Resources */,
 				115B351D2080611A0043A6F3 /* PassengerCell.xib in Resources */,
@@ -1285,6 +1294,7 @@
 				1133F60B208DA93100D32E00 /* UIView+WebCacheOperation.m in Sources */,
 				115B35682080A8D10043A6F3 /* AFURLRequestSerialization.m in Sources */,
 				5AEE8F63208B7E06005DCA65 /* WriteOrderViewController.m in Sources */,
+				113A52D72092E61000128C08 /* MXController.m in Sources */,
 				113A520B208F1E8400128C08 /* IQTitleBarButtonItem.m in Sources */,
 				1133F5AD208D78AF00D32E00 /* KRDatePicker.m in Sources */,
 				5AF3B0D920837B9B003B7B18 /* UIColor+Extension.m in Sources */,
@@ -1460,7 +1470,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5ZMJXC3BRV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1478,8 +1489,10 @@
 					"-all_load",
 					"-Objc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YKT.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ykt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0a7b5fa8-603d-4171-b54c-ba9c2528681f";
+				PROVISIONING_PROFILE_SPECIFIER = 123;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1488,7 +1501,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5ZMJXC3BRV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1506,8 +1520,10 @@
 					"-all_load",
 					"-Objc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YKT.www;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ykt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0a7b5fa8-603d-4171-b54c-ba9c2528681f";
+				PROVISIONING_PROFILE_SPECIFIER = 123;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

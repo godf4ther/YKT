@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,7 +18,123 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reP-LP-sn7">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-jk-eXv">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="747"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购票、取票、退票须知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G06-Jg-wXb">
+                                    <rect key="frame" x="12" y="20" width="153" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一、用车须知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rg4-Hh-Bx4">
+                                    <rect key="frame" x="12" y="50" width="92" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkg-nA-naN">
+                                    <rect key="frame" x="12" y="80" width="351" height="186.5"/>
+                                    <mutableString key="text">1、包车产品提供两地点到点的接送服务，司机会根据路况合理安排行程。包车是一口价服务，不接受多个上下车点、绕路、临时改变路线等。如您有特殊需求；如有老人儿童坐车需特殊照顾等，请在备注中说明。
+2、提交用车订单后，客服人员会第一时间处理您的订单，请您耐心等待。如有任何疑问，请联系客服。
+3、各车型的承载人数及行李都有所限制，乘客人数不得超过车辆核定载客人数，请您自主协调，由于您自身选择车型不符而影响您的用车，请自行承担损失。
+4、订单金额为一次往返用车服务的全部费用，包含车辆使用费、司机服务费、高速通行费、油费等常规费用，如无特殊情况，您无需额外支付其他费用。</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二、退改规则" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-Sw-s1V">
+                                    <rect key="frame" x="12" y="278.5" width="92" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxU-C0-mMJ">
+                                    <rect key="frame" x="12" y="308.5" width="351" height="217.5"/>
+                                    <mutableString key="text">1、您在下单后，需在30分钟内缴费确认，否则订单取消，您在缴费前有权取消订单，但一天最多只能取消三次。
+2、订单确认后，如您因个人原因需要退单，可在订单详情页申请退单，退单手续费如下：
+包车：客户在用车时间前12小时内退单的，公司收取500元的手续费；在用车前12小时至24小时内退单的，公司收取200元手续费；在用车前24小时至48小时内退单的，公司收取100元手续费；用车前车48小时外退单的，不收手续费。
+小型化定制包车：在用车之前退款比例如下：6小时之前退款比例100%d，3-7小时退款70%d，1-3小时退款50%d，1小时内退款0%d 。
+3、订单不支持在线修改，若您需要修改订单可联系客服为您进行订单补充说明。
+4、若下单时使用了优惠，退单时优惠不予退还。</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="三、免费等候" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7P-uW-kt2">
+                                    <rect key="frame" x="12" y="538" width="92" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="司机将会按照约定时间免费等待1小时。超过免费等待时间您仍未到达或无法联系，司机将无法继续等待，订单费用无法退还。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgn-ag-nlH">
+                                    <rect key="frame" x="12" y="568" width="351" height="47"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="四、关于发票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLz-gP-fl7">
+                                    <rect key="frame" x="12" y="627" width="92" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如您需要发票报销，请在下单时填写发票信息申请，或者联系在线客服为您补录。如您在用车过后申请发票，我们将在7个工作日内为您邮寄，邮寄形式为货到付款，具体邮费以快递公司开具单据为准。暂不支持港、澳、台等偏远地区的邮寄，请您谅解！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTE-hl-RT5">
+                                    <rect key="frame" x="12" y="657" width="351" height="78"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="rg4-Hh-Bx4" firstAttribute="top" secondItem="G06-Jg-wXb" secondAttribute="bottom" constant="12" id="0OH-RC-UNX"/>
+                                <constraint firstAttribute="trailing" secondItem="gkg-nA-naN" secondAttribute="trailing" constant="12" id="3pz-bt-OYs"/>
+                                <constraint firstAttribute="bottom" secondItem="MTE-hl-RT5" secondAttribute="bottom" constant="12" id="4aB-sB-Ege"/>
+                                <constraint firstItem="cxU-C0-mMJ" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="9fP-ER-SMi"/>
+                                <constraint firstItem="cxU-C0-mMJ" firstAttribute="top" secondItem="TM7-Sw-s1V" secondAttribute="bottom" constant="12" id="JVL-IC-9em"/>
+                                <constraint firstItem="ZLz-gP-fl7" firstAttribute="top" secondItem="hgn-ag-nlH" secondAttribute="bottom" constant="12" id="JXx-XI-fuU"/>
+                                <constraint firstItem="hgn-ag-nlH" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="Jnp-mp-FkG"/>
+                                <constraint firstItem="ZLz-gP-fl7" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="KXr-uj-I2S"/>
+                                <constraint firstItem="E7P-uW-kt2" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="MjO-U8-DyY"/>
+                                <constraint firstItem="TM7-Sw-s1V" firstAttribute="top" secondItem="gkg-nA-naN" secondAttribute="bottom" constant="12" id="N5N-Iy-yIk"/>
+                                <constraint firstItem="rg4-Hh-Bx4" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="UHX-Rk-wRq"/>
+                                <constraint firstAttribute="trailing" secondItem="hgn-ag-nlH" secondAttribute="trailing" constant="12" id="ZQz-9J-Zme"/>
+                                <constraint firstItem="hgn-ag-nlH" firstAttribute="top" secondItem="E7P-uW-kt2" secondAttribute="bottom" constant="12" id="bsz-CY-G6r"/>
+                                <constraint firstItem="G06-Jg-wXb" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="dUG-do-aIr"/>
+                                <constraint firstItem="E7P-uW-kt2" firstAttribute="top" secondItem="cxU-C0-mMJ" secondAttribute="bottom" constant="12" id="dZJ-5D-FB3"/>
+                                <constraint firstItem="TM7-Sw-s1V" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="ee9-Ka-ppd"/>
+                                <constraint firstItem="G06-Jg-wXb" firstAttribute="top" secondItem="1Ib-jk-eXv" secondAttribute="top" constant="20" id="khR-mS-xNB"/>
+                                <constraint firstItem="gkg-nA-naN" firstAttribute="top" secondItem="rg4-Hh-Bx4" secondAttribute="bottom" constant="12" id="r8z-0c-zPk"/>
+                                <constraint firstAttribute="trailing" secondItem="MTE-hl-RT5" secondAttribute="trailing" constant="12" id="riF-ja-ws2"/>
+                                <constraint firstItem="MTE-hl-RT5" firstAttribute="top" secondItem="ZLz-gP-fl7" secondAttribute="bottom" constant="12" id="rj6-lb-fKM"/>
+                                <constraint firstAttribute="trailing" secondItem="cxU-C0-mMJ" secondAttribute="trailing" constant="12" id="wQM-kX-2td"/>
+                                <constraint firstItem="gkg-nA-naN" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="ycc-sf-BMZ"/>
+                                <constraint firstItem="MTE-hl-RT5" firstAttribute="leading" secondItem="1Ib-jk-eXv" secondAttribute="leading" constant="12" id="zZR-eg-BQz"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="1Ib-jk-eXv" firstAttribute="centerX" secondItem="reP-LP-sn7" secondAttribute="centerX" id="58k-St-7VK"/>
+                        <constraint firstAttribute="bottom" secondItem="1Ib-jk-eXv" secondAttribute="bottom" id="7ET-bu-xU7"/>
+                        <constraint firstItem="1Ib-jk-eXv" firstAttribute="top" secondItem="reP-LP-sn7" secondAttribute="top" id="M6b-Db-byL"/>
+                        <constraint firstItem="1Ib-jk-eXv" firstAttribute="leading" secondItem="reP-LP-sn7" secondAttribute="leading" id="Qct-6f-YT7"/>
+                        <constraint firstAttribute="trailing" secondItem="1Ib-jk-eXv" secondAttribute="trailing" id="Uh2-1e-Dn6"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="reP-LP-sn7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8e1-uw-jGu"/>
+                <constraint firstAttribute="bottom" secondItem="reP-LP-sn7" secondAttribute="bottom" id="PwZ-Vx-MDb"/>
+                <constraint firstAttribute="trailing" secondItem="reP-LP-sn7" secondAttribute="trailing" id="bba-Jv-WmA"/>
+                <constraint firstItem="reP-LP-sn7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rac-6F-yrE"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
         </view>
     </objects>
 </document>

@@ -100,6 +100,9 @@
     [sender setTitleColor:ThemeColor forState:UIControlStateNormal];
     self.preBtn = sender;
 }
+- (IBAction)defaultAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

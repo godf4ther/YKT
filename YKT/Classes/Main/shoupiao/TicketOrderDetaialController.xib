@@ -20,6 +20,7 @@
                 <outlet property="orderTime" destination="ofk-zb-gmq" id="XAY-fz-GUa"/>
                 <outlet property="passengerContainer" destination="NwW-jd-Aox" id="ZVS-N5-O7N"/>
                 <outlet property="passengerHeight" destination="iYQ-sa-4X4" id="CDJ-RX-aX7"/>
+                <outlet property="payType" destination="gsu-MX-hHo" id="pVI-BQ-lhN"/>
                 <outlet property="pickPeople" destination="Hih-W4-rK6" id="YfF-ts-6jy"/>
                 <outlet property="pickPhone" destination="8r8-aw-a92" id="ZZt-jm-gXz"/>
                 <outlet property="priceLabel" destination="oTj-0e-Ig5" id="map-Jn-qK9"/>

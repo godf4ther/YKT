@@ -1,23 +1,27 @@
 //
-//  NeedToKownController.m
+//  MXController.m
 //  YKT
 //
-//  Created by 周春仕 on 2018/4/24.
+//  Created by 周春仕 on 2018/4/27.
 //  Copyright © 2018年 周春仕. All rights reserved.
 //
 
-#import "NeedToKownController.h"
+#import "MXController.h"
 
-@interface NeedToKownController ()
+@interface MXController ()
+@property (weak, nonatomic) IBOutlet UILabel *topPrice;
+@property (weak, nonatomic) IBOutlet UILabel *rightPrice;
 
 @end
 
-@implementation NeedToKownController
+@implementation MXController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"包车说明";
     [self popOut];
+    self.navigationItem.title = @"明细";
+    self.topPrice.text = [NSString stringWithFormat:@"￥%@",self.price];
+    self.rightPrice.text = [NSString stringWithFormat:@"￥%@%@",self.price,self.isPay ? @"":@"(未支付)"];
     // Do any additional setup after loading the view from its nib.
 }
 

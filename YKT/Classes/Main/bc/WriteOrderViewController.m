@@ -17,7 +17,7 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "MANaviRoute.h"
 #import "CommonUtility.h"
-
+#import "NeedToKownController.h"
 static const NSInteger RoutePlanningPaddingEdge                    = 20;
 @interface WriteOrderViewController ()<UIScrollViewDelegate,MAMapViewDelegate,AMapSearchDelegate>
 @property (nonatomic, strong) NSDateFormatter *formatter;
@@ -260,6 +260,8 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     self.markContainer.hidden = NO;
 }
 - (IBAction)shuoming:(id)sender {
+    NeedToKownController *needVC = [NeedToKownController new];
+    [self.navigationController pushViewController:needVC animated:YES];
 }
 - (IBAction)delete:(UIButton *)sender {
     NSInteger num = self.numLabel.text.integerValue;
