@@ -25,13 +25,15 @@
 @property (weak, nonatomic) IBOutlet UIView *passengerContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *remainNum;
-@property (weak, nonatomic) IBOutlet UITextField *pickTicketPeoeleField;
 @property (weak, nonatomic) IBOutlet UITextField *pickTicketPhoneField;
 @property (weak, nonatomic) IBOutlet UILabel *actualPrice;
 @property (weak, nonatomic) IBOutlet UILabel *PriceMath;
 @property (weak, nonatomic) IBOutlet UILabel *AllPrice;
 @property (nonatomic, strong) NSMutableArray *passengerArr;
 @property (nonatomic, strong) NSMutableArray *passengerViewArr;
+@property (weak, nonatomic) IBOutlet UIButton *takePerson1;
+@property (weak, nonatomic) IBOutlet UIButton *takePerson2;
+@property (weak, nonatomic) IBOutlet UIButton *takePerson3;
 @end
 
 @implementation EidtTicketOrderController
@@ -66,6 +68,9 @@
     [self popOut];
     self.navigationItem.title = @"填写订单";
     [self setValues];
+    self.takePerson1.hidden = YES;
+    self.takePerson2.hidden = YES;
+    self.takePerson3.hidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
