@@ -45,23 +45,44 @@
 - (void)requestData {
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/findOrderInfoByCondition.do" params:nil withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            self.dataArr = showdata;
+            NSArray *arr = showdata;
+            NSMutableArray *muarr1 = [NSMutableArray array];
+            NSMutableArray *muarr2 = [NSMutableArray array];
+            for (NSDictionary *dic in arr) {
+                if ([dic[@"isFinish"] isEqualToString:@"0"]) {
+                    [muarr1 addObject:dic];
+                }
+                else {
+                    [muarr2 addObject:dic];
+                }
+            }
+            self.dataArr = @[muarr1,muarr2];
             [self.tableView reloadData];
         }
     }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.dataArr[section] count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"待处理";
+    }
+    return @"已完成";
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderListCell" forIndexPath:indexPath];
-    NSDictionary *dic = self.dataArr[indexPath.row];
+    NSDictionary *dic = self.dataArr[indexPath.section][indexPath.row];
     cell.orderNo.text = dic[@"organName"];
     cell.statusLabel.text = dic[@"statusName"];
     cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
@@ -70,7 +91,12 @@
         cell.busId.hidden = NO;
         cell.carIcon.hidden = NO;
         cell.busId.text = dic[@"busId"];
-        cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(8, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(10, 2)]];
+        if ([dic[@"busTime"] length] == 8) {
+            cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
+        }
+        else if ([dic[@"busTime"] length] == 12) {
+            cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(8, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(10, 2)]];
+        }
         cell.startStation.text = dic[@"sellStationName"];
         cell.endStation.text = dic[@"endStationName"];
         cell.busIdHeight.constant = 25;
@@ -98,7 +124,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *dic = self.dataArr[indexPath.row];
+    NSDictionary *dic = self.dataArr[indexPath.section][indexPath.row];
     if ([dic[@"orderTypeName"] isEqualToString:@"汽车票"]) {
         TicketOrderDetaialController *detailVC = [TicketOrderDetaialController new];
         detailVC.orderId = dic[@"id"];

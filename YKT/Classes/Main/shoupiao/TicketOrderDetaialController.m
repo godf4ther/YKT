@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (nonatomic, assign) BOOL isLS;
 @property (weak, nonatomic) IBOutlet UILabel *payType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelBtnWidth;
 @end
 
 @implementation TicketOrderDetaialController
@@ -72,6 +73,7 @@
             self.statusLabel.text = dic[@"busStatusName"];
             self.isLS = [dic[@"busKind"] integerValue] == 1;
             NSString *status = dic[@"busStatus"];
+            self.cancelBtnWidth.constant = SIZEWIDTH / 2;
             if ([status isEqualToString:@"0"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"去支付" forState:UIControlStateNormal];
@@ -79,8 +81,17 @@
             else if ([status isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"退票" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"改签" forState:UIControlStateNormal];
-                if (<#condition#>) {
-                    <#statements#>
+                if ([dic[@"isReturn"] integerValue] == 1  && [dic[@"isCharge"] integerValue] == 0) {
+                    self.cancelBtnWidth.constant = SIZEWIDTH;
+                    self.sureBtn.hidden = YES;
+                }
+                else if ([dic[@"isReturn"] integerValue] == 0 && [dic[@"isCharge"] integerValue] == 1) {
+                    self.cancelBtnWidth.constant = 0;
+                    self.cancelBtn.hidden = YES;
+                }
+                else if ([dic[@"isReturn"] integerValue] == 0 && [dic[@"isCharge"] integerValue] == 0) {
+                    self.bottomHeight.constant = 0;
+                    self.bottomView.hidden = YES;
                 }
             }
             else {

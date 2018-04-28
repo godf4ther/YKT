@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDictionary *orlData;
 @property (nonatomic, strong) NSArray *indexArr;
 @property (nonatomic, strong) NSArray *orlIndexArr;
+@property (nonatomic, strong) NSArray *showData;
 @end
 
 @implementation CityController
@@ -53,36 +54,26 @@
         [self.tableView reloadData];
     }
     else if (sender.text.length == 1) {
-//        NSString *match = @"(^[\u4e00-\u9fa5]+$)";
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
-//        BOOL isChinese = [predicate evaluateWithObject:self];
-//        if (isChinese) {
-//            for (NSString *key in self.orlData) {
-//                
-//            }
-//        }
-//        else {
-//            for (NSString *key in self.orlData.allKeys) {
-//                if ([key isEqualToString:sender.text.uppercaseString]) {
-//                    self.data = @{key:self.orlData[key]};
-//                    self.indexArr = @[key];
-//                    [self.tableView reloadData];
-//                }
-//            }
-//        }
+        NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+        BOOL isChinese = [predicate evaluateWithObject:sender.text];
+        if (!isChinese) {
+            for (NSString *key in self.orlData.allKeys) {
+                if ([key isEqualToString:sender.text.uppercaseString]) {
+                    self.data = @{key:self.orlData[key]};
+                    self.indexArr = @[key];
+                    [self.tableView reloadData];
+                }
+            }
+        }
     }
     else {
-//        NSMutableDictionary *dic = self.orlData.mutableCopy;
-//        for (NSString *key in dic) {
-//            NSMutableArray *arr = [dic[key] mutableCopy];
-//            for (NSDictionary *city in arr) {
-//                if (![city[@"name"] containsString:sender.text]) {
-//                    [arr removeObject:city];
-//                }
+//        for (NSDictionary *dic in self.showData) {
+//            if (dic[@""]) {
+//                <#statements#>
 //            }
 //        }
-//        self.data = dic;
-//        [self.tableView reloadData];
+        
     }
 }
 
@@ -90,6 +81,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"paramName":@"cityJsonList",@"token":[KRUserInfo sharedKRUserInfo].token}];
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getPositionInfoByGD.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
+            self.showData = showdata;
             [self sorting:showdata];
             [self.tableView reloadData];
         }

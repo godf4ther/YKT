@@ -82,6 +82,7 @@
             self.orderTime.text = dic[@"operatorTime"];
             self.linkman.text = dic[@"orderPerson"];
             self.linkmanPhone.text = dic[@"orderPersonPhone"];
+            self.sureBtnWidth.constant = SIZEWIDTH / 2;
             NSString *status = dic[@"status"];
             if ([status isEqualToString:@"0"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
