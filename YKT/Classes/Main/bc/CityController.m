@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSDictionary *orlData;
 @property (nonatomic, strong) NSArray *indexArr;
 @property (nonatomic, strong) NSArray *orlIndexArr;
-@property (nonatomic, strong) NSArray *showData;
 @end
 
 @implementation CityController
@@ -32,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requestData];
+    [self requestData:YES];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.sectionFooterHeight = 0.1;
@@ -46,43 +45,49 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
 }
+- (IBAction)editOnReturn:(UITextField *)sender {
+    [self requestData:NO];
+}
 
 - (IBAction)editChange:(UITextField *)sender {
     if (sender.text.length == 0) {
         self.data = self.orlData;
         self.indexArr = self.orlIndexArr;
         [self.tableView reloadData];
+        return;
     }
-    else if (sender.text.length == 1) {
-        NSString *match = @"(^[\u4e00-\u9fa5]+$)";
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
-        BOOL isChinese = [predicate evaluateWithObject:sender.text];
-        if (!isChinese) {
-            for (NSString *key in self.orlData.allKeys) {
-                if ([key isEqualToString:sender.text.uppercaseString]) {
-                    self.data = @{key:self.orlData[key]};
-                    self.indexArr = @[key];
-                    [self.tableView reloadData];
-                }
-            }
-        }
-    }
-    else {
-//        for (NSDictionary *dic in self.showData) {
-//            if (dic[@""]) {
-//                <#statements#>
+//    else if (sender.text.length == 1) {
+//        NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+//        BOOL isChinese = [predicate evaluateWithObject:sender.text];
+//        if (!isChinese) {
+//            for (NSString *key in self.orlData.allKeys) {
+//                if ([key isEqualToString:sender.text.uppercaseString]) {
+//                    self.data = @{key:self.orlData[key]};
+//                    self.indexArr = @[key];
+//                    [self.tableView reloadData];
+//                }
 //            }
 //        }
-        
-    }
+//    }
+//    else {
+////        for (NSDictionary *dic in self.showData) {
+////            if (dic[@""]) {
+////                <#statements#>
+////            }
+////        }
+//
+//    }
 }
 
-- (void)requestData {
+- (void)requestData:(BOOL)needLoading {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"paramName":@"cityJsonList",@"token":[KRUserInfo sharedKRUserInfo].token}];
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getPositionInfoByGD.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+    if (![self cheakIsNull:self.cityField.text]) {
+        params[@"cityName"] = self.cityField.text;
+    }
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/getPositionInfoByGD.do" params:params withModel:nil waitView:needLoading ? self.view :nil complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
-            self.showData = showdata;
-            [self sorting:showdata];
+            [self sorting:showdata isFirst:needLoading];
             [self.tableView reloadData];
         }
     }];
@@ -126,7 +131,7 @@
 
 
 
--(void)sorting:(NSArray *)arr{
+-(void)sorting:(NSArray *)arr isFirst:(BOOL)isFirst{
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     for (NSDictionary *dic in arr) {
         
@@ -150,9 +155,12 @@
         return [obj1 compare:obj2 options:NSNumericSearch];
     }];
     self.indexArr = indexArr;
-    self.orlIndexArr = indexArr;
     self.data = data;
-    self.orlData = data;
+    if (isFirst) {
+        self.orlIndexArr = indexArr;
+        self.orlData = data;
+    }
+    
 }
 
 

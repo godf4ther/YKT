@@ -63,7 +63,7 @@
         if (showdata) {
             NSDictionary *dic = showdata[0];
             self.data = dic;
-            self.statusLabel.text = dic[@"statusName"];
+            self.statusLabel.text = dic[@"bcStatusName"];
             self.allPrice.text = [NSString stringWithFormat:@"￥%@",dic[@"totalPrice"]];
             if ([dic[@"journeyType"] isEqualToString:@"1"]) {
                 self.timeLabel2.hidden = YES;
@@ -133,7 +133,7 @@
             [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/cancelBcOrderInfo.do" params:@{@"ids":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
                 if (!error) {
                     [self showHUDWithText:@"取消成功"];
-                    [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
+                    [self requestData];
                 }
             }];
         }];

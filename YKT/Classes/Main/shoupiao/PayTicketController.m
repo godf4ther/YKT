@@ -202,12 +202,24 @@
 }
 
 - (IBAction)cancelAction:(id)sender {
-    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/cancelOrder.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
-        if (!error) {
-            [self showHUDWithText:@"取消成功"];
-            [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3] animated:YES];
-        }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:self.isBC ? @"eBusiness/bc/cancelBcOrderInfo.do":@"member/order/cancelOrder.do" params:self.isBC ? @{@"ids":self.orderId}:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+            if (!error) {
+                [self showHUDWithText:@"取消成功"];
+//                [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3] animated:YES];
+                [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
+            }
+        }];
     }];
+    [alert addAction:cancelAction];
+    [alert addAction:sureAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+
 }
 
 -(void)WXpayResult:(NSNotification*)sender{

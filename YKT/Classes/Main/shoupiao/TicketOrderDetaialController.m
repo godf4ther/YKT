@@ -12,6 +12,8 @@
 #import "PayTicketController.h"
 #import "RefundController.h"
 #import "NeedToKownController.h"
+#import "MXController.h"
+#import "TicketListController.h"
 @interface TicketOrderDetaialController ()
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *busTime;
@@ -33,6 +35,7 @@
 @property (nonatomic, assign) BOOL isLS;
 @property (weak, nonatomic) IBOutlet UILabel *payType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelBtnWidth;
+@property (nonatomic, strong) NSDictionary *data;
 @end
 
 @implementation TicketOrderDetaialController
@@ -51,8 +54,13 @@
     [self popOut];
     self.navigationItem.title = @"订单详情";
     LRViewBorderRadius(self.statusLabel, 5, 1, ThemeColor);
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GQSUCCESS:) name:@"GAIQIANSUCCESS" object:nil];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)GQSUCCESS:(NSNotification *)notification {
+    self.orderId = notification.object;
+    [self requestData];
 }
 
 - (void)requestData{
@@ -60,6 +68,7 @@
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata[0];
+            self.data = dic;
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
             NSString *busTime = dic[@"busTime"];
             self.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)],[busTime substringWithRange:NSMakeRange(8, 2)],[busTime substringWithRange:NSMakeRange(10, 2)]];
@@ -201,7 +210,7 @@
             [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/cancelOrder.do" params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
                 if (!error) {
                     [self showHUDWithText:@"取消成功"];
-                    [self performSelector:@selector(popOutAction) withObject:nil afterDelay:1.0];
+                    [self requestData];
                 }
             }];
         }];
@@ -222,9 +231,25 @@
         payVC.orderId = self.orderId;
         [self.navigationController pushViewController:payVC animated:YES];
     }
+    else if ([sender.titleLabel.text isEqualToString:@"改签"]) {
+        TicketListController *ticketList = [TicketListController new];
+        ticketList.orderId = self.orderId;
+        NSString *busTime = self.data[@"busTime"];
+        ticketList.centerDate = [NSString stringWithFormat:@"%@-%@-%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)]];
+        ticketList.startStationDic = @{@"StationName":self.data[@"sellStationName"],@"StationId":self.data[@"sellStationId"]};
+        ticketList.endStationDic = @{@"StationName":self.data[@"endStationName"],@"StationId":self.data[@"endStationId"]};
+        ticketList.isGQ = YES;
+        [self.navigationController pushViewController:ticketList animated:YES];
+    }
     else if ([sender.titleLabel.text isEqualToString:@"评价"]) {
         
     }
+}
+- (IBAction)goMX:(UIButton *)sender {
+    MXController *mxVC = [MXController new];
+    mxVC.price = self.data[@"totalPrice"];
+    mxVC.isPay = [self.data[@"status"] isEqualToString:@"1"];
+    [self.navigationController pushViewController:mxVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

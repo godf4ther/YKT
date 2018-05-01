@@ -57,11 +57,17 @@
     [self popOut];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ - %@",self.startStationDic[@"StationName"],self.endStationDic[@"StationName"]];
     [self.centerBtn setTitle:[self dateStrChange:self.centerDate] forState:UIControlStateNormal];
-    NSDate *date = [self.formatter dateFromString:self.currentDate];
-    NSInteger sellDay = [self.startStationDic[@"sellDay"] integerValue];
-    NSDate *sellDayDate = [NSDate dateWithTimeInterval:24*60*60*sellDay sinceDate:date];
-    self.sellDayDate = [self.formatter stringFromDate:sellDayDate];
-    [self cheakDate];
+    if (!self.isGQ) {
+        NSDate *date = [self.formatter dateFromString:self.currentDate];
+        NSInteger sellDay = [self.startStationDic[@"sellDay"] integerValue];
+        NSDate *sellDayDate = [NSDate dateWithTimeInterval:24*60*60*sellDay sinceDate:date];
+        self.sellDayDate = [self.formatter stringFromDate:sellDayDate];
+        [self cheakDate];
+    }
+    else {
+        self.lastDayBtn.enabled = NO;
+        self.nextDayBtn.enabled = NO;
+    }
     self.tableView.rowHeight = 70;
     [self.tableView registerNib:[UINib nibWithNibName:@"TicketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TicketCell"];
     self.tableView.delegate = self;
@@ -163,15 +169,43 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (![KRUserInfo sharedKRUserInfo].memberId) {
-        LoginViewController *loginVC = [LoginViewController new];
-        BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
-        [self presentViewController:navi animated:YES completion:nil];
+    if (self.isGQ) {
+        NSDictionary *dic = self.dataArr[indexPath.row];
+        NSString *message = [NSString stringWithFormat:@"改签车次:%@次\n%@\n%@ %@\n您是否需要改签此车次",dic[@"BusId"],dic[@"RouteName"],dic[@"BusDate"],dic[@"BusStartTime"]];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            params[@"newBusDate"] = dic[@"BusDate"];
+            params[@"newBusId"] = dic[@"BusId"];
+            params[@"newBusStartTime"] = dic[@"BusStartTime"];
+            params[@"newCheckGate"] = dic[@"CheckGateName"];
+            params[@"newEndStationId"] = dic[@"StationId"];
+            params[@"newEndStationName"] = dic[@"StationName"];
+            params[@"newVehicleTypeName"] = dic[@"VehicleTypeName"];
+            params[@"orderId"] = self.orderId;
+            [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/order/changeOrder.do" params:params withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+                if (showdata) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"GAIQIANSUCCESS" object:showdata[@"orderId"]];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        }];
+        [alert addAction:cancelAction];
+        [alert addAction:sureAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        EidtTicketOrderController *editVC = [EidtTicketOrderController new];
-        editVC.ticketDic = self.dataArr[indexPath.row];
-        [self.navigationController pushViewController:editVC animated:YES];
+        if (![KRUserInfo sharedKRUserInfo].memberId) {
+            LoginViewController *loginVC = [LoginViewController new];
+            BaseNaviViewController *navi = [[BaseNaviViewController alloc] initWithRootViewController:loginVC];
+            [self presentViewController:navi animated:YES completion:nil];
+        }
+        else {
+            EidtTicketOrderController *editVC = [EidtTicketOrderController new];
+            editVC.ticketDic = self.dataArr[indexPath.row];
+            [self.navigationController pushViewController:editVC animated:YES];
+        }
     }
 }
 

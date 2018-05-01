@@ -9,7 +9,6 @@
 #import "TicketOrderListController.h"
 #import "MyOrderListCell.h"
 #import "LRMacroDefinitionHeader.h"
-#import "PayTicketController.h"
 #import "TicketOrderDetaialController.h"
 #import "BcDetailController.h"
 @interface TicketOrderListController ()<UITableViewDelegate,UITableViewDataSource>
@@ -84,17 +83,17 @@
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderListCell" forIndexPath:indexPath];
     NSDictionary *dic = self.dataArr[indexPath.section][indexPath.row];
     cell.orderNo.text = dic[@"organName"];
-    cell.statusLabel.text = dic[@"statusName"];
     cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
     cell.orderType.text = dic[@"orderTypeName"];
     if ([cell.orderType.text isEqualToString:@"汽车票"]) {
+        cell.statusLabel.text = dic[@"busStatusName"];
         cell.busId.hidden = NO;
         cell.carIcon.hidden = NO;
         cell.busId.text = dic[@"busId"];
         if ([dic[@"busTime"] length] == 8) {
             cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
         }
-        else if ([dic[@"busTime"] length] == 12) {
+        else if ([dic[@"busTime"] length] >= 12) {
             cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(8, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(10, 2)]];
         }
         cell.startStation.text = dic[@"sellStationName"];
@@ -102,6 +101,7 @@
         cell.busIdHeight.constant = 25;
     }
     else {
+        cell.statusLabel.text = dic[@"bcStatusName"];
         if ([dic[@"journeyType"] isEqualToString:@"1"]) {
             cell.busId.hidden = YES;
             cell.carIcon.hidden = YES;

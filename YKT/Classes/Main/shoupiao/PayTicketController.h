@@ -13,4 +13,5 @@
 @property (nonatomic, assign) BOOL isBC;
 @property (nonatomic, strong) NSString *journeyStartTime;
 @property (nonatomic, strong) NSString *journeyEndTime;
+@property (nonatomic, assign) BOOL popTwoView;
 @end

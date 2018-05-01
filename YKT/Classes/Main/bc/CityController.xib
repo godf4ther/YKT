@@ -34,9 +34,10 @@
                                     </constraints>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     <connections>
                                         <action selector="editChange:" destination="-1" eventType="editingChanged" id="SMw-Tt-owg"/>
+                                        <action selector="editOnReturn:" destination="-1" eventType="editingDidEndOnExit" id="UO6-Eo-VhN"/>
                                     </connections>
                                 </textField>
                             </subviews>

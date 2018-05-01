@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSDictionary *endStationDic;
 @property (nonatomic, strong) NSString *centerDate;
 @property (nonatomic, strong) NSString *currentDate;
+@property (nonatomic, assign) BOOL isGQ;
+@property (nonatomic, strong) NSString *orderId;
 @end

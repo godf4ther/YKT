@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *takePerson1;
 @property (weak, nonatomic) IBOutlet UIButton *takePerson2;
 @property (weak, nonatomic) IBOutlet UIButton *takePerson3;
+@property (weak, nonatomic) IBOutlet UIView *takePersonContainer;
+@property (nonatomic, strong) UIButton *preTakeBtn;
 @end
 
 @implementation EidtTicketOrderController
@@ -68,9 +70,6 @@
     [self popOut];
     self.navigationItem.title = @"填写订单";
     [self setValues];
-    self.takePerson1.hidden = YES;
-    self.takePerson2.hidden = YES;
-    self.takePerson3.hidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -118,17 +117,43 @@
     };
     [self.navigationController pushViewController:passengerVC animated:YES];
 }
+- (IBAction)chooseTakePerson:(UIButton *)sender {
+    if (sender == self.preTakeBtn) {
+        return;
+    }
+    sender.selected = YES;
+    LRViewBorderRadius(sender, 0, 1, ThemeColor);
+    LRViewBorderRadius(self.preTakeBtn, 0, 1, [UIColor whiteColor]);
+    self.preTakeBtn.selected = NO;
+    self.preTakeBtn = sender;
+    self.pickTicketPhoneField.text = self.passengerArr[sender.tag - 1][@"passengerPhone"];
+}
 
 - (void)setUpPassengerUI {
+    self.takePerson1.hidden = YES;
+    self.takePerson2.hidden = YES;
+    self.takePerson3.hidden = YES;
     self.passengerViewHeight.constant = 85 * self.passengerArr.count;
     if (self.passengerArr.count == 0) {
-        self.pickTicketPeoeleField.text = nil;
         self.pickTicketPhoneField.text = nil;
         return;
     }
-    self.pickTicketPeoeleField.text = self.passengerArr[0][@"passengerName"];
-    self.pickTicketPhoneField.text = self.passengerArr[0][@"passengerPhone"];
     for (int i = 0; i < self.passengerArr.count; i ++) {
+        if (i < 3) {
+            UIButton *takeBtn = [self.takePersonContainer viewWithTag:i + 1];
+            takeBtn.hidden = NO;
+            [takeBtn setTitle:self.passengerArr[i][@"passengerName"] forState:UIControlStateNormal];
+            if (i == 0) {
+                LRViewBorderRadius(takeBtn, 0, 1, ThemeColor);
+                self.pickTicketPhoneField.text = self.passengerArr[i][@"passengerPhone"];
+                takeBtn.selected = YES;
+                self.preTakeBtn = takeBtn;
+            }
+            else {
+                LRViewBorderRadius(takeBtn, 0, 1, [UIColor whiteColor]);
+                takeBtn.selected = NO;
+            }
+        }
         TickerOrderPeople *peopleView = self.passengerViewArr[i];
         NSMutableDictionary *dic = self.passengerArr[i];
         peopleView.name.text = dic[@"passengerName"];
@@ -214,20 +239,20 @@
         sender.enabled = NO;
         return;
     }
-    if ([self cheakIsNull:self.pickTicketPeoeleField.text]) {
-        [self showHUDWithText:@"请输入取票人"];
-        sender.enabled = NO;
-        return;
-    }
-    if (![self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
-        [self showHUDWithText:@"请输入取票手机号"];
-        sender.enabled = NO;
-        return;
-    }
+//    if (self.takePerson1.hidden) {
+//        [self showHUDWithText:@"请选择取票人"];
+//        sender.enabled = NO;
+//        return;
+//    }
+//    if (![self cheakPhoneNumber:self.pickTicketPhoneField.text]) {
+//        [self showHUDWithText:@"请输入取票手机号"];
+//        sender.enabled = NO;
+//        return;
+//    }
     [self showLoadingHUD];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"busInfo"] = [self changeStr:@{@"busDate":self.ticketDic[@"BusDate"],@"busId":self.ticketDic[@"BusId"],@"busKind":self.ticketDic[@"BusKind"],@"busStartTime":self.ticketDic[@"BusStartTime"],@"buyType":@4,@"checkGate":self.ticketDic[@"CheckGateName"],@"endStationId":self.ticketDic[@"StationId"],@"endStationName":self.ticketDic[@"RouteEndStationName"],@"fullTicketPrice":self.ticketDic[@"FullPrice"],@"halfTicketPrice":self.ticketDic[@"HalfPrice"],@"routeName":self.ticketDic[@"RouteName"],@"startStationId":self.ticketDic[@"SellStationId"],@"startStationName":self.ticketDic[@"SellStationName"],@"vehicleTypeName":self.ticketDic[@"VehicleTypeName"]}];
-    params[@"gettkMan"] = self.pickTicketPeoeleField.text;
+    params[@"gettkMan"] = self.preTakeBtn.titleLabel.text;
     params[@"gettkPhone"] = self.pickTicketPhoneField.text;
     params[@"passengers"] = [self changeStr:self.passengerArr];
     params[@"token"] = [KRUserInfo sharedKRUserInfo].token;
