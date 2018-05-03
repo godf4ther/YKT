@@ -18,6 +18,7 @@
 #import "MANaviRoute.h"
 #import "CommonUtility.h"
 #import "NeedToKownController.h"
+#import "WritePassengerController.h"
 static const NSInteger RoutePlanningPaddingEdge                    = 20;
 @interface WriteOrderViewController ()<UIScrollViewDelegate,MAMapViewDelegate,AMapSearchDelegate>
 @property (nonatomic, strong) NSDateFormatter *formatter;
@@ -44,6 +45,10 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 
 /* 用于显示当前路线方案. */
 @property (nonatomic) MANaviRoute * naviRoute;
+@property (weak, nonatomic) IBOutlet UIButton *chirdBtn;
+@property (weak, nonatomic) IBOutlet UIButton *largeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *smarlBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nowStartBtn;
 
 @end
 
@@ -247,14 +252,12 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)linkMan:(id)sender {
-    PassengerListViewController *listVC = [PassengerListViewController new];
-    listVC.sblock = ^(NSDictionary *dic) {
+    WritePassengerController *passengerVC = [WritePassengerController new];
+    passengerVC.block = ^(NSDictionary *dic) {
         self.linkmanDic = dic;
         self.linkmanLabel.text = dic[@"passengerName"];
     };
-    listVC.isSingleSelect = YES;
-    listVC.isSelect = YES;
-    [self.navigationController pushViewController:listVC animated:YES];
+    [self.navigationController pushViewController:passengerVC animated:YES];
 }
 - (IBAction)remark:(id)sender {
     self.markContainer.hidden = NO;
@@ -310,7 +313,21 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     params[@"endYAxial"] = self.journeyEndDic[@"latitude"];;
     params[@"journeyType"] = self.journeyType;
     params[@"largeBaggageCount"] = @"0";
-    params[@"orderAnnotation"] = self.markDetail.text;
+    NSMutableString *mustr = [NSMutableString string];
+    [mustr appendString:self.markDetail.text];
+    if (self.chirdBtn.selected) {
+        [mustr appendString:self.chirdBtn.titleLabel.text];
+    }
+    if (self.largeBtn.selected) {
+        [mustr appendString:self.largeBtn.titleLabel.text];
+    }
+    if (self.smarlBtn.selected) {
+        [mustr appendString:self.smarlBtn.titleLabel.text];
+    }
+    if (self.nowStartBtn.selected) {
+        [mustr appendString:self.nowStartBtn.titleLabel.text];
+    }
+    params[@"orderAnnotation"] = mustr;
     params[@"orderPerson"] = self.linkmanDic[@"passengerName"];
     params[@"orderPersonPhone"] = self.linkmanDic[@"mobile"];
     params[@"pessangeCount"] = @"1";

@@ -25,7 +25,7 @@
     [self popOut];
     self.navigationItem.title = [self.type isEqualToString:@"0"] ? @"出发":@"到达";
     if ([self.type isEqualToString:@"1"]) {
-        self.hisArr = @[];
+        self.hisArr = [self getFromDefaultsWithKey:@"hisEndStation"];
     }
     else {
         self.hisArr = [self getFromDefaultsWithKey:@"hisStartStation"];
@@ -130,7 +130,12 @@
         cell.textLabel.textColor = ColorRgbValue(0x333333);
     }
     if ([self.type isEqualToString:@"1"]) {
-        cell.textLabel.text = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationName"];
+        if (self.hisArr == 0) {
+            cell.textLabel.text = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationName"];
+        }
+        else {
+            cell.textLabel.text = self.dataArr[indexPath.section - 1][@"data"][indexPath.row][@"StationName"];
+        }
     }
     else{
         if (self.hisArr == 0) {
@@ -143,8 +148,8 @@
     return cell;
 }
 
-- (void)didSelectHisCity:(NSDictionary *)hotCity {
-    self.block(hotCity);
+- (void)didSelectHisCity:(NSDictionary *)hisCity {
+    self.block(hisCity);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -178,8 +183,14 @@
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if ([self.type isEqualToString:@"1"]) {
-        dic[@"StationId"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationId"];
-        dic[@"StationName"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationName"];
+        if (self.hisArr.count == 0) {
+            dic[@"StationId"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationId"];
+            dic[@"StationName"] = self.dataArr[indexPath.section][@"data"][indexPath.row][@"StationName"];
+        }
+        else {
+            dic[@"StationId"] = self.dataArr[indexPath.section - 1][@"data"][indexPath.row][@"StationId"];
+            dic[@"StationName"] = self.dataArr[indexPath.section - 1][@"data"][indexPath.row][@"StationName"];
+        }
     }
     else {
         if (self.hisArr.count == 0) {
@@ -193,7 +204,14 @@
             dic[@"StationName"] = self.dataArr[indexPath.section - 1][@"data"][indexPath.row][@"stationName"];
         }
     }
-    if (![self.type isEqualToString:@"1"]) {
+    if ([self.type isEqualToString:@"1"]) {
+        NSMutableArray *MuhisArr = [NSMutableArray arrayWithArray:self.hisArr];
+        if (![MuhisArr containsObject:dic]) {
+            [MuhisArr addObject:dic];
+            [self saveToUserDefaultsWithKey:@"hisEndStation" Value:MuhisArr];
+        }
+    }
+    else {
         NSMutableArray *MuhisArr = [NSMutableArray arrayWithArray:self.hisArr];
         if (![MuhisArr containsObject:dic]) {
             [MuhisArr addObject:dic];

@@ -83,20 +83,20 @@
             self.linkman.text = dic[@"orderPerson"];
             self.linkmanPhone.text = dic[@"orderPersonPhone"];
             self.sureBtnWidth.constant = SIZEWIDTH / 2;
-            NSString *status = dic[@"status"];
-            if ([status isEqualToString:@"0"]) {
+            NSString *status = dic[@"bcStatus"];
+            if ([status isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"去支付" forState:UIControlStateNormal];
             }
-            else if ([status isEqualToString:@"1"]) {
+            else if ([status isEqualToString:@"-1"] || [status isEqualToString:@"7"] || [status isEqualToString:@"9"]) {
+                self.bottomHeight.constant = 0;
+                self.bottomVIew.hidden = YES;
+            }
+            else {
                 [self.cancelBtn setTitle:@"退款" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"评价" forState:UIControlStateNormal];
                 self.sureBtnWidth.constant = SIZEWIDTH;
                 self.sureBtn.hidden = YES;
-            }
-            else {
-                self.bottomHeight.constant = 0;
-                self.bottomVIew.hidden = YES;
             }
             if ([dic[@"payType"] isEqualToString:@""]) {
                 self.payType.text = @"未支付";

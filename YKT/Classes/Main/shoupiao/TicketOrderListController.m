@@ -14,10 +14,18 @@
 #import "MJRefresh.h"
 @interface TicketOrderListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (weak, nonatomic) IBOutlet UILabel *noDataLabel;
 @end
 
 @implementation TicketOrderListController
+
+- (NSMutableArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -49,6 +57,10 @@
         [self.tableView.mj_header endRefreshing];
         if (showdata) {
             NSArray *arr = showdata;
+            [self.dataArr removeAllObjects];
+            if (arr.count == 0) {
+                self.noDataLabel.hidden = NO;
+            }
             NSMutableArray *muarr1 = [NSMutableArray array];
             NSMutableArray *muarr2 = [NSMutableArray array];
             for (NSDictionary *dic in arr) {
@@ -59,7 +71,12 @@
                     [muarr2 addObject:dic];
                 }
             }
-            self.dataArr = @[muarr1,muarr2];
+            if (muarr1.count != 0) {
+                [self.dataArr addObject:@{@"title":@"待处理",@"data":muarr1}];
+            }
+            if (muarr2.count != 0) {
+                [self.dataArr addObject:@{@"title":@"已完成",@"data":muarr2}];
+            }
             [self.tableView reloadData];
         }
     }];
@@ -70,7 +87,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataArr[section] count];
+    return [self.dataArr[section][@"data"] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -78,14 +95,11 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"待处理";
-    }
-    return @"已完成";
+    return self.dataArr[section][@"title"];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderListCell" forIndexPath:indexPath];
-    NSDictionary *dic = self.dataArr[indexPath.section][indexPath.row];
+    NSDictionary *dic = self.dataArr[indexPath.section][@"data"][indexPath.row];
     cell.orderNo.text = dic[@"organName"];
     cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
     cell.orderType.text = dic[@"orderTypeName"];
@@ -128,7 +142,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *dic = self.dataArr[indexPath.section][indexPath.row];
+    NSDictionary *dic = self.dataArr[indexPath.section][@"data"][indexPath.row];
     if ([dic[@"orderTypeName"] isEqualToString:@"汽车票"]) {
         TicketOrderDetaialController *detailVC = [TicketOrderDetaialController new];
         detailVC.orderId = dic[@"id"];
