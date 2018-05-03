@@ -60,7 +60,7 @@
     if (!self.isGQ) {
         NSDate *date = [self.formatter dateFromString:self.currentDate];
         NSInteger sellDay = [self.startStationDic[@"sellDay"] integerValue];
-        NSDate *sellDayDate = [NSDate dateWithTimeInterval:24*60*60*sellDay sinceDate:date];
+        NSDate *sellDayDate = [NSDate dateWithTimeInterval:24*60*60*(sellDay - 1) sinceDate:date];
         self.sellDayDate = [self.formatter stringFromDate:sellDayDate];
         [self cheakDate];
     }

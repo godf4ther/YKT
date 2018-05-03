@@ -52,7 +52,7 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 - (NSDateFormatter *)formatter{
     if (!_formatter) {
         _formatter = [[NSDateFormatter alloc] init];
-        [_formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        [_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     }
     return _formatter;
 }

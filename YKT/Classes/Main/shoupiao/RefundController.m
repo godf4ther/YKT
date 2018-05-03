@@ -32,6 +32,7 @@
             }
             else {
                 self.money.text = [NSString stringWithFormat:@"￥%@",dic[@"totalCharge"]];
+                self.totalCharge = dic[@"totalCharge"];
             }
         }
     }];

@@ -34,8 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *takePerson1;
 @property (weak, nonatomic) IBOutlet UIButton *takePerson2;
 @property (weak, nonatomic) IBOutlet UIButton *takePerson3;
+@property (weak, nonatomic) IBOutlet UIButton *takePerson4;
 @property (weak, nonatomic) IBOutlet UIView *takePersonContainer;
 @property (nonatomic, strong) UIButton *preTakeBtn;
+@property (nonatomic, strong) NSDictionary *otherTakePersonDic;
 @end
 
 @implementation EidtTicketOrderController
@@ -98,6 +100,7 @@
     PassengerListViewController *passengerVC = [PassengerListViewController new];
     passengerVC.isSelect = YES;
     passengerVC.block = ^(NSArray *passengerArr) {
+        [self.passengerArr removeAllObjects];
         for (NSDictionary *dic in passengerArr) {
             NSMutableDictionary *params = [NSMutableDictionary dictionary];
             params[@"needInsurance"] = @"0";
@@ -126,13 +129,20 @@
     LRViewBorderRadius(self.preTakeBtn, 0, 1, [UIColor whiteColor]);
     self.preTakeBtn.selected = NO;
     self.preTakeBtn = sender;
-    self.pickTicketPhoneField.text = self.passengerArr[sender.tag - 1][@"passengerPhone"];
+    if (sender.tag > 3 || sender.tag > self.passengerArr.count) {
+        self.pickTicketPhoneField.text = self.otherTakePersonDic[@"mobile"];
+    }
+    else {
+        self.pickTicketPhoneField.text = self.passengerArr[sender.tag - 1][@"passengerPhone"];
+    }
+    
 }
 
 - (void)setUpPassengerUI {
     self.takePerson1.hidden = YES;
     self.takePerson2.hidden = YES;
     self.takePerson3.hidden = YES;
+    self.takePerson4.hidden = YES;
     self.passengerViewHeight.constant = 85 * self.passengerArr.count;
     if (self.passengerArr.count == 0) {
         self.pickTicketPhoneField.text = nil;
@@ -306,6 +316,24 @@
     return str1;
 }
 
+- (IBAction)chooseOtherTakePerson:(id)sender {
+    PassengerListViewController *listVC = [PassengerListViewController new];
+    listVC.sblock = ^(NSDictionary *dic) {
+        self.otherTakePersonDic = dic;
+        UIButton *sender = [self.takePersonContainer viewWithTag:self.passengerArr.count <= 3 ? self.passengerArr.count + 1 : 4];
+        [sender setTitle:dic[@"passengerName"] forState:UIControlStateNormal];
+        sender.hidden = NO;
+        sender.selected = YES;
+        LRViewBorderRadius(sender, 0, 1, ThemeColor);
+        LRViewBorderRadius(self.preTakeBtn, 0, 1, [UIColor whiteColor]);
+        self.preTakeBtn.selected = NO;
+        self.preTakeBtn = sender;
+        self.pickTicketPhoneField.text = dic[@"mobile"];
+    };
+    listVC.isSingleSelect = YES;
+    listVC.isSelect = YES;
+    [self.navigationController pushViewController:listVC animated:YES];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view endEditing:YES];

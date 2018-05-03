@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSString *journeyStartTime;
 @property (nonatomic, strong) NSString *journeyEndTime;
 @property (nonatomic, assign) BOOL popTwoView;
+@property (nonatomic, assign) BOOL paySuccessBack;
 @end

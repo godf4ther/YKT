@@ -11,6 +11,7 @@
 #import "LRMacroDefinitionHeader.h"
 #import "TicketOrderDetaialController.h"
 #import "BcDetailController.h"
+#import "MJRefresh.h"
 @interface TicketOrderListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
@@ -37,12 +38,15 @@
     self.tableView.estimatedRowHeight = 190;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"MyOrderListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyOrderListCell"];
-    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestData];
+    }];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)requestData {
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"eBusiness/bc/findOrderInfoByCondition.do" params:nil withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        [self.tableView.mj_header endRefreshing];
         if (showdata) {
             NSArray *arr = showdata;
             NSMutableArray *muarr1 = [NSMutableArray array];

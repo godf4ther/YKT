@@ -156,6 +156,7 @@
         payVC.journeyStartTime = self.journeyStartTime;
         payVC.journeyEndTime = self.journeyEndTime;
         payVC.isBC = YES;
+        payVC.paySuccessBack = YES;
         [self.navigationController pushViewController:payVC animated:YES];
     }
     else if ([sender.titleLabel.text isEqualToString:@"评价"]) {

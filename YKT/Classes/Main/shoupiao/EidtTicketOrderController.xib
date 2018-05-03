@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,6 +26,7 @@
                 <outlet property="takePerson1" destination="Xyu-p9-YSF" id="Yhn-J9-0os"/>
                 <outlet property="takePerson2" destination="HZG-v4-PPW" id="v9t-gb-2eN"/>
                 <outlet property="takePerson3" destination="kj8-Tx-Eea" id="gJO-gB-v2b"/>
+                <outlet property="takePerson4" destination="NSi-ZT-p1b" id="2WM-lY-lXV"/>
                 <outlet property="takePersonContainer" destination="BL2-H0-fMj" id="cAJ-KS-Gge"/>
                 <outlet property="time" destination="PWn-3c-yiM" id="Nca-X3-Rpl"/>
                 <outlet property="unitPrice" destination="ig7-hQ-8po" id="tjJ-vU-Lhu"/>
@@ -143,13 +144,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="187" height="35"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥30.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ig7-hQ-8po">
-                                                    <rect key="frame" x="93" y="9.5" width="52" height="17"/>
+                                                    <rect key="frame" x="92.5" y="9.5" width="52" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="票价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxX-Ym-HCV">
-                                                    <rect key="frame" x="50" y="9.5" width="43" height="17"/>
+                                                    <rect key="frame" x="49.5" y="9.5" width="43" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -344,6 +345,25 @@
                                                 <action selector="chooseTakePerson:" destination="-1" eventType="touchUpInside" id="YLl-dQ-b8Y"/>
                                             </connections>
                                         </button>
+                                        <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSi-ZT-p1b">
+                                            <rect key="frame" x="273" y="10" width="50" height="30"/>
+                                            <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="C1d-mg-lpo"/>
+                                                <constraint firstAttribute="height" constant="30" id="vkY-wu-vvq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="chooseTakePerson:" destination="-1" eventType="touchUpInside" id="Cyp-7l-QjR"/>
+                                            </connections>
+                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="左箭头" translatesAutoresizingMaskIntoConstraints="NO" id="KO7-hV-zdq">
                                             <rect key="frame" x="343" y="15" width="20" height="20"/>
                                             <constraints>
@@ -353,15 +373,18 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="XXz-ck-zjg" secondAttribute="trailing" id="11q-2l-5QT"/>
                                         <constraint firstItem="Xyu-p9-YSF" firstAttribute="leading" secondItem="hdk-FY-UwH" secondAttribute="trailing" constant="12" id="2gb-os-Kgh"/>
                                         <constraint firstItem="XXz-ck-zjg" firstAttribute="leading" secondItem="BL2-H0-fMj" secondAttribute="leading" id="CdS-BT-hSI"/>
+                                        <constraint firstItem="NSi-ZT-p1b" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="Df5-cm-IFE"/>
                                         <constraint firstAttribute="trailing" secondItem="KO7-hV-zdq" secondAttribute="trailing" constant="12" id="HzM-nB-aCc"/>
                                         <constraint firstItem="hdk-FY-UwH" firstAttribute="leading" secondItem="WFO-pe-5w8" secondAttribute="trailing" constant="12" id="LtU-7m-jFx"/>
                                         <constraint firstItem="kj8-Tx-Eea" firstAttribute="leading" secondItem="HZG-v4-PPW" secondAttribute="trailing" constant="12" id="WaC-mD-LRX"/>
                                         <constraint firstItem="Xyu-p9-YSF" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="Xnn-aD-cNJ"/>
                                         <constraint firstItem="kj8-Tx-Eea" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="cVS-HZ-a0F"/>
+                                        <constraint firstItem="NSi-ZT-p1b" firstAttribute="leading" secondItem="kj8-Tx-Eea" secondAttribute="trailing" constant="12" id="chI-mB-up1"/>
                                         <constraint firstItem="hdk-FY-UwH" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="fm1-XA-4fk"/>
                                         <constraint firstItem="HZG-v4-PPW" firstAttribute="leading" secondItem="Xyu-p9-YSF" secondAttribute="trailing" constant="12" id="iVl-3r-IGc"/>
                                         <constraint firstItem="KO7-hV-zdq" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="jyH-34-Rwp"/>
@@ -371,6 +394,9 @@
                                         <constraint firstItem="WFO-pe-5w8" firstAttribute="leading" secondItem="BL2-H0-fMj" secondAttribute="leading" constant="12" id="wAn-yU-0fY"/>
                                         <constraint firstItem="WFO-pe-5w8" firstAttribute="centerY" secondItem="BL2-H0-fMj" secondAttribute="centerY" id="xew-m2-NHf"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="5wv-qD-962" appends="YES" id="hhe-60-f2x"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAs-QC-jUg">
                                     <rect key="frame" x="0.0" y="329.5" width="375" height="50"/>
@@ -568,6 +594,11 @@
         <tapGestureRecognizer id="did-1n-KKo">
             <connections>
                 <action selector="chooseDiscountCoupon:" destination="-1" id="qr7-aO-1or"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="5wv-qD-962">
+            <connections>
+                <action selector="chooseOtherTakePerson:" destination="-1" id="uqE-X1-5x7"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

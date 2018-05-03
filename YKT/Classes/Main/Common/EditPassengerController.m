@@ -66,10 +66,10 @@
         [self showHUDWithText:@"请输入正确手机号"];
         return;
     }
-//    if (![self accurateVerifyIDCardNumber:self.cardField.text]) {
-//        [self showHUDWithText:@"请输入正确身份证号"];
-//        return;
-//    }
+    if (![self accurateVerifyIDCardNumber:self.cardField.text]) {
+        [self showHUDWithText:@"请输入正确身份证号"];
+        return;
+    }
     NSDictionary *params;
     NSString *url;
     if (self.dic) {

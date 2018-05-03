@@ -11,9 +11,9 @@
 #import "CodeController.h"
 #import "PayTicketController.h"
 #import "RefundController.h"
-#import "NeedToKownController.h"
 #import "MXController.h"
 #import "TicketListController.h"
+#import "webViewController.h"
 @interface TicketOrderDetaialController ()
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *busTime;
@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pwdContainerHeight;
 @property (nonatomic, strong) NSArray *passengerArr;
 @property (weak, nonatomic) IBOutlet UIView *passengerContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passengerHeight;
@@ -36,6 +37,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *payType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cancelBtnWidth;
 @property (nonatomic, strong) NSDictionary *data;
+@property (weak, nonatomic) IBOutlet UIView *pwdContainer;
+@property (weak, nonatomic) IBOutlet UIView *codeContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *codeContainerHeight;
 @end
 
 @implementation TicketOrderDetaialController
@@ -83,6 +87,18 @@
             self.isLS = [dic[@"busKind"] integerValue] == 1;
             NSString *status = dic[@"busStatus"];
             self.cancelBtnWidth.constant = SIZEWIDTH / 2;
+            if (![status isEqualToString:@"1"]) {
+                self.pwdContainer.hidden = YES;
+                self.codeContainer.hidden = YES;
+                self.pwdContainerHeight.constant = 0;
+                self.codeContainerHeight.constant = 0;
+            }
+            else {
+                self.pwdContainer.hidden = NO;
+                self.codeContainer.hidden = NO;
+                self.pwdContainerHeight.constant = 48;
+                self.codeContainerHeight.constant = 48;
+            }
             if ([status isEqualToString:@"0"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"去支付" forState:UIControlStateNormal];
@@ -199,8 +215,8 @@
     [self.navigationController pushViewController:codeVC animated:YES];
 }
 - (IBAction)goExplain:(id)sender {
-    NeedToKownController *needVC = [NeedToKownController new];
-    [self.navigationController pushViewController:needVC animated:YES];
+    webViewController *webViewVC = [webViewController new];
+    [self.navigationController pushViewController:webViewVC animated:YES];
 }
 - (IBAction)cancelAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {
@@ -229,6 +245,7 @@
     if ([sender.titleLabel.text isEqualToString:@"去支付"]) {
         PayTicketController *payVC = [PayTicketController new];
         payVC.orderId = self.orderId;
+        payVC.paySuccessBack = YES;
         [self.navigationController pushViewController:payVC animated:YES];
     }
     else if ([sender.titleLabel.text isEqualToString:@"改签"]) {

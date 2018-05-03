@@ -182,7 +182,12 @@
 
 - (void)paySuccess {
     [self showHUDWithText:@"支付成功"];
-    [self goList];
+    if (self.paySuccessBack) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self goList];
+    }
 }
 
 - (void)payFail {

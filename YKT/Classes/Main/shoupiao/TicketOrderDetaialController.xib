@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,6 +16,8 @@
                 <outlet property="busTime" destination="d9M-yQ-2kb" id="pO1-gd-yG7"/>
                 <outlet property="cancelBtn" destination="7GZ-xL-kcf" id="yD2-RF-qtQ"/>
                 <outlet property="cancelBtnWidth" destination="gIE-u7-xfv" id="YCP-d1-IgL"/>
+                <outlet property="codeContainer" destination="5es-7E-w7v" id="VGd-4a-ElV"/>
+                <outlet property="codeContainerHeight" destination="KcU-yZ-Sf2" id="D4T-zT-9tV"/>
                 <outlet property="endStation" destination="P3B-Sm-ZfG" id="a1v-wo-NOz"/>
                 <outlet property="orderNo" destination="ONb-8r-7EU" id="2cP-5i-aJf"/>
                 <outlet property="orderTime" destination="ofk-zb-gmq" id="XAY-fz-GUa"/>
@@ -25,6 +27,8 @@
                 <outlet property="pickPeople" destination="Hih-W4-rK6" id="YfF-ts-6jy"/>
                 <outlet property="pickPhone" destination="8r8-aw-a92" id="ZZt-jm-gXz"/>
                 <outlet property="priceLabel" destination="oTj-0e-Ig5" id="map-Jn-qK9"/>
+                <outlet property="pwdContainer" destination="lCM-ik-mMG" id="fBO-rk-GXl"/>
+                <outlet property="pwdContainerHeight" destination="4Ge-0U-AGG" id="jgQ-q4-CaM"/>
                 <outlet property="pwdLabel" destination="hRn-1g-VD7" id="0MA-65-aZG"/>
                 <outlet property="startStation" destination="ryq-Sx-P8m" id="01f-cK-aTT"/>
                 <outlet property="statusLabel" destination="3qy-sy-6TL" id="CWE-MT-Rcm"/>
@@ -41,7 +45,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-F5-GOg">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-Xr-yUe">
                                     <rect key="frame" x="0.0" y="1" width="375" height="48"/>
@@ -155,7 +159,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCM-ik-mMG">
-                                    <rect key="frame" x="0.0" y="162" width="375" height="48"/>
+                                    <rect key="frame" x="0.0" y="155" width="375" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="取票密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhQ-ft-vka">
                                             <rect key="frame" x="12" y="16" width="57.5" height="17"/>
@@ -179,7 +183,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5es-7E-w7v">
-                                    <rect key="frame" x="0.0" y="211" width="375" height="48"/>
+                                    <rect key="frame" x="0.0" y="204" width="375" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看二维码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnf-BM-Ifh">
                                             <rect key="frame" x="12" y="16" width="71.5" height="17"/>
@@ -218,7 +222,7 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymb-Xe-3tO">
-                                    <rect key="frame" x="0.0" y="264" width="375" height="105"/>
+                                    <rect key="frame" x="0.0" y="257" width="375" height="105"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr3-Uj-5Zm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
@@ -312,7 +316,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfF-lG-hKM">
-                                    <rect key="frame" x="0.0" y="374" width="375" height="48"/>
+                                    <rect key="frame" x="0.0" y="367" width="375" height="48"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mON-vB-PXw">
                                             <rect key="frame" x="12" y="14" width="2" height="20"/>
@@ -349,14 +353,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwW-jd-Aox">
-                                    <rect key="frame" x="0.0" y="423" width="375" height="60"/>
+                                    <rect key="frame" x="0.0" y="416" width="375" height="60"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="iYQ-sa-4X4"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-ex-TuP">
-                                    <rect key="frame" x="0.0" y="484" width="375" height="48"/>
+                                    <rect key="frame" x="0.0" y="477" width="375" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="取票人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hih-W4-rK6">
                                             <rect key="frame" x="12" y="16" width="47" height="17"/>
@@ -381,7 +385,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU4-pj-hyC">
-                                    <rect key="frame" x="0.0" y="537" width="375" height="48"/>
+                                    <rect key="frame" x="0.0" y="530" width="375" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购票，取票，退票说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dT-ta-hls">
                                             <rect key="frame" x="12" y="15.5" width="143" height="17"/>
@@ -410,7 +414,7 @@
                                 <constraint firstItem="efr-8e-Nc1" firstAttribute="leading" secondItem="ZFt-F5-GOg" secondAttribute="leading" id="5vo-hM-48U"/>
                                 <constraint firstAttribute="trailing" secondItem="BU4-pj-hyC" secondAttribute="trailing" id="6Wk-11-CGj"/>
                                 <constraint firstItem="2FK-ex-TuP" firstAttribute="leading" secondItem="ZFt-F5-GOg" secondAttribute="leading" id="8gu-R6-kOL"/>
-                                <constraint firstItem="lCM-ik-mMG" firstAttribute="top" secondItem="efr-8e-Nc1" secondAttribute="bottom" constant="12" id="8he-ib-buS"/>
+                                <constraint firstItem="lCM-ik-mMG" firstAttribute="top" secondItem="efr-8e-Nc1" secondAttribute="bottom" constant="5" id="8he-ib-buS"/>
                                 <constraint firstItem="BU4-pj-hyC" firstAttribute="leading" secondItem="ZFt-F5-GOg" secondAttribute="leading" id="CQJ-IL-Hwj"/>
                                 <constraint firstAttribute="trailing" secondItem="2FK-ex-TuP" secondAttribute="trailing" id="Ci2-TI-o8U"/>
                                 <constraint firstItem="BU4-pj-hyC" firstAttribute="top" secondItem="2FK-ex-TuP" secondAttribute="bottom" constant="5" id="GIz-oh-46Z"/>
