@@ -46,8 +46,21 @@
 }
 - (IBAction)cheakDetail:(UIButton *)sender {
     MXController *mxVC = [MXController new];
-    mxVC.price = self.data[@"totalPrice"];
-    mxVC.isPay = [self.data[@"status"] isEqualToString:@"1"];
+    mxVC.price = [NSString stringWithFormat:@"%@",self.allPrice.text];
+    NSInteger status = [self.data[@"bcStatus"] integerValue];
+    if (status == -1) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%@（已取消）",self.data[@"totalPrice"]];
+    }
+    else if (status == 1) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%@（未支付）",self.data[@"totalPrice"]];
+    }
+    else if (status == 9) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f",[self.data[@"tradePrice"] floatValue]];
+        mxVC.returnFeeStr = [NSString stringWithFormat:@"-￥%.2f",[self.data[@"returnFee"] floatValue]];
+    }
+    else {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f",[self.data[@"tradePrice"] floatValue]];
+    }
     [self.navigationController pushViewController:mxVC animated:YES];
 }
 
@@ -64,7 +77,19 @@
             NSDictionary *dic = showdata[0];
             self.data = dic;
             self.statusLabel.text = dic[@"bcStatusName"];
-            self.allPrice.text = [NSString stringWithFormat:@"￥%@",dic[@"totalPrice"]];
+            NSInteger status = [dic[@"bcStatus"] integerValue];
+            if (status == -1) {
+                self.allPrice.text = @"￥0.00";
+            }
+            else if (status == 1) {
+                self.allPrice.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+            }
+            else if (status == 9) {
+                self.allPrice.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue] - [dic[@"returnFee"] floatValue]];
+            }
+            else {
+                self.allPrice.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"tradePrice"] floatValue]];
+            }
             if ([dic[@"journeyType"] isEqualToString:@"1"]) {
                 self.timeLabel2.hidden = YES;
                 self.bcType.text = @"单程";
@@ -83,12 +108,12 @@
             self.linkman.text = dic[@"orderPerson"];
             self.linkmanPhone.text = dic[@"orderPersonPhone"];
             self.sureBtnWidth.constant = SIZEWIDTH / 2;
-            NSString *status = dic[@"bcStatus"];
-            if ([status isEqualToString:@"1"]) {
+            NSString *statusStr = dic[@"bcStatus"];
+            if ([statusStr isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"去支付" forState:UIControlStateNormal];
             }
-            else if ([status isEqualToString:@"-1"] || [status isEqualToString:@"7"] || [status isEqualToString:@"9"]) {
+            else if ([statusStr isEqualToString:@"-1"] || [statusStr isEqualToString:@"7"] || [statusStr isEqualToString:@"9"]) {
                 self.bottomHeight.constant = 0;
                 self.bottomVIew.hidden = YES;
             }

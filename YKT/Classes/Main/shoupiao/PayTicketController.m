@@ -14,6 +14,7 @@
 #import "NSString+SPayUtilsExtras.h"
 #import "NSDictionary+SPayUtilsExtras.h"
 #import "WXApi.h"
+#import "MXController.h"
 @interface PayTicketController ()
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger leftTime;
 @property (weak, nonatomic) IBOutlet UILabel *bcType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startPlaceTop;
+@property (nonatomic, strong) NSDictionary *data;
 @end
 
 @implementation PayTicketController
@@ -56,12 +59,14 @@
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:url params:@{@"orderId":self.orderId} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
         if (showdata) {
             NSDictionary *dic = showdata[0];
+            self.data = dic;
             self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
             if (self.isBC) {
                 self.bcType.hidden = NO;
                 if ([dic[@"journeyType"] isEqualToString:@"1"]) {
                     self.bcType.text = @"单程";
                     self.timeLabel1.hidden = YES;
+                    self.startPlaceTop.constant = 10;
                 }
                 else {
                     self.bcType.text = @"往返";
@@ -77,6 +82,8 @@
                 self.timeLabel.text = [NSString stringWithFormat:@"%@-%@-%@",[timeStr substringWithRange:NSMakeRange(0, 4)],[timeStr substringWithRange:NSMakeRange(4, 2)],[timeStr substringWithRange:NSMakeRange(6, 2)] ];
                 self.startStationLabel.text = dic[@"sellStationName"];
                 self.endStationLabel.text = dic[@"endStationName"];
+                self.timeLabel1.hidden = YES;
+                self.startPlaceTop.constant = 10;
             }
             NSInteger leftTime = labs([dic[@"leftTime"] integerValue]);
             self.leftTime = leftTime;
@@ -235,6 +242,12 @@
         [self payFail];
     }
     
+}
+- (IBAction)goMx:(UIButton *)sender {
+    MXController *mxVC = [MXController new];
+    mxVC.price = self.priceLabel.text;
+    mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f（未支付）",[self.data[@"totalPrice"] floatValue]];
+    [self.navigationController pushViewController:mxVC animated:YES];
 }
 
 - (void)dealloc {

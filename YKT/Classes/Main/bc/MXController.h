@@ -10,5 +10,6 @@
 
 @interface MXController : BaseViewController
 @property (nonatomic, copy) NSString *price;
-@property (nonatomic, assign) BOOL isPay;
+@property (nonatomic, copy) NSString *rightPriceStr;
+@property (nonatomic, copy) NSString *returnFeeStr;
 @end

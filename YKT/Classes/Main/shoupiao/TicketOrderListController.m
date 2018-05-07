@@ -101,13 +101,25 @@
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderListCell" forIndexPath:indexPath];
     NSDictionary *dic = self.dataArr[indexPath.section][@"data"][indexPath.row];
     cell.orderNo.text = dic[@"organName"];
-    cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
     cell.orderType.text = dic[@"orderTypeName"];
     if ([cell.orderType.text isEqualToString:@"汽车票"]) {
         cell.statusLabel.text = dic[@"busStatusName"];
         cell.busId.hidden = NO;
         cell.carIcon.hidden = NO;
         cell.busId.text = dic[@"busId"];
+        NSInteger status = [dic[@"busStatus"] integerValue];
+        if (status == 0) {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+        }
+        else if (status == 2) {
+            cell.price.text = @"￥0.00";
+        }
+        else if (status == 3 || status == 5) {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue] - [dic[@"returnFee"] floatValue]];
+        }
+        else {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"tradePrice"] floatValue]];
+        }
         if ([dic[@"busTime"] length] == 8) {
             cell.busTime.text = [NSString stringWithFormat:@"%@-%@-%@",[dic[@"busTime"] substringWithRange:NSMakeRange(0, 4)],[dic[@"busTime"] substringWithRange:NSMakeRange(4, 2)],[dic[@"busTime"] substringWithRange:NSMakeRange(6, 2)]];
         }
@@ -119,6 +131,19 @@
         cell.busIdHeight.constant = 25;
     }
     else {
+        NSInteger status = [dic[@"bcStatus"] integerValue];
+        if (status == -1) {
+            cell.price.text = @"￥0.00";
+        }
+        else if (status == 1) {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+        }
+        else if (status == 9) {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue] - [dic[@"returnFee"] floatValue]];
+        }
+        else {
+            cell.price.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"tradePrice"] floatValue]];
+        }
         cell.statusLabel.text = dic[@"bcStatusName"];
         if ([dic[@"journeyType"] isEqualToString:@"1"]) {
             cell.busId.hidden = YES;

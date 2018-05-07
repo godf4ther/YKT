@@ -16,6 +16,7 @@
                 <outlet property="countDownLabel" destination="wNz-Y1-aOJ" id="XLE-N8-TJj"/>
                 <outlet property="endStationLabel" destination="yAl-IB-TcW" id="CDf-HE-0dQ"/>
                 <outlet property="priceLabel" destination="qXR-QN-1Km" id="X3y-7m-Ove"/>
+                <outlet property="startPlaceTop" destination="LqU-VN-ypp" id="MGd-PM-Gnt"/>
                 <outlet property="startStationLabel" destination="EkT-Sc-tLK" id="fiY-gU-05W"/>
                 <outlet property="timeLabel" destination="3of-CB-Uv9" id="tNB-Ch-rUM"/>
                 <outlet property="timeLabel1" destination="wVV-xd-mqx" id="T7X-a4-3zU"/>
@@ -79,11 +80,23 @@
                                 <constraint firstAttribute="height" constant="1" id="v6i-8n-oP0"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWa-d1-NVk">
+                            <rect key="frame" x="288" y="9.5" width="75" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="查看明细&gt;&gt;">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="goMx:" destination="-1" eventType="touchUpInside" id="Uyv-ut-qt9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="qWa-d1-NVk" firstAttribute="centerY" secondItem="22j-PO-zaK" secondAttribute="centerY" id="3YV-xK-1UW"/>
                         <constraint firstItem="qXR-QN-1Km" firstAttribute="centerY" secondItem="22j-PO-zaK" secondAttribute="centerY" id="GEa-L1-yFN"/>
                         <constraint firstAttribute="bottom" secondItem="IXa-UO-T9k" secondAttribute="bottom" id="JuX-Ke-Ogk"/>
+                        <constraint firstAttribute="trailing" secondItem="qWa-d1-NVk" secondAttribute="trailing" constant="12" id="K7d-80-i73"/>
                         <constraint firstItem="qXR-QN-1Km" firstAttribute="leading" secondItem="22j-PO-zaK" secondAttribute="leading" constant="12" id="V7o-Pt-aT7"/>
                         <constraint firstAttribute="trailing" secondItem="IXa-UO-T9k" secondAttribute="trailing" id="WpW-CA-2Hy"/>
                         <constraint firstItem="IXa-UO-T9k" firstAttribute="leading" secondItem="22j-PO-zaK" secondAttribute="leading" id="oeM-8W-3W8"/>
@@ -283,7 +296,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d9-5u-0Sz">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d9-5u-0Sz">
                             <rect key="frame" x="153" y="10" width="25" height="14.5"/>
                             <color key="backgroundColor" red="0.37254901959999998" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *idCardField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *hisArr;
+@property (nonatomic, strong) NSArray *passArr;
 @end
 
 @implementation WritePassengerController
@@ -23,12 +24,21 @@
     [super viewDidLoad];
     self.navigationItem.title = @"填写选择乘车人";
     [self popOut];
+    [self requestData];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(sure)];
     self.hisArr = [self getFromDefaultsWithKey:@"HisBCPassenger"];
     if (self.hisArr.count > 0) {
         [self setScrollViewUI];
     }
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)requestData {
+    [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/linkman/findLinkman.do" params:nil withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (showdata) {
+            self.passArr = showdata;
+        }
+    }];
 }
 
 - (void)setScrollViewUI{
@@ -89,14 +99,41 @@
         [self showHUDWithText:@"请填写正确身份证号"];
         return;
     }
-    NSDictionary *dic = @{@"mobile":self.phoneField.text,@"passengerName":self.nameField.text};
-    NSMutableArray *muArr = [NSMutableArray arrayWithArray:[self getFromDefaultsWithKey:@"HisBCPassenger"]];
-    if (![muArr containsObject:dic]) {
-        [muArr insertObject:dic atIndex:0];
+    BOOL needAdd = YES;
+    for (NSDictionary *dic in self.passArr) {
+        if ([dic[@"idCard"] isEqualToString:self.idCardField.text]) {
+            needAdd = NO;
+            break;
+        }
     }
-    [self saveToUserDefaultsWithKey:@"HisBCPassenger" Value:muArr];
-    self.block(dic);
-    [self.navigationController popViewControllerAnimated:YES];
+    if (needAdd) {
+        [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"member/linkman/saveLinkman.do" params:@{@"idCard":self.idCardField.text,@"mobile":self.phoneField.text,@"name":self.nameField.text,@"passengerType":@3,@"isDefault":@0} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+            if (!error) {
+                NSDictionary *dic = @{@"mobile":self.phoneField.text,@"passengerName":self.nameField.text};
+                NSMutableArray *muArr = [NSMutableArray arrayWithArray:[self getFromDefaultsWithKey:@"HisBCPassenger"]];
+                if (![muArr containsObject:dic]) {
+                    [muArr insertObject:dic atIndex:0];
+                }
+                [self saveToUserDefaultsWithKey:@"HisBCPassenger" Value:muArr];
+                self.block(dic);
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
+    else {
+        NSDictionary *dic = @{@"mobile":self.phoneField.text,@"passengerName":self.nameField.text};
+        NSMutableArray *muArr = [NSMutableArray arrayWithArray:[self getFromDefaultsWithKey:@"HisBCPassenger"]];
+        if (![muArr containsObject:dic]) {
+            [muArr insertObject:dic atIndex:0];
+        }
+        [self saveToUserDefaultsWithKey:@"HisBCPassenger" Value:muArr];
+        self.block(dic);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    
+    
+    
 }
 
 

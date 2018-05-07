@@ -73,7 +73,19 @@
         if (showdata) {
             NSDictionary *dic = showdata[0];
             self.data = dic;
-            self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+            NSInteger status = [dic[@"busStatus"] integerValue];
+            if (status == 0) {
+                self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"totalPrice"] floatValue]];
+            }
+            else if (status == 2) {
+                self.priceLabel.text = @"￥0.00";
+            }
+            else if (status == 3 || status == 5) {
+                self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",([dic[@"totalPrice"] floatValue] - [dic[@"returnFee"] floatValue])];
+            }
+            else {
+                self.priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[dic[@"tradePrice"] floatValue]];
+            }
             NSString *busTime = dic[@"busTime"];
             self.busTime.text = [NSString stringWithFormat:@"%@-%@-%@  %@:%@",[busTime substringWithRange:NSMakeRange(0, 4)],[busTime substringWithRange:NSMakeRange(4, 2)],[busTime substringWithRange:NSMakeRange(6, 2)],[busTime substringWithRange:NSMakeRange(8, 2)],[busTime substringWithRange:NSMakeRange(10, 2)]];
             self.startStation.text = dic[@"sellStationName"];
@@ -85,9 +97,9 @@
             self.pickPhone.text = dic[@"gettkPhone"];
             self.statusLabel.text = dic[@"busStatusName"];
             self.isLS = [dic[@"busKind"] integerValue] == 1;
-            NSString *status = dic[@"busStatus"];
+            NSString *statusStr = dic[@"busStatus"];
             self.cancelBtnWidth.constant = SIZEWIDTH / 2;
-            if (![status isEqualToString:@"1"]) {
+            if ([statusStr isEqualToString:@"0"] || [statusStr isEqualToString:@"2"]|| [statusStr isEqualToString:@"3"]|| [statusStr isEqualToString:@"7"]) {
                 self.pwdContainer.hidden = YES;
                 self.codeContainer.hidden = YES;
                 self.pwdContainerHeight.constant = 0;
@@ -99,11 +111,11 @@
                 self.pwdContainerHeight.constant = 48;
                 self.codeContainerHeight.constant = 48;
             }
-            if ([status isEqualToString:@"0"]) {
+            if ([statusStr isEqualToString:@"0"]) {
                 [self.cancelBtn setTitle:@"取消订单" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"去支付" forState:UIControlStateNormal];
             }
-            else if ([status isEqualToString:@"1"]) {
+            else if ([statusStr isEqualToString:@"1"]) {
                 [self.cancelBtn setTitle:@"退票" forState:UIControlStateNormal];
                 [self.sureBtn setTitle:@"改签" forState:UIControlStateNormal];
                 if ([dic[@"isReturn"] integerValue] == 1  && [dic[@"isCharge"] integerValue] == 0) {
@@ -264,8 +276,21 @@
 }
 - (IBAction)goMX:(UIButton *)sender {
     MXController *mxVC = [MXController new];
-    mxVC.price = self.data[@"totalPrice"];
-    mxVC.isPay = [self.data[@"status"] isEqualToString:@"1"];
+    mxVC.price = self.priceLabel.text;
+    NSInteger status = [self.data[@"busStatus"] integerValue];
+    if (status == 0) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f（未支付）",[self.data[@"totalPrice"] floatValue]];
+    }
+    else if (status == 2) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f（已取消）",[self.data[@"totalPrice"] floatValue]];
+    }
+    else if (status == 3 || status == 5) {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f",[self.data[@"tradePrice"] floatValue]];
+        mxVC.returnFeeStr = [NSString stringWithFormat:@"-￥%.2f",[self.data[@"returnFee"] floatValue]];
+    }
+    else {
+        mxVC.rightPriceStr = [NSString stringWithFormat:@"￥%.2f",[self.data[@"tradePrice"] floatValue]];
+    }
     [self.navigationController pushViewController:mxVC animated:YES];
 }
 

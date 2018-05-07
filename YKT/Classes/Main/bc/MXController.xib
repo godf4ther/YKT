@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MXController">
             <connections>
+                <outlet property="container" destination="s2P-p3-Exq" id="ldz-yf-2Ax"/>
+                <outlet property="returnFeeLabel" destination="VZ2-wT-Hdk" id="i7i-G4-0rF"/>
                 <outlet property="rightPrice" destination="Ts9-8W-uy8" id="p2y-Rm-kxK"/>
                 <outlet property="topPrice" destination="dSP-46-LAR" id="lWQ-ho-fKK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -52,12 +54,40 @@
                         <constraint firstItem="Ts9-8W-uy8" firstAttribute="centerY" secondItem="uAY-7D-xSu" secondAttribute="centerY" id="zwm-UE-0QQ"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2P-p3-Exq">
+                    <rect key="frame" x="0.0" y="145" width="375" height="48"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgn-jH-Eo9">
+                            <rect key="frame" x="12" y="15.5" width="31" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ2-wT-Hdk">
+                            <rect key="frame" x="338" y="15.5" width="25" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="4HC-Bx-WSz"/>
+                        <constraint firstItem="VZ2-wT-Hdk" firstAttribute="centerY" secondItem="s2P-p3-Exq" secondAttribute="centerY" id="WqH-qU-Vx2"/>
+                        <constraint firstItem="tgn-jH-Eo9" firstAttribute="leading" secondItem="s2P-p3-Exq" secondAttribute="leading" constant="12" id="YjL-FR-7In"/>
+                        <constraint firstAttribute="trailing" secondItem="VZ2-wT-Hdk" secondAttribute="trailing" constant="12" id="k9N-U4-Vad"/>
+                        <constraint firstItem="tgn-jH-Eo9" firstAttribute="centerY" secondItem="s2P-p3-Exq" secondAttribute="centerY" id="yu3-qK-tyL"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.95294117649999999" green="0.96078431369999995" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="uAY-7D-xSu" secondAttribute="trailing" id="2PK-Bd-bVN"/>
+                <constraint firstItem="s2P-p3-Exq" firstAttribute="top" secondItem="uAY-7D-xSu" secondAttribute="bottom" constant="1" id="IV7-ht-sBW"/>
+                <constraint firstItem="s2P-p3-Exq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PBx-qY-SVs"/>
                 <constraint firstItem="dSP-46-LAR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="UXq-0t-U1Q"/>
                 <constraint firstItem="dSP-46-LAR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xjp-xn-zxP"/>
+                <constraint firstAttribute="trailing" secondItem="s2P-p3-Exq" secondAttribute="trailing" id="Zjp-c2-wvR"/>
                 <constraint firstItem="uAY-7D-xSu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jcO-Ea-Wca"/>
                 <constraint firstItem="uAY-7D-xSu" firstAttribute="top" secondItem="dSP-46-LAR" secondAttribute="bottom" constant="30" id="n2Q-XX-uhK"/>
             </constraints>

@@ -38,7 +38,7 @@
     [self popOut];
     self.navigationItem.title = @"日期选择";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(sure)];
-    
+    self.chooseDate = self.selectDate;
     CalenderView *view = [[CalenderView alloc] initWithFrame:self.view.frame startDay:self.currentDate endDay:[self limitDate]];
     view.selectedDate = self.selectDate;
     view.delegate = self;
@@ -51,7 +51,7 @@
 
 - (NSString *)limitDate{
     NSDate *currentDate = [self.formatter dateFromString:self.currentDate];
-    NSDate *limitDate = [NSDate dateWithTimeInterval:24*60*60*self.sellDay sinceDate:currentDate];
+    NSDate *limitDate = [NSDate dateWithTimeInterval:24*60*60*(self.sellDay - 1) sinceDate:currentDate];
     NSString *limitDateStr = [self.formatter stringFromDate:limitDate];
     return limitDateStr;
 }

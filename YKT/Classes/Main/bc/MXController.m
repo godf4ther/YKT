@@ -11,6 +11,8 @@
 @interface MXController ()
 @property (weak, nonatomic) IBOutlet UILabel *topPrice;
 @property (weak, nonatomic) IBOutlet UILabel *rightPrice;
+@property (weak, nonatomic) IBOutlet UILabel *returnFeeLabel;
+@property (weak, nonatomic) IBOutlet UIView *container;
 
 @end
 
@@ -20,8 +22,12 @@
     [super viewDidLoad];
     [self popOut];
     self.navigationItem.title = @"明细";
-    self.topPrice.text = [NSString stringWithFormat:@"￥%@",self.price];
-    self.rightPrice.text = [NSString stringWithFormat:@"￥%@%@",self.price,self.isPay ? @"":@"(未支付)"];
+    self.topPrice.text = self.price;
+    self.rightPrice.text = self.rightPriceStr;
+    if (![self cheakIsNull:self.returnFeeStr]) {
+        self.returnFeeLabel.text = self.returnFeeStr;
+        self.container.hidden = NO;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
